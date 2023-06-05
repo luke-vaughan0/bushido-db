@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "bushido/base.html" %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    {% block title %}<title>{{faction}} - Info</title>{% endblock %}
+</head>
+{% block content %}
+<body>
+<h1>{{faction}}</h1><br>
+<h4>Themes:</h4>
+{% for theme in themes %}
+<li><a href="/bushido/info/theme/{{theme.pk}}">{{ theme.name }}</a></li>
+    {% endfor %}
+<h4>Faction models:</h4>
+{% for unit in units %}
+<li><a href="/bushido/info/model/{{unit.pk}}">{{ unit.name }}</a></li>
+    {% endfor %}
+<h4>Faction Events, Enhancements, Equipment:</h4>
+{% for event in events %}
+<li><a href="/bushido/info/event/{{event.pk}}">{{ event.name }}</a></li>
+    {% endfor %}
+{% endblock %}
+</html>

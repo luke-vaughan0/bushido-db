@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "bushido/base.html" %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    {% block title %}<title>{{theme.name}} - Info</title>{% endblock %}
+</head>
+{% block content %}
+<body>
+<h1>{{theme.name}}</h1><br>
+<img src="{% static card %}" height=500 alt = "{{theme.name}}">
+<h4>Description:</h4>
+{{theme.description}}
+<h4>Permitted Models:</h4>
+{% for unit in permitted %}
+<li><a href="/bushido/info/model/{{unit.pk}}">{{ unit.name }}</a></li>
+    {% endfor %}
+{% endblock %}
+</html>

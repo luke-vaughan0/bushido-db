@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "bushido/base.html" %}
+<head>
+    <meta charset="UTF-8">
+    {% block title %}<title>{{feat.name}} - Info</title>{% endblock %}
+</head>
+
+{% block content %}
+<body>
+<h1>{{feat.name}}</h1><br>
+<table>
+
+    <tr>
+        <th>Cost</th>
+        <th>Timing</th>
+        <th>Type</th>
+        <th>Range</th>
+        <th>Restriction</th>
+    </tr>
+    <tr>
+        <td>{{feat.cost}}</td>
+        <td>{{feat.timing}}</td>
+        <td>{{feat.featType}}</td>
+        <td>{{feat.featRange}}</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td colspan="4">{{feat.description}}</td>
+    </tr>
+</table><br><br>
+Models with feat:
+{% for unit in units %}
+<li><a href="/bushido/info/model/{{unit.pk}}">{{ unit.name }}</a></li>
+    {% endfor %}
+</body>
+{% endblock %}
+</html>

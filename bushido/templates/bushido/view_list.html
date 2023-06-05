@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{ list.name }}</h1>
+<h3>List</h3>
+{% for thing in unit_list %}
+<li><a href="/bushido/info/model/{{thing.unit.pk}}">{{ thing.unit.name }}</a></li>
+    {% endfor %}
+<br>
+<h3>Permitted</h3>
+{% for unit in permitted %}
+<li><a href="/bushido/info/model/{{unit.pk}}">{{ unit.name }}</a></li>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,4192 @@
+[{
+	"model": "bushido.event",
+	"pk": 1,
+	"fields": {
+		"name": "Lockdown",
+		"cycle": "None",
+		"cost": "5",
+		"max": "1",
+		"faction": "kkz",
+		"description": "Play during a Starting Phase. Nominate either 1 Zone or 1 Scenario Objective that is on the table. If a Zone is selected, then for that turn neither player is eligible to Control the chosen Zone, such that no Scenario Points can be scored from that Zone this turn. If a Scenario Objective is chosen, then for that turn neither player is able to perform any Influence, Prayer, or Worship Actions at the chosen Objective. Also, for that turn no Scenario Points can be earned from the chosen Objective (irrespective of the existing alignment)"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 2,
+	"fields": {
+		"name": "Perfect Impersonation",
+		"cycle": "None",
+		"cost": "7",
+		"max": "1",
+		"faction": "kkz",
+		"description": "During Deployment, 1 Ninja model gains Flank. Play during the Starting Phase. Remove any undamaged, non-Unique, non-VIM, Enemy model from play and replace it with a Friendly Ninja model that is Elsewhere. That Enemy model gains Flank and follows those rules to return to play in the next turn"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 3,
+	"fields": {
+		"name": "Herbal Remedy",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "kkz",
+		"description": "Use at any time, except while a model is activating. Choose a State effect other than Reloading. 1 Ninja model gains Immune [Chosen State] until the End Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 4,
+	"fields": {
+		"name": "Jigoku Berry",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "kkz",
+		"description": "In the Starting Phase, choose one Ninja to gain Poison (1/3) until the End Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 5,
+	"fields": {
+		"name": "Shadow Moves",
+		"cycle": "None",
+		"cost": "5",
+		"max": "1",
+		"faction": "kkz",
+		"description": "Play at any time except while resolving a model's action. Exchange positions of any 2 Friendly Ninja models currently in play"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 6,
+	"fields": {
+		"name": "Decoy",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "kkz",
+		"description": "Play during the Starting Phase. Place any undamaged Friendly Ninja model Elsewhere. That model gains Flank and follows those rules to return to play in the next turn"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 7,
+	"fields": {
+		"name": "Co-ordinated Strike",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "kkz",
+		"description": "Play only on turn 3 before the Tactical Roll. Choose 1 Ninja to gain Tactician (+1) for that turn"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 8,
+	"fields": {
+		"name": "Terror Tactics",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "kkz",
+		"description": "The Activating Ninja model gains Charging Bonus [Fear (6)] until the current action is resolved"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 9,
+	"fields": {
+		"name": "Dawn Raid",
+		"cycle": "None",
+		"cost": "0",
+		"max": "1",
+		"faction": "kkz",
+		"description": "Play before Deployment. All Friendly Ninja models gain Scout (0/4\") but cannot make Scenario Actions on the first turn. X = the number of Ninja models in the Warband"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 10,
+	"fields": {
+		"name": "Poison Vial",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "kkz",
+		"description": "In the Starting Phase, all Friendly Ninja models' weapons gain Poison (1/1) until the End Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 11,
+	"fields": {
+		"name": "End Phase",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </infoGrou",
+		"faction": "kkz",
+		"description": "During the End Phase, this model may make a Walk directly towards a Friendly Ninja. If this model is BtB with the chosen Ninja, that Ninja gains Tactician (+1) for the next Tactical Roll"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 12,
+	"fields": {
+		"name": "Terminate",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "kkz",
+		"description": "When a Ninja model would benefit from Assassin, Enemy models cannot use the Bodyguard trait that activation"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 13,
+	"fields": {
+		"name": "Scouting Mission",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "kkz",
+		"description": "• During Deployment up to 3 Friendly Ninja models gain Scout (1/4\") • In the Starting Phase, double the Pass Tokens the Warband generates. • Once per game, during the Starting Phase, choose a Ninja model not in LoS of any Enemy model. The chose model gains a Disguised (7) Marker. • Friendly Ninja models gain Bravery when they would benefit from Assassin"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 14,
+	"fields": {
+		"name": "Skirmish Mission",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "kkz",
+		"description": "• During Deplyment add 2 Enhancement or Terrain cards to the Warband for free. • In the Starting Phase, double the Pass Tokens the Warband generates. • During the Starting Phase, choose 1 Friendly Ninja model. It gains a Disguise (5) Marker until the End Phase. • Declare this ability in the Starting Phase. Once per game, until the End Phase, Friendly Ninja models' weapons gain Ki Block when they would benefit from Assassin"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 15,
+	"fields": {
+		"name": "Assassination Mission",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "kkz",
+		"description": "• Before the start of the game you may swap an Event card you have recruited for any Event card costing the same Rice or less. • During Deployment, choose an Enemy model. It gains a Death Sentence Marker. • During the Starting Phase, choose an Enemy model. When a Friendly Ninja model Targets or is Targeted by that model, or a model with a Death Sentence Marker, the Friendly Ninja model gains Fearless until the action is resolved. • In the Starting Phase, double the Pass Tokens the Warband generates"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 16,
+	"fields": {
+		"name": "Start of Activation",
+		"cycle": "None",
+		"cost": "19",
+		"max": "  </infoGrou",
+		"faction": "kkz",
+		"description": "At the start of this model's activation choose one of the following: • This model gains the following Ranged Weappon until the end of the activation: Damage: Special, Range: -/3/-, Lightweight, Sweep Attack (0) This model may only make one Ranged Attack with the Kusari per activation • This model gains Split Attack until the end of the activatio"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 17,
+	"fields": {
+		"name": "Espionage",
+		"cycle": "Risen Sun",
+		"cost": "1",
+		"max": "1",
+		"faction": "kkz",
+		"description": "Play before the first turn. Choose 1 Enemy model using the Flank trait. Its owner must reveal which table edge it will enter from"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 18,
+	"fields": {
+		"name": "Pounce",
+		"cycle": "None",
+		"cost": "14",
+		"max": "  </infoGrou",
+		"faction": "kkz",
+		"description": "When this model benefits from Cover relative to an Enemy model and declares a Charge or Melee Action against this Enemy model, this Enemy model is Surprised. When this model would Surprise an Enemy model, it gains Banzai! until the end of the current activation"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 19,
+	"fields": {
+		"name": "House Bleeding Moon",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "kkz",
+		"description": "• This Warband does not generate Pass Tokens in the Starting Phase. • Undamaged [Bleeding Moon &amp; Ninja] models in this Warband gain one additional Activation Counter in the Starting Phase.  Permitted [Bleeding Moon, Ronin Bleeding Moon"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 20,
+	"fields": {
+		"name": "Masked Fate",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "kkz",
+		"description": "Play during Deployment. For the rest of the game, each time an Enemy model removes a Death Sentence Marker, gain 1 Scenario Point"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 21,
+	"fields": {
+		"name": "New Contract",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "kkz",
+		"description": "Play in the Starting Phase. If no Enemy models have a Death Sentence Marker, choose one Unique Enemy model to gain a Death Sentence Marker"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 22,
+	"fields": {
+		"name": "Under the Bleeding Moon",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "kkz",
+		"description": "When a Friendly Bleeding Moon Ninja would benefit from Assassin, its Weapons gain Bleed (1/1) until the end of the Melee Exchange"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 23,
+	"fields": {
+		"name": "The Blood Moon",
+		"cycle": "None",
+		"cost": "2",
+		"max": "3",
+		"faction": "kkz",
+		"description": "Play in the Starting Phase. Friendly Bleeding Moon models gain Sixth Sense until the End Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 24,
+	"fields": {
+		"name": "Jigoku Berry Tincture",
+		"cycle": "Weeping Sky",
+		"cost": "2",
+		"max": "1",
+		"faction": "kkz",
+		"description": "Play When an Enemy model begins a Melee Exchange with a Friendly Ninja you own. The Ninja gains Lightning Reflexes, Feint (1), and its Melee Weapons gain Combo Attack (0) and Strong.  Remove the Ninja from play when the current activation is complete"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 25,
+	"fields": {
+		"name": "Know Your Enemy",
+		"cycle": "Weeping Sky",
+		"cost": "2",
+		"max": "1",
+		"faction": "kkz",
+		"description": "During this Melee Exchange, your Opponent must reveal their dice allocation before you choose yours, then both roll.  Requirement [Scouting Mission theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 26,
+	"fields": {
+		"name": "Shinigami's Due",
+		"cycle": "Weeping Sky",
+		"cost": "2",
+		"max": "1",
+		"faction": "kkz",
+		"description": "Play in the Starting Phase. Models may not Heal this turn"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 27,
+	"fields": {
+		"name": "Umbral Assassin",
+		"cycle": "Weeping Sky",
+		"cost": "3",
+		"max": "1",
+		"faction": "kkz",
+		"description": "Play any time except when a model is activating. Choose a Friendly Ninja model. That Ninja Targets an Enemy model within 6\". Resolve a Melee Exchange between the Ninja and the Target model, ignoring requirements to be in BtB. That Ninja model has the Initiative. Do not Move the models or Turn them to face each other. Neither model is Surprised. Models may not use Special Abilities for the duration of this Exchange.  Requirement [Assassination Mission theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 28,
+	"fields": {
+		"name": "House North Star",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "kkz",
+		"description": "• When a Friendly North Star Ninja successfully Attacks and benefits from Assassin in a Melee Exchange, the Enemy model loses an Activation Counter. • While the turn number is odd, whenever a Friendly North Star Ninja model would choose one of its abilities at the start of its activation, instead choose up to two abilities. • Faction Enhancement - Equipment Cards may be Attached to Ronin models permitted in this Warband as if they were faction Ninja models. (All other requirements must be met).  Restricted [North Star Ninja, Ronin models"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 29,
+	"fields": {
+		"name": "Long Term Planning",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "kkz",
+		"description": "In the Starting Phase of Turn 5, North Star Ninjas may be placed within 2\" of their current location"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 30,
+	"fields": {
+		"name": "The Right Tool",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "kkz",
+		"description": "Add permitted Equipment card with Rice Cost up to X to the Warband and attach it to a North Star Ninja. Discard it at the end of the current activation.  Requirement [House North Star Theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 31,
+	"fields": {
+		"name": "Nothing Wasted",
+		"cycle": "None",
+		"cost": "1",
+		"max": "3",
+		"faction": "kkz",
+		"description": "When a Friendly non-lnsignificant model is Killed in a Melee Exchange or an Enemy Ranged Attack Action, you may distribute a number of Ki Tokens to Friendly North Star models equal to the Killed model's Ki Statistic.  Requirement [House North Star Theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 32,
+	"fields": {
+		"name": "House Long Shadow",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "kkz",
+		"description": "• Once per game, in the Starting Phase, you may use this ability. Until the End Phase, Enemy models lose Sixth Sense while Targeting a Long Shadow Ninja. • Any Effect from an Opponent's Theme Card which states a specific turn or turns to apply (e.g. Turn 4 or the last turn of the game) cannot be used. • When nominating a Table Edge for a Friendly Long Shadow model with Flank, you may choose an Opponent's Table Edge. • Opponent's Flank choices for Turn and Table Edge are OPEN INFORMATION.  Permitted [Long Shadow, Ronin Long Shadow, Karapan"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 33,
+	"fields": {
+		"name": "All-Knowing",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </infoGrou",
+		"faction": "kkz",
+		"description": "In the End Phase, if this model is BtB with any Enemy models, those model's owners must reveal if those models are their VIM"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 34,
+	"fields": {
+		"name": "Gossip",
+		"cycle": "None",
+		"cost": "16",
+		"max": "y models within 2\" of this model turn to directly face this model",
+		"faction": "kkz",
+		"description": "You may choose one Enemy model before deployment. Unless that model must be the VIM (because it is the only valid option or due to a Unique Effect), your opponent cannot choose that model to be VIM"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 35,
+	"fields": {
+		"name": "Counter Tactics",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "kkz",
+		"description": "Play in the Starting Phase. Choose one of the following effects: • Name one Event Card. The named Event Card cannot be played this turn (this includes multiple copies of the same card). • Choose an Enhancement - Equipment Card that is Attached to an Enemy model. Discard that card. Return that card and Attach it to the Enemy model again during the End Phase.  Requirement [House Long Shadow Theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 36,
+	"fields": {
+		"name": "Patience",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "kkz",
+		"description": "In the Starting Phase, place an Impetuous Marker on any Enemy models in BtB with a Long Shadow model.  Requirement [House Long Shadow Theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 37,
+	"fields": {
+		"name": "Scouted Deployment",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "kkz",
+		"description": "Choose one Enemy model without the Flank or Scout traits. You may Deploy that model before any others during Deployment in a legal position in the Enemy Deployment Zone.  Requirement [House Long Shadow Theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 38,
+	"fields": {
+		"name": "Umbral Mastery",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "kkz",
+		"description": "Before rolling for the first turn's Tactical Test, you may swap the positions of any or all Friendly Long Shadow Ninjas on the Battlefield.  Requirement [House Long Shadow Theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 39,
+	"fields": {
+		"name": "Unseen Assailant",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "kkz",
+		"description": "While Surprised this activation, non-Aggressive Enemy models may not place any dice in Attack during a Melee Exchange.  Requirement [House Long Shadow Theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 40,
+	"fields": {
+		"name": "Well-Armed Scouts",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "kkz",
+		"description": "Play in the Starting Phase of the first turn. Gain a Shuriken Event card for each Friendly Ninja model that Deployed using the Scout trait.  Requirement [House Long Shadow lheme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 41,
+	"fields": {
+		"name": "Cat-Like Agility",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "kkz",
+		"description": "The Attached Ninja model gains Immune [Prone]"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 42,
+	"fields": {
+		"name": "Disguise",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "kkz",
+		"description": "The Attached model begins the game with a Disguise (6) Marker"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 43,
+	"fields": {
+		"name": "First Strike",
+		"cycle": "Risen Sun",
+		"cost": "2",
+		"max": "1",
+		"faction": "kkz",
+		"description": "If Attached model is involved in the first Melee Exchange of the game, it gains Unblockable (1) for that Melee Exchange, then discard this card"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 44,
+	"fields": {
+		"name": "Talk with the Shadows",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "kkz",
+		"description": "Attached model must be on the Battlefield in the Starting Phase of the first turn. In the Starting Phase of the first turn, Attached model may become Exhausted. If it does so, Attached model cannot be Surprised for the remainder of the game. While an Enemy Warband has a model with the Tactician trait, the Attached model gains Tactician (1).  Requirement [House Long Shadow Theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 45,
+	"fields": {
+		"name": "Signaling Flare",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "kkz",
+		"description": "When the Attached Ninja model ends its activation you may become the Acive Player again and begin another Friendly Ninja model's activation, then discard this card"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 46,
+	"fields": {
+		"name": "Poisoned Weapons",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "kkz",
+		"description": "The Attached Ninja model's weapons gain Poison (1/1)"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 47,
+	"fields": {
+		"name": "Grappling Hook",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "kkz",
+		"description": "The Attached Ninja model gains Flank"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 48,
+	"fields": {
+		"name": "Ninjato",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "kkz",
+		"description": "Attach model gains the Ninjato Melee Weapon. You may Discard this card to Attach any valid Enhancement - Equipment with Rice Cost of X or lower that was not recruited into the Warband to the Attached model.  Requirement [House North Star Theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 49,
+	"fields": {
+		"name": "Spyglass",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "kkz",
+		"description": "Generate an additional Pass Token in the Starting Phase of the first turn of the game for each Friendly model with the Scout trait in the Warband. While Attached model is in play, you generate an additional Pass Token in the Starting Phase.  Requirement [House Long Shadow Theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 50,
+	"fields": {
+		"name": "Unknown Position",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "kkz",
+		"description": "The first time the Attached model Kills an Enemy model, at the end of the current activation place the Attached model anywhere on the Battlefield. Then discard this card.  Requirement [House Long Shadow Theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 51,
+	"fields": {
+		"name": "Ambush",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "descention",
+		"description": "X Friendly models gains Flank. X cannot be greater than 3"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 52,
+	"fields": {
+		"name": "Terrifying Reputation",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "descention",
+		"description": "Play during the End Phase. Enemy models may not roll to remove the Frightened State this turn"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 53,
+	"fields": {
+		"name": "Fujin's Breath",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "descention",
+		"description": "Play after the Tactical Test. Friendly models with Cloudwalk gain +1 Move until the End Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 54,
+	"fields": {
+		"name": "Tailwinds",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "descention",
+		"description": "Play during the End Phase. Friendly Descension models' Ranged Weapons gain +4 Range on their Long Range Bands next turn"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 55,
+	"fields": {
+		"name": "Unending Devotion",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "descention",
+		"description": "Choose a non-Tengu, Friendly, Descension model. That model galins Bodyguard [Tengu](3) until the current action is resolved"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 56,
+	"fields": {
+		"name": "Wisdom of the Mountains",
+		"cycle": "None",
+		"cost": "1",
+		"max": "0",
+		"faction": "descention",
+		"description": "Play during Deployment. Gain 2 Virtue Tokens and place each on a Friendly model.  Requirement [Warband with a Koroko model"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 57,
+	"fields": {
+		"name": "Secrets of the Karasu",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "descention",
+		"description": "When Damage to a Friendly Karasu Tengu model would mark its final Wound box, instead leave the model on 1 box remaining"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 58,
+	"fields": {
+		"name": "Suzume Flock",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "descention",
+		"description": "Play during the Starting Phase. Each Friendly Suzume model may be placed within 1\" of its current location and not in the ZoC of an Enemy model"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 59,
+	"fields": {
+		"name": "Wind Watchers",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "descention",
+		"description": "• When a Friendly model is Killed, each other Friendly Descension model's Weapons gain +1 Strength until the End Phase • Friendly Descension models with Cloudwalk begin the game with 1 Ki Token • After the Tactical Test choose Friendly model not in BtB with an Enemy model. Place this model within 2\" Of its current location and not in the ZoC of an Enemy model  Permitted [Birds, Ronin Birds, Tengu with Melee Pool 3+, Ronin Kami, Ronin Tengu with Melee Pool 3+"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 60,
+	"fields": {
+		"name": "Blue Gale Scouting Party",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "descention",
+		"description": "• Once per game, in the Starting Phase, Friendly models may be placed within 1\" of their current position but not in the ZoC of an Enemy model • Enemy models cannot use Move Ki Boosts on the first and last turn of the game  Permitted [Models with a Move Boost"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 61,
+	"fields": {
+		"name": "Shepherds of the White Mesa",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "descention",
+		"description": "• During the first turn of the game, Enemy models cannot Target Friendly models with Ranged Attacks • During the Starting Phase of turn 3, all Kami may gain 1 Ki Token. This cannot exceed their maximum • During the Starting Phase your Opponent must choose 1 of their non-Slow models. That model gains Slow until the End Phase. A model may not be chosen twice unless all other non-Slow models have already been chosen  Permitted [Ronin Kami, Small Tengu, Tribesmen"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 62,
+	"fields": {
+		"name": "Fujin's Gaze",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "descention",
+		"description": "Reduce all Range Bands of all Ranged Weapons by 2\" until the End Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 63,
+	"fields": {
+		"name": "Ironfeather Pinions",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "descention",
+		"description": "1 Friendly Tengu model with Cloudwalk loses Cloudwalk and gains 'Shield' until the End Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 64,
+	"fields": {
+		"name": "Attack From Above",
+		"cycle": "None",
+		"cost": "2",
+		"max": "2",
+		"faction": "descention",
+		"description": "When a Friendly model with Cloudwalk declares a Melee or Charge Action, the Enemy model is Surprised, regardless of the usual Surprised requirements"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 65,
+	"fields": {
+		"name": "Surge of Flying Feathers",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "descention",
+		"description": "Play this Event in the Starting Phase, all Friendly models with Cloudwalk gain +1 Move Statistic. This cannot be played on the first turn of the game"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 66,
+	"fields": {
+		"name": "Royal Mandate",
+		"cycle": "Risen Sun",
+		"cost": "1",
+		"max": "1",
+		"faction": "descention",
+		"description": "Play during the Starting Phase. Until the End Phase, Enemy models gain Weak when making Size Tests"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 67,
+	"fields": {
+		"name": "Sacred Hunt",
+		"cycle": "Weeping Sky",
+		"cost": "2",
+		"max": "1",
+		"faction": "descention",
+		"description": "Play in the Starting Phase. Until the End Phase Friendly Tribesman models gain the Vengeance [Animal] trait and their Ranged Weapons gain Bleed (1/1) when Targeting an Animal model. If a non-lnsignificant Enemy Animal model is Killed, Friendly Tribesmen models gain Tough (+1) until the End Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 68,
+	"fields": {
+		"name": "Wardens of the Eyrie",
+		"cycle": "Weeping Sky",
+		"cost": "2",
+		"max": "1",
+		"faction": "descention",
+		"description": "Play in the Starting Phase. Until the End Phase, reduce the cost of Friendly Haiatake models' Special Attacks and Defences to 0"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 69,
+	"fields": {
+		"name": "Hunter Gatherers",
+		"cycle": "Weeping Sky",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "descention",
+		"description": "• Once per game, in the Starting Phase, Friendly models gain 'While this model has no marked Wound boxes they gain Strong'. This effect lasts until the End Phase. • When a Friendly model kills an Enemy non-Soulless model in a Melee Exchange, that Friendly model may gain Ki Tokens equal to the Enemy model's Ki Statistic. • Friendly Tribesman models do not suffer the Melee or Ranged Penalty for having Moved or Run or the Ranged Penalty for the Target having Run that turn.  Permitted [Tribesman] Exclusion [Cliff Tribe, Plainsman"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 70,
+	"fields": {
+		"name": "Eagle's Splendour",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "descention",
+		"description": "Attached model gains Leadership [Tengu](1/6\").  Requirement [Kurama Tengu, Washi Tengu"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 71,
+	"fields": {
+		"name": "Fujins Charm",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "descention",
+		"description": "When a model moves into BtB with Attached model, if this model was not already in BtB with an Enemy model, place the model within 2\" of its current location and not in the ZoC of an Enemy model then discard this card"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 72,
+	"fields": {
+		"name": "Ruthless",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "descention",
+		"description": "The Attached model gains Protected [Kakyu](3\""
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 73,
+	"fields": {
+		"name": "Primitive Rage",
+		"cycle": "Risen Sun",
+		"cost": "2",
+		"max": "1",
+		"faction": "descention",
+		"description": "During the Starting Phase, Attached model may become Berserk. If it does, it gains Powerful Attack (0) until the End Phase.  Requirement |Tribesman"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 74,
+	"fields": {
+		"name": "Final Flight",
+		"cycle": "Weeping Sky",
+		"cost": "1",
+		"max": "1",
+		"faction": "descention",
+		"description": "Attached model loses Cloudwalk and cannot gain it. When the Attached model gains or spends a Virtue Token, it gains one Ki Token. When the Attached model is Killed, distribute its remaining Ki Tokens amongst Friendly, non-Kakyu models.  Requirement [Tengu with Cloudwalk"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 75,
+	"fields": {
+		"name": "Cloak of Alacrity",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "descention",
+		"description": "If the Attached model is BtB with an Enemy model in the End Phase, you may place it within 2\" of its current location but not into the ZoC of an Enemy model. If you do, discard this card"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 76,
+	"fields": {
+		"name": "Haemotoxic Oil",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ito",
+		"description": "When a Friendly model causes Damage in a Melee Exchange, until the End Phase the Damaged Enemy model gains Bleed (1) Marker whenever is takes further Damage. This effect ends if all Poison Markers are removed from the Enemy model"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 77,
+	"fields": {
+		"name": "Orochi's Gaze",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ito",
+		"description": "Play this card in the Starting Phase, add X+2 Blood of Orochi Tokens to the pool"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 78,
+	"fields": {
+		"name": "Orochi's Shadow",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ito",
+		"description": "Play before the Tactical Test to choose X Enemy models to gain Willpower (-1) and lose Tactician until the End Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 79,
+	"fields": {
+		"name": "Orochi's Gift",
+		"cycle": "None",
+		"cost": "1",
+		"max": "selectionEntr",
+		"faction": "ito",
+		"description": "When an Enemy model is Killed due to Poison in the End Phase, you may add 3 additional Blood of Orochi points to the pool in the next Starting Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 80,
+	"fields": {
+		"name": "Orochi's Vengeance",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ito",
+		"description": "Choose an Enemy model with the Immune [Poison] trait that is within 3\" of a Friendly Shisai. That model loses 1 Activation Counter"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 81,
+	"fields": {
+		"name": "The Blessed",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "ito",
+		"description": "• Friendly Shisai gain double Ki Tokens on the Ki Generation step of the first turn. • Each turn choose 1 Friendly Hebimmiman model. That model may be given up to 3 Blood of Orochi Tokens in the Starting Phase instead of 2. • During Deployment you may assign a Virtue Token to up to 2 Friendly Faction models. Permitted [Acolyte, Jade Mamba, models with Blood of Orochi, Snake"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 82,
+	"fields": {
+		"name": "Lords of Izu",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "ito",
+		"description": "• In the End Phase Poison Damage ignores the Tough trait. • During Deployment 1 Ito Samurai gains Leadership [Friendly](+1/6\") until the end of the game. • In the Starting Phase add 2 Blood of Orochi Tokens to the pool. Permitted [Ashigaru, Ronin Kami, Samurai, Snake] Exclusion [Hebimiman"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 83,
+	"fields": {
+		"name": "Serpent's Coil",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "ito",
+		"description": "• During the End Phase, if a model takes Damage due to a Poison Marker, a model with Immune (Poison) in this Warband gains 1 Ki Token. • Add X Blood of Orochi Tokens to the pool each Starting Phase, where X is the number of VPs scored"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 84,
+	"fields": {
+		"name": "Greater Sacrifices",
+		"cycle": "Risen Sun",
+		"cost": "2",
+		"max": "1",
+		"faction": "ito",
+		"description": "Play after an Acolyte is removed from play through a Friendly Unique Effect or Sacrifice. All Friendly Shisai models gain 2 Ki Tokens"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 85,
+	"fields": {
+		"name": "Itsunagi's Gambit",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ito",
+		"description": "If attached model places all Melee dice into Attack, it gains Brutal (+1) until the end of the Melee Exchange"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 86,
+	"fields": {
+		"name": "Forked Tongue",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ito",
+		"description": "Attached model gains Sixth Sense"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 87,
+	"fields": {
+		"name": "Emboldened",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ito",
+		"description": "Attached model gains Bravery when Targeting a model with Poison Markers"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 88,
+	"fields": {
+		"name": "Inducted into the Priesthood",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ito",
+		"description": "This model gains Channel (6/6\""
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 89,
+	"fields": {
+		"name": "Vial of Venom",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ito",
+		"description": "Whenever this model declares a Wait Action, its Melee Weapons gain Poison (1/3) until the End Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 90,
+	"fields": {
+		"name": "Serpent's Blood",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ito",
+		"description": "Whenever this model takes Damage in a Melee Exchange, all models in BtB with this model gain a Poison (1) Marker"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 91,
+	"fields": {
+		"name": "Itsunagi's Retinue",
+		"cycle": "Risen Sun",
+		"cost": "2",
+		"max": "1",
+		"faction": "ito",
+		"description": "Attached model begins the game with 2 Ki Tokens"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 92,
+	"fields": {
+		"name": "Messiah of the Serpent",
+		"cycle": "Weeping Sky",
+		"cost": "2",
+		"max": "1",
+		"faction": "ito",
+		"description": "While this model has maximum Ki Tokens, when it would mark Wounds, it may instead remove one Ki Token for each Wound that would be marked. Once all Ki Tokens have been used this way, any remaining Wounds are marked as normal.  Requirement [Ito Itsunagi"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 93,
+	"fields": {
+		"name": "Uwabami's Tooth",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ito",
+		"description": "This model may re-roll a Damage Roll, then discard this card"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 94,
+	"fields": {
+		"name": "Poisoned Blade",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ito",
+		"description": "Attached model's Melee Weapons gain Poison (1/1)"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 95,
+	"fields": {
+		"name": "Ito Clan Armour",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "ito",
+		"description": "Attached model gains Armour (3). Attached model ignores Enemy Damage Rolls if the individual dice values of the Damage Roll are the same number. Attached model gains Move Ki Boost (2)"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 96,
+	"fields": {
+		"name": "Serpentine Armour",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ito",
+		"description": "Attached model gains Armour (2) and Lightfooted"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 97,
+	"fields": {
+		"name": "Charmed Medallion",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ito",
+		"description": "You may force any Damage Roll against this model to be re-rolled, then discard this card"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 98,
+	"fields": {
+		"name": "The Snake Head Standard",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ito",
+		"description": "While this model is within 6\" of any Enemy model, any Friendly Ashigaru or Samurai model with LoS to this model gains Agile and Evasive. This model is considered Medium Sized for the purposes of this ability"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 99,
+	"fields": {
+		"name": "Zenith of the Void",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "kinshi",
+		"description": "Before the game, place 3 Void Rift Terrain elements on the table within 6\" of the centre point and not within 2\" of any Objective.  Permitted [Satsui"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 100,
+	"fields": {
+		"name": "Blessings of the Void",
+		"cycle": "None",
+		"cost": "0",
+		"max": "1",
+		"faction": "kinshi",
+		"description": "Some feats have a Rank listed in their cost column. These Ki Feats may only be used if an effect allows them to be used at no cost. Friendly Satsui models may use the following feats as if they were on their card: • Whispers of the Void • Silence of the Voi"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 101,
+	"fields": {
+		"name": "Moment of Perfection",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "kinshi",
+		"description": "Play only in the Main Phase. If no models in play have Ki Tokens, add an Activation Counter to up to 2 Satsui models"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 102,
+	"fields": {
+		"name": "Uroboros",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "kinshi",
+		"description": "When an Enemy non-Void Element model spends a Virtue Token, add a Void Counter to the Blessings of the Void communal card"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 103,
+	"fields": {
+		"name": "Voice of the Void",
+		"cycle": "None",
+		"cost": "1",
+		"max": "3",
+		"faction": "kinshi",
+		"description": "Play only in the Main Phase. Add 1 to a Friendly Monk model’s statistics until the current activation is complete. This is considered a Ki Boost"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 104,
+	"fields": {
+		"name": "Everything and Nothing",
+		"cycle": "Weeping Sky",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "kinshi",
+		"description": "• When a Ronin model is Killed, Replace it with a Void Rift. This can be used to Deploy a Replacing Void Rift in Base to Base or a ZoC. • When a Ronin model performs a Scenario Action, remove one fewer Activation Counters at the end of the action. • Whenever a VP is scored, Deploy a Void Rift terrain in Base to Base with a Friendly model. This can be used to Deploy a Void Rift in Base to Base or a ZOC.  Permitted [Kinshi Temple models, Ronin models"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 105,
+	"fields": {
+		"name": "Ki Disrupting Palm",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "kinshi",
+		"description": "When Attached model succeeds in a Melee Exchange, all Aura effects on the Enemy model immediately expire.  Requirement [Monk, Void Element]"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 106,
+	"fields": {
+		"name": "Disrupt Harmony",
+		"cycle": "None",
+		"cost": "4",
+		"max": "1",
+		"faction": "kinshi",
+		"description": "When this model makes a successful attack, you may choose a Ki Feat on the Enemy non-Satsui model's card. That Ki Feat may not be used for the rest of the game. Once used, discard this card.  Requirement [Master Shi"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 107,
+	"fields": {
+		"name": "Eclipse of Hate",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "kinshi",
+		"description": "Attached model gains Vengeance [Spirit Blocked].  Requirement [Monk, Void Element] Exclusion [Master]"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 108,
+	"fields": {
+		"name": "WITNESS ME!",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "Friendly Unblessed Ashigaru that is in LoS of a Friendly Blacksmith gains Last Stand until the End Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 109,
+	"fields": {
+		"name": "Blizzard",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "During the first turn of the game, all models are in Cover and gain Slow"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 110,
+	"fields": {
+		"name": "Just a Scratch",
+		"cycle": "None",
+		"cost": "2",
+		"max": "2",
+		"faction": "minimoto",
+		"description": "When a model rolls a Damage Roll on a Minimoto model, play before the roll to halve the final Damage taken"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 111,
+	"fields": {
+		"name": "Hasty Bear",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "Choose 1 Minimoto model. It gains the benefit of having 4 marked Wounds boxes, regardless of its current Wounds, until the current action is resolved"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 112,
+	"fields": {
+		"name": "Army of the Minimoto",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "minimoto",
+		"description": "• Once per game, in the Starting Phase, all Minimoto Clan models gain +1 Melee Strength until the End Phase. • Ashigaru in the Warband may be Deployed an additional 2\" from their usual Deployment Zone"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 113,
+	"fields": {
+		"name": "Garrison of the Damned",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "minimoto",
+		"description": "• Minimoto Ashigaru models in the Warband gain Indomitable (+1). • Every time an Enemy model is removed from play as a result of a Melee Exchange, the Friendly model in the exchange gains 1 Ki Token. • During turn 1 models in this Warband gain Sixth Sense"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 114,
+	"fields": {
+		"name": "The Finest Steel",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "minimoto",
+		"description": "• All models in the Warband gain Durable. This benefit is lost when any Friendly model suffers a Wound. • When a Friendly model is removed from play, other Friendly Minimoto models gain +1 Melee Strength until the End Phase. • Once per game, in the Starting Phase, all Friendly Minimoto Samurai gain:   \"When this model deals Damage as a result of a Melee Exchange, the Enemy model gains a Stun Token. Each model may gain only one Stun Token as a result of this ability.\"   until the End Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 115,
+	"fields": {
+		"name": "Bear Hug",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "When an Enemy model in BtB with a Friendly Minimoto model would Move, it may not Move except to change its Facing this turn. If activated, the model must declare an action permitted while in BtB"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 116,
+	"fields": {
+		"name": "Barge Past",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "Choose a Minimoto model to gain Charging Bonus [Agile, Evasive] until the end of the current activation. This model may declare a Charge Action while in BtB with an Enemy model"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 117,
+	"fields": {
+		"name": "Blessing of Steel",
+		"cycle": "None",
+		"cost": "0",
+		"max": "0",
+		"faction": "minimoto",
+		"description": "Attached model gains Armour (3)"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 118,
+	"fields": {
+		"name": "Weighted Tetsubo",
+		"cycle": "None",
+		"cost": "0",
+		"max": "0",
+		"faction": "minimoto",
+		"description": "Attached model gains Pierce [Melee](2)"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 119,
+	"fields": {
+		"name": "Implacable Advance",
+		"cycle": "Weeping Sky",
+		"cost": "2",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "Play in the Starting Phase. All Friendly Minimoto models remove all Prone Markers and until the End Phase, roll an additional dice during Move and Size Tests"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 120,
+	"fields": {
+		"name": "Into the Darkness",
+		"cycle": "Weeping Sky",
+		"cost": "1",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "Play in the Starting Phase. Until the End Phase, all Ki Feats from Communal cards cost one additional Ki Token to use"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 121,
+	"fields": {
+		"name": "Obstinate Bear",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "Attached model gains Indomitable (+1)"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 122,
+	"fields": {
+		"name": "Absolute Loyalty",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "Attached model gains Immune [Control]"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 123,
+	"fields": {
+		"name": "Ice Totem",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "Attached model begins the game with 2 Ki Tokens"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 124,
+	"fields": {
+		"name": "Mind Over Matter",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "Attached model gains: When this model performs a Wait Action it gains Tough (2) and Resistance (2) until the End Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 125,
+	"fields": {
+		"name": "Over-Exuberance",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "Attached model gains Strong. After a Damage Roll, the Attached model suffers Damage equal to the value of the unused dice in the Strong Damage Roll (ignoring Tough)"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 126,
+	"fields": {
+		"name": "Avalanche",
+		"cycle": "Risen Sun",
+		"cost": "1",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "When the Attached model is Killed in a Melee Exchange make a Success Level 2 Damage Roll, using the strength modifier of one of that model's Melee Weapons, against the Enemy model in the Melee Exchange before removing the Friendly model from the table. Use any relevant traits the model has or Weapon traits the chosen Melee Weapon has but not Special Attacks"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 127,
+	"fields": {
+		"name": "The Mountain Moves",
+		"cycle": "Risen Sun",
+		"cost": "1",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "While no Friendly models are within 3\" of Attached model it gains Vengeance [Enemy].  Requirement [Ashigaru"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 128,
+	"fields": {
+		"name": "Aspect of the Bear",
+		"cycle": "Weeping Sky",
+		"cost": "2",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "This model counts as two models except when an Enemy model wishes to move into BtB with it. (Whenever you need to count models, this model is two models) In a Melee Exchange with this model, the Enemy, model is considered to be in BtB with one additional Friendly model for Melee Assist Penalties"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 129,
+	"fields": {
+		"name": "Peacock's Influence",
+		"cycle": "Weeping Sky",
+		"cost": "1",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "The Attached model gains Melee Boost (3) and Ranged Boost (3).  Requirement [Shugenja"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 130,
+	"fields": {
+		"name": "Fire Totem",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "When Attached model is Killed, all models within 3\" gain a Fire (2) Marker"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 131,
+	"fields": {
+		"name": "Metal Totem",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "In the Starting Phase, Attached model may gain Durable until the End Phase. If it does, discard this card"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 132,
+	"fields": {
+		"name": "Irokane Armour",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "The Attached model provides Cover as if it were terrain and gains Durable [Ranged] and Slow"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 133,
+	"fields": {
+		"name": "Minimoto Clan Armour",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "Attached model gains Armour (4). Attached model ignores Enemy Damage Rolls if the individual dice values of the Damage Roll are the same number. When making a Damage Roll on this model, Enemy models lose the Pierce trait.  Requirement [Samurai with the Armour Trait"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 134,
+	"fields": {
+		"name": "Ice Crystal",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "Whenever a Blizzard Effect begins, this model heals 2 Damage boxes and gains 2 Ki Tokens. Ice Kami model cannot target this model with Melee or Ranged Attacks unless they begin their activation in BtB with this model.  Requirement [Hoshi Kimiko"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 135,
+	"fields": {
+		"name": "Solid Charm",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "When this model declares a Wait Action it gains Immovable until the End Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 136,
+	"fields": {
+		"name": "The Mountain Banner",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "minimoto",
+		"description": "While this model is within 6\" of any Enemy model any Friendly Ashigaru or Samurai model, with no Friendly models within 3\", that have LoS to this model gains Tireless. This model is considered Medium Sized for the purposes of this ability.  Requirement [Masaema Yama"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 137,
+	"fields": {
+		"name": "Heroic Stand",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ryu",
+		"description": "Play in the Starting Phase. Until the End Phase, Friendly Prefecture models gain Immune [Frightened]"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 138,
+	"fields": {
+		"name": "Inspiring Words",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "ryu",
+		"description": "Play when a Prefecture model with Leadership activates. Each model in that model's Leadership Ranged gains 1 Ki Token"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 139,
+	"fields": {
+		"name": "Battlefield Manoeuvres",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ryu",
+		"description": "Play before Deployment. Until the end of the game, whenever you win a Tactical Test, choose 2 Prefecture Ashigaru cards to gain Co-ordinated Attack [Ashigaru]"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 140,
+	"fields": {
+		"name": "Vanguard",
+		"cycle": "None",
+		"cost": "1",
+		"max": "0",
+		"faction": "ryu",
+		"description": "Before Deployment, X Ashigaru models gain Scout (0/4\")"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 141,
+	"fields": {
+		"name": "Blood of the Dragon",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "ryu",
+		"description": "• Friendly models gain double Ki during the first turn's Ki Generation step • If a Friendly model fails a Fear Test, after the activation ends, it gains Fearless until the End Phase • Friendly models reduce the dice cost of Critical Attack by 1 (to a minimum of 0"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 142,
+	"fields": {
+		"name": "Claws of the Dragon",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "ryu",
+		"description": "• During each Starting Phase, choose 1 Ashigaru. That model gains Co-ordinated Attack [Ashigaru] until the End Phase • Friendly Ashigaru models gain Scout (+0/+2\") • Once per game, in the Starting Phase, all Ashigaru gain Tough (1) until the End Phas"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 143,
+	"fields": {
+		"name": "Prefecture Patrol",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "ryu",
+		"description": "• Models with Leadership gain Leadership (+0/+2\") • In the Starting Phase, gain a Pass Token for each Friendly model that was recruited into the Warband that is currently removed from pla"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 144,
+	"fields": {
+		"name": "Steady the Line",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ryu",
+		"description": "Remove all Frightened Markers from all Ashigaru within 3\" of any Gunso model or 6\" of Hiromasa"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 145,
+	"fields": {
+		"name": "Ranked Fire Drill",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "ryu",
+		"description": "Play in the Starting Phase. Remove all Reload Markers from models within 4\" of a Friendly Gunso model"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 146,
+	"fields": {
+		"name": "Sudden Alacrity",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ryu",
+		"description": "Discard 5 Pass Tokens, add 1 Activation Counter to a Friendly non-Unique Ashigaru model"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 147,
+	"fields": {
+		"name": "Crush the Uprising",
+		"cycle": "Weeping Sky",
+		"cost": "3",
+		"max": "1",
+		"faction": "ryu",
+		"description": "Play in the Starting Phase. One Enemy model with the highest Rice Cost in the Warband gains a Death Sentence Marker. If a Death Sentence Marker is removed from an Enemy model this turn, gain one Scenario Point.  Requirement [Warband including a Samurai"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 148,
+	"fields": {
+		"name": "Dragon Heart",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ryu",
+		"description": "Attached model gains Leadership [Friendly](1/8\")"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 149,
+	"fields": {
+		"name": "Patient Dragon",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ryu",
+		"description": "Attached model gains: Whenever this model performs a Wait Action, its Controller gains 2 Pass Tokens and this model gains Tactician (+1) for the next Tactical Test.  Requirement [Samurai, Teishin"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 150,
+	"fields": {
+		"name": "Prefecture Training",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ryu",
+		"description": "Attached model's Melee Weapons gain Reach and Push Attack (0)"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 151,
+	"fields": {
+		"name": "Rookie Ashigaru",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ryu",
+		"description": "When the Attached model is affected by the Inspiration Ki Feat, it gains +2 instead of +1 to the chosen pool"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 152,
+	"fields": {
+		"name": "Asama's Dying Wish",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ryu",
+		"description": "Attached model gains Dodge (1), its Melee Weapons gain Push Defence (0), and its Call Lightning Attack gains Stun Attack (1). While this model is on the table, Mizuchi gains Bodyguard [Matsu](3\")"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 153,
+	"fields": {
+		"name": "Second Book of Yasushi",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ryu",
+		"description": "Attached model gains Prowess [Tactical]"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 154,
+	"fields": {
+		"name": "Heir by Deed",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ryu",
+		"description": "Attached model gains Banzai! Friendly Faction Samurai models gain Charging Bonus [Fearless] when they begin their activation with LoS to the Attached model"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 155,
+	"fields": {
+		"name": "Daimyo of the Takashi",
+		"cycle": "Weeping Sky",
+		"cost": "1",
+		"max": "0",
+		"faction": "ryu",
+		"description": "Attached model gains the Daimyo Type and the Ki Statistic 3/10/"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 156,
+	"fields": {
+		"name": "Lightning Pace",
+		"cycle": "Weeping Sky",
+		"cost": "1",
+		"max": "0",
+		"faction": "ryu",
+		"description": "Once per Starting Phase, after pass tokens are generated, you may spend a Pass Token to Walk this model 1\".  Requirement [Samurai"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 157,
+	"fields": {
+		"name": "Sojutsu Technique",
+		"cycle": "Weeping Sky",
+		"cost": "1",
+		"max": "0",
+		"faction": "ryu",
+		"description": "While within 8\" of the Attached model, the Yari weapons of Friendly Ashigaru using Push Special Abilities gains Brutal (1) until the end of the current activation.  Requirement [Hiromasa"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 158,
+	"fields": {
+		"name": "Battle Plans",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ryu",
+		"description": "Attached model's Controller gains 2 additional Pass Tokens in each Starting Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 159,
+	"fields": {
+		"name": "Masamune Blade",
+		"cycle": "None",
+		"cost": "4",
+		"max": "1",
+		"faction": "ryu",
+		"description": "If this model uses Critical attack, roll an additional dice of a different colour for the Damage Roll. If any of the dice show the same result then remove the Defender from play. If you do, discard this card. Then remove the different coloured die and determine the Damage Roll as normal"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 160,
+	"fields": {
+		"name": "Minimoto Steel Blade",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ryu",
+		"description": "One of the Attached model's Melee Weapons gains Pierce (2)"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 161,
+	"fields": {
+		"name": "Paper Cartridges",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ryu",
+		"description": "The Attached model's Pistol Weapon gains Reload (-1)"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 162,
+	"fields": {
+		"name": "Takashi Clan Armour",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ryu",
+		"description": "Attached model gains Armour (3) and Fearless. Attached model ignores Enemy Damage Rolls if the individual dice values of the Damage Roll are the same number"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 163,
+	"fields": {
+		"name": "The Dragon Banner",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ryu",
+		"description": "While this model is within 6\" of any Enemy model, any Friendly Ashigaru or Samurai model with LoS to this model gains: Vengeance [Enemy models with RC &gt; 10] This model is considered Medium Size for the purposes of this ability"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 164,
+	"fields": {
+		"name": "Full Moon",
+		"cycle": "None",
+		"cost": "1",
+		"max": "2",
+		"faction": "shiho",
+		"description": "After Deployment, choose a Friendly model to begin the game with 1 additional Ki Token"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 165,
+	"fields": {
+		"name": "Open Rebellion",
+		"cycle": "None",
+		"cost": "0",
+		"max": "1",
+		"faction": "shiho",
+		"description": "• All models gain Scout (0/2\"). • Once per game, declare this ability in the Starting Phase. Enemy models with marked Wound boxes receive a -1 penalty to their Movement Statistic until the End Phase. • Once per game, in the Starting Phase, the  Opposing player loses all Pass Tokens and cannot generate Pass Tokens until the next turn.  Permitted [Wolf models, Ronin Kami] Excluded [Giant Eagle"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 166,
+	"fields": {
+		"name": "Okami no Mimi",
+		"cycle": "None",
+		"cost": "1",
+		"max": "3",
+		"faction": "shiho",
+		"description": "Choose a Wolf model to gain Ranged Defence (2) and Aware until the end of the current activation"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 167,
+	"fields": {
+		"name": "Primal Howl",
+		"cycle": "None",
+		"cost": "4",
+		"max": "1",
+		"faction": "shiho",
+		"description": "When a Friendly model uses the Pack Trait, the other models that Activate do not remove Activation Counters this activation"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 168,
+	"fields": {
+		"name": "Guerilla Warfare",
+		"cycle": "None",
+		"cost": "0",
+		"max": "1",
+		"faction": "shiho",
+		"description": "You may choose one of the following in any Starting Phase. Each ability may only be chosen once. After using two of these abilities, discard this card. • Move each Friendly model that is currently BtB with an Enemy model until it leaves the Enemy model's ZoC. • All Ki Boosts for Friendly models cost one fewer Ki Token until the End Phase. • Friendly models with marked Wound Boxes may re-roll Defence Dice until the End Phase. • For each Friendly model currently Elsewhere using the Flank trait, immediately re-choose its arrival turn (you may not choose turn 1) and table edge as if it just gained Flank.  Permitted [Hiroto, Loyal models"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 169,
+	"fields": {
+		"name": "The Unfurled Wing",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "shiho",
+		"description": "Play during Deployment. For the rest of the game, in the Starting Phase before the Tactical Test, if a Friendly model will Deploy using the Flank Trait that turn choose a Friendly model to gain Tactician (1)"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 170,
+	"fields": {
+		"name": "The Shiho Return",
+		"cycle": "None",
+		"cost": "0",
+		"max": "1",
+		"faction": "shiho",
+		"description": "Friendly models that are Elsewhere are ignored when calculating Pass Tokens. • During the first turn of the game, models in this Warband gain Endurance and do not suffer the melee penalty for having Run. • Once per game, in a Starting Phase when a model is Deployed using the Flank rules, each Enemy model must perform a Ki Challenge Test(5). If it fails, you may change that model's facing.  Permitted [Samurai, Ronin Kami, Eagles]"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 171,
+	"fields": {
+		"name": "The Black Eagle's Coalition",
+		"cycle": "None",
+		"cost": "0",
+		"max": "1",
+		"faction": "shiho",
+		"description": "• Loyal models gain Leadership [Ronin] (1/6\"). • Ronin models gain Scout (1/1\").  Permitted [Shiho Faction models, Ronin models] Exclusion [Ronin Special Cards"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 172,
+	"fields": {
+		"name": "Inevitable Arrival",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "shiho",
+		"description": "During Deployment, when choosing one model to use Flank, you may designate any table edge as the edge the model will arrive from instead of a neutral edge. This is Open Information and must be announced to your opponent. The model arrives on turn 4"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 173,
+	"fields": {
+		"name": "Unorthodox Strategy",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "shiho",
+		"description": "Both players do not generate Pass Tokens in the Starting Phase this turn"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 174,
+	"fields": {
+		"name": "Vanguard",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "shiho",
+		"description": "Before Deployment X Ashigaru models gain Scout (0/4\").  Requirement [Warband must contain a model with Tactician"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 175,
+	"fields": {
+		"name": "Lay of the Land",
+		"cycle": "Weeping Sky",
+		"cost": "1",
+		"max": "1",
+		"faction": "shiho",
+		"description": "Play before Deploying any terrain recruited by a Warband. You may decide the order recruited terrain (Friendly and Enemy) is Deployed"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 176,
+	"fields": {
+		"name": "Alpha Wolf",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "shiho",
+		"description": "Attached model gains Intimidate"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 177,
+	"fields": {
+		"name": "Beta Wolf",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "shiho",
+		"description": "Attached model gains Bodyguard [Alpha](3\")"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 178,
+	"fields": {
+		"name": "Improper Conduct",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "shiho",
+		"description": "Attached model gains Assassin when involved in a Melee Exchange.  Requirement [Loyal &amp; Samurai"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 179,
+	"fields": {
+		"name": "Eagle's Splendour",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "shiho",
+		"description": "Attached model gains Leadership [Shiho](1/6\").  Requirement [Loyal &amp; Samurai"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 180,
+	"fields": {
+		"name": "Lord of the Jwar Isles",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "shiho",
+		"description": "When an Enemy model that is not a Samurai or Ashigaru declares an action which will either... • bring it into BtB with the Attached model or • Targets the Attached model with a Ranged Attack or Ki Feat ...it must make a Challenge (5) Ki Test. If the Enemy model is successful resolve the Action as normal. lf unsuccessful its activation ends before any movement and it removes an Activation Counter, then discard this card. This is a Trap effect.  Requirement [Loyal &amp; Samurai"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 181,
+	"fields": {
+		"name": "Shiho Koryu",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "shiho",
+		"description": "Attached model's Melee Weapons gain Eagle's Flight Defence (1).  Requirement [Loyal &amp; Samurai"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 182,
+	"fields": {
+		"name": "Veteran of Sagoya",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "shiho",
+		"description": "Attached model gains Bodyguard [Loyal, Samurai] (3\").  Requirement [Ashigaru"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 183,
+	"fields": {
+		"name": "Distaff Wolf",
+		"cycle": "Weeping Sky",
+		"cost": "2",
+		"max": "1",
+		"faction": "shiho",
+		"description": "Attached model gains the Loyal Type. Attached model and Friendly Loyal Samurai models with a Rice Cost of less than the Attached model reduce the cost of their Melee Pool Ki Boost by one.  Requirement [Wolf &amp; Samurai"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 184,
+	"fields": {
+		"name": "Full Moon Regalia",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "shiho",
+		"description": "Attached model may re-roll any of their dice on any Opposed Ki test.  Enemy Damage Rolls are ignored if the individual dice values of the Damage Roll are the same number"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 185,
+	"fields": {
+		"name": "Full Moon Talisman",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "shiho",
+		"description": "This model always provides Melee Assist penalties, even when in BtB with Enemy models"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 186,
+	"fields": {
+		"name": "Talon Medallion",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "shiho",
+		"description": "The first Enemy Damage Roll resulting from a Melee Exchange with the Attached model where the individual dice values of the Damage Roll are the same number is ignored; then discard this card.  Requirement [Loyal"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 187,
+	"fields": {
+		"name": "Tengu Feather Charm",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "shiho",
+		"description": "Attached model gains Ranged Defence (1)"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 188,
+	"fields": {
+		"name": "Eagle Feather Arrow",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "shiho",
+		"description": "When choosing which weapon to use during a Ranged Attack, the Attached model may choose to use this arrow in addition to a Dai Kyu. Wlhen used, the Attached model gains Brutal (1) for its next attack then discard this Card.  Requirement [Loyal &amp; Ashigaru]"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 189,
+	"fields": {
+		"name": "Minimoto Steel Blade",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "shiho",
+		"description": "One of the Attached model's Melee Weapons gains Pierce (2).  Requirement [Samurai"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 190,
+	"fields": {
+		"name": "Michiharu's Jitte",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "shiho",
+		"description": "When the Attached model causes Wounds in a Melee Exchange, after the exchange is complete you may choose one of the following: • Attached model Heals 1 Wound. • Enemy model suffers 1 Wound. • Attached model gains +1 Melee Pool until the End Phase.  In the End Phase, the Attached model may spend 2 Ki Tokens; if it does, you may Attach this card to a Friendly model's card if it is BtB and Permitted.  Requirement [Loyal &amp; Samurai]"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 191,
+	"fields": {
+		"name": "Shiho Clan Armour",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "shiho",
+		"description": "• Attached model gains Armour (2). • Enemy Damage Rolls on the Attached model are ignored if the individual dice values of the Damage Roll are the same number. • Attached model provides Cover as if it were a terrain element. • If the Attached model is Targeted by a Ranged Attack, the Enemy model gains double Reload Markers (if any). • The Attached model loses Flank, Booted and cannot be used to replace a model with the Uncloak Ki Feat.  Requirement [Loyal &amp; Samurai"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 192,
+	"fields": {
+		"name": "Falconer's Glove",
+		"cycle": "Weeping Sky",
+		"cost": "1",
+		"max": "1",
+		"faction": "shiho",
+		"description": "If Attached model is included in your Warband you may also include Ronin Birds. This Card may be Attached to Ronin Falconer models in a Shiho Warband.  Requirement [Falconer, Hiroto, Ronin Falconer"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 193,
+	"fields": {
+		"name": "Straw Hat",
+		"cycle": "Weeping Sky",
+		"cost": "1",
+		"max": "1",
+		"faction": "shiho",
+		"description": "Attached model gains Disguised (2).  Requirement [Loyal &amp; Samurai] Exclusion [Hiroto"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 194,
+	"fields": {
+		"name": "Foot-Trapping Counter",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "temple",
+		"description": "When an Enemy model in BtB with a Firendly Monk model would Move or Place, it may not be Moved or Placed except to change facing this turn. If activated, the model must declare an action permitted while in BtB"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 195,
+	"fields": {
+		"name": "Pungi Pit Trap",
+		"cycle": "None",
+		"cost": "2",
+		"max": "2",
+		"faction": "temple",
+		"description": "Play when an Enemy model without the Intangible or Cloudwalk traits declares any action in which it will Move. That model makes a Move Challenge Test (8). If unsuccessful, the current activation ends, the model suffers a Success Level 2 Damage Roll and its action is considered resolved"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 196,
+	"fields": {
+		"name": "Moment of Enlightenment",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "temple",
+		"description": "Play during Ki Generation. Immediately distribute 4 additional Ki Tokens to non-Soulles models in the Warband"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 197,
+	"fields": {
+		"name": "Bastions of the Mountain",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "temple",
+		"description": "• Once per game, all Villagers gain Fearless and Last Stand until the End Phase • Friendly Villager models gain Steadfast • Each Starting Phase gain one permitted Event - Trap card of which you currently have none.  Permitted [Animal, Villager, Kami, Yokai, Ronin Kami, Ronin Villager, Ronin Yokai"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 198,
+	"fields": {
+		"name": "Righteous Warriors",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "temple",
+		"description": "• While within 3\" of another Friendly Monk, Monk models gain Resistance (+1) • Each Starting Phase one Friendly Monk gains Channel (3/3\") and Leech (3/3\") • Before Deployment you may swap any Lesser Kami model for any other permitted Lesser Kami model (including Ronin Lesser Kami)  Permitted [Monks, up to 1 Sōhei, Construct, Kami, Ronin Kami"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 199,
+	"fields": {
+		"name": "Initiation",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "temple",
+		"description": "If the Warband has at least 1 instance of each element (Earth, Water, Metal, Air, Fire) across all Friendly Monk models in play, all Friendly Monk models gain 1 Ki Token in the Starting Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 200,
+	"fields": {
+		"name": "Elemental Harmony",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "temple",
+		"description": "One Friendly model gains a Virtue Token"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 201,
+	"fields": {
+		"name": "Animal Trap",
+		"cycle": "None",
+		"cost": "1",
+		"max": "2",
+		"faction": "temple",
+		"description": "Play when an Enemy model without the Intangible or Cloudwalk traits declares any action in which it will Move. That model makes a Ki Challenge Test (6). If unsuccessful, the current activation ends, the model gains Unstable until the End Phase, and its action is considered resolved.  Requirement [Warbands with at least 1 \"Villager, Hunter\" model."
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 203,
+	"fields": {
+		"name": "Minkan Denshō",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "temple",
+		"description": "• One Friendly Yokai recruited into the Warband gains Command [Animal](2/6\"). • All Friendly models have Intangible during the first turn of the game. • Once per game, in the Starting Phase, Friendly, non-Insignificant models gain Fear (5) and Dread (1) until the End Phase. • In the Starting Phase, Deploy a Friendly Koji's Pack model in contact with a Friendly table edge if a Wound Track is available.  Permitted [ Temple of Ro-Kan models, Ronin models] Exclusion [Construct, Villagers, Monks, Princess, Sohei, Shisai, Non-Unknown Samurai"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 204,
+	"fields": {
+		"name": "Inari-Age",
+		"cycle": "None",
+		"cost": "-3",
+		"max": "1",
+		"faction": "temple",
+		"description": "This card is purchased as an Event and must be given to the Opponent who may Attach it to a valid model as an Enhancement - Equipment card, ignoring Faction.  Requirement [Followers of Inari Theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 205,
+	"fields": {
+		"name": "Messenger of Inari",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "temple",
+		"description": "Play in the Starting Phase only if a Friendly VIM is still on the table. Change a Friendly VIM. The new VIM is still revealed if it was an Open VIM or an already revealed Hidden VIM. The new VIM remains Hidden if it was a Hidden VIM and not revealed. A Nominated VIM is once again Nominated by the Opponent, a new VIM must be chosen if possible.  Requirement [Followers of Inari Theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 206,
+	"fields": {
+		"name": "Test of Inari",
+		"cycle": "None",
+		"cost": "0",
+		"max": "1",
+		"faction": "temple",
+		"description": "Play in the Starting Phase. Choose an Enemy model to take a Ki Challenge Test (6). If successful that model gains 1 Ki Token, otherwise it gains a Spirit Block Marker.  Only one Event - Test Card may be played per turn.  Requirement [Followers of Inari Theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 207,
+	"fields": {
+		"name": "Test of the Fox",
+		"cycle": "None",
+		"cost": "0",
+		"max": "1",
+		"faction": "temple",
+		"description": "Play in the Starting Phase. Choose an Enemy model to take a Move Challenge Test (8). If successful that model gains 1 Ki Token, otherwise it loses an Activation Counter.  Only one Event - Test Card may be played per turn.  Requirement [Followers of Inari Theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 208,
+	"fields": {
+		"name": "Test of The Man",
+		"cycle": "None",
+		"cost": "0",
+		"max": "1",
+		"faction": "temple",
+		"description": "Play in the Starting Phase. Choose an Enemy model to take a Size Challenge Test (6). If successful that model gains 1 Ki Token, otherwise it gains an Impetuous Marker.  Only one Event - Test Card may be played per turn.  Requirement [Followers of Inari Theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 209,
+	"fields": {
+		"name": "Test of The Path",
+		"cycle": "None",
+		"cost": "0",
+		"max": "1",
+		"faction": "temple",
+		"description": "Play in the Starting Phase. Choose an Enemy model to take a Melee Pool Challenge Test (6) or a Ranged Pool Challenge Test (6) - whichever stat is higher. If successful that model gains 1 Ki Token, otherwise it gains a Control Marker.  Only one Event - Test Card may be played per turn.  Requirement [Followers of Inari Theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 210,
+	"fields": {
+		"name": "Inari-Age (Equipment - Enhancement)",
+		"cycle": "None",
+		"cost": "0",
+		"max": "0",
+		"faction": "temple",
+		"description": "When a Kitsune model declares an action Targeting the Attached model, you may discard this card to immediately end that model's Activation"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 211,
+	"fields": {
+		"name": "Gathering for Inari",
+		"cycle": "Weeping Sky",
+		"cost": "1",
+		"max": "1",
+		"faction": "temple",
+		"description": "Play in the Starting Phase. Until the End Phase, whenever an Opponent spends a Pass Token; a Friendly, non-Animal, Villager model Heals one Wound"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 212,
+	"fields": {
+		"name": "Masters of the Art",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "temple",
+		"description": "• Once per turn, a Friendly model may perform a Focus action as a Simple action, instead of Complex. • Once per game, in the Starting Phase, all Friendly models gain Tireless until the End Phase. • Friendly models may use any non-exceptional Special Attacks or Defences - except Critical Attack - while involved in a Melee Exchange for zero cost.  Permitted [Masters"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 213,
+	"fields": {
+		"name": "Name of the Wind",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "temple",
+		"description": "In the Starting Phase the Attached model can be Placed within 1\" of its current location"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 214,
+	"fields": {
+		"name": "Wind Kick",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "temple",
+		"description": "Attached model gains Charging Bonus [Slam Attack (0), Cloudwalk"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 215,
+	"fields": {
+		"name": "Ki Disrupting Palm",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "temple",
+		"description": "When Attached model succeeds in a Melee Exchange, all Aura effects on the Enemy model immediately expire.  Requirement [Monk, Element: Void"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 216,
+	"fields": {
+		"name": "Earthly Tether",
+		"cycle": "Weeping Sky",
+		"cost": "2",
+		"max": "1",
+		"faction": "temple",
+		"description": "While in BtB with the Attached model, Friendly models gain Immovable.  Requirement [Element[Earth], Element[Metal]] Exclusion [Master, Unsui"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 217,
+	"fields": {
+		"name": "Let Go",
+		"cycle": "Weeping Sky",
+		"cost": "1",
+		"max": "1",
+		"faction": "temple",
+		"description": "You may discard this card to remove all non-Reload State Markers from the Attached model.  Requirement [Element[Void]"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 218,
+	"fields": {
+		"name": "One With Creation",
+		"cycle": "None",
+		"cost": "5",
+		"max": "1",
+		"faction": "temple",
+		"description": "At the start of each Melee Exchange, before Initiative is determined, you may choose 1 of the following profiles to use instead of Master Koju: Deer or Tiger. Wounds are still inflicted to Master Koju in the Melee Exchange. Effects and States on Master Koju are ignored while using these profiles"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 219,
+	"fields": {
+		"name": "Patient Crane Stance",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "temple",
+		"description": "When Attached model performs a Wait Action, it gains Unblockable (1) until the End Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 220,
+	"fields": {
+		"name": "Student of Master Ekusa",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "temple",
+		"description": "The Attached model gains the following Unique Effect: When this model performs a Focus Action it gains Channel (6/6\") until the end of its activation"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 221,
+	"fields": {
+		"name": "Student of Master Enos",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "temple",
+		"description": "Attached Monk model gains Element [Void]"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 222,
+	"fields": {
+		"name": "Student of Master Morita",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "temple",
+		"description": "Attached model gains Element [Fire] and Immune [Fire]"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 223,
+	"fields": {
+		"name": "Plenty of Fish",
+		"cycle": "Risen Sun",
+		"cost": "1",
+		"max": "1",
+		"faction": "temple",
+		"description": "Attached gains Scout (0/2\")"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 224,
+	"fields": {
+		"name": "Fortuitous Path",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "temple",
+		"description": "In the Starting Phase of turn 4, the Attached model gains an Activation Counter.  Requirement [Kitsune"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 225,
+	"fields": {
+		"name": "Inari's Veil",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "temple",
+		"description": "The Attached model begins the game with a Disguise (6) Marker.  Requirement [Followers of Inari Theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 226,
+	"fields": {
+		"name": "Thousand Fist Punch",
+		"cycle": "Weeping Sky",
+		"cost": "2",
+		"max": "1",
+		"faction": "temple",
+		"description": "During a Melee Exchange, when the Attached model successfully uses Combo Attack, after resolving all Damage Rolls, resolve one additional Damage Roll at SL 0.  Requirement [Monk"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 227,
+	"fields": {
+		"name": "Grand Master of the Temple",
+		"cycle": "None",
+		"cost": "4",
+		"max": "1",
+		"faction": "temple",
+		"description": "Attached model begins the game with a Virtue Token. Attached model gains the following: • Believer • Whenever any model spends a Virtue Token, that model gains 1 Ki Token. • While attached model is in play, it gains the 'Technique' Virtue (added to profile).  Restriction [Master Ekusa"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 228,
+	"fields": {
+		"name": "Healing Balm",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "temple",
+		"description": "Attached model gains Heal (2)"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 229,
+	"fields": {
+		"name": "Stillness Medallion",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "temple",
+		"description": "This model's Ki Tokens cannot be removed or stolen by Enemy effects"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 230,
+	"fields": {
+		"name": "Prayer Beads",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "temple",
+		"description": "Attached model generates 1 additional Ki Token during Ki Generation"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 231,
+	"fields": {
+		"name": "Folded Paper Lantern",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "temple",
+		"description": "Attached model ignores any Darkness Effect and Breath of Yurei"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 232,
+	"fields": {
+		"name": "Folded Paper Tiger",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "temple",
+		"description": "When an Enemy Animal model declares a Melee or Charge Action against the Attached model, it must make a Ki Challenge Test (6). If it fails, its Activation ends and it loses one Activation Counter"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 233,
+	"fields": {
+		"name": "Ambush",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "savagewave",
+		"description": "X Friendly models gain Flank. X cannot be greater than 3"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 234,
+	"fields": {
+		"name": "Sneak",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "savagewave",
+		"description": "1 Bakemono may use the 'Shadow Walk' Ki Feat regardless of LoS"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 235,
+	"fields": {
+		"name": "Ravenous Hunger",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "savagewave",
+		"description": "When one Friendly Oni or Onisho model uses the 'Consume Soul' Ki Feat it gains an Activation Counter. Then Discard this card"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 236,
+	"fields": {
+		"name": "Unearthly Howls",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "savagewave",
+		"description": "Play during the Starting Phase. Until the End Phase Friendly Kaihei models gain Fear (6) while not the Activating model"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 237,
+	"fields": {
+		"name": "Alphas",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "savagewave",
+		"description": "• Oni models cost -1 Rice to recruit into the Warband • During the Starting Phase choose a Friendly Oni. That model gains Terror until the End Phase. You cannot choose the same model twice in a row unless it is the only Oni in play. • The first time each turn any Oni model is made Prone, remove the Prone Marker; that model does not become Prone"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 238,
+	"fields": {
+		"name": "Escort",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "savagewave",
+		"description": "Add the Distraction Ki Feat to the Bakemono Horde card. In the Starting Phase, add a Ki Token to the Bakemono Horde card for each Friendly model that was recruited into the Warband that is currently removed from play. Permitted [Bakemono,  Ronin Bakemono] Exclusion [Animal, Cavalry"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 239,
+	"fields": {
+		"name": "Deep Mushrooms",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "savagewave",
+		"description": "During the Starting Phase, attached model may gain a Berserk Marker and become Fearless until the End Phase.  If they do, discard this card.  Required [Warband with a Shugenja"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 240,
+	"fields": {
+		"name": "Bakemono Horde \"Out of the Underworld\"",
+		"cycle": "None",
+		"cost": "0",
+		"max": "0",
+		"faction": "savagewave",
+		"description": "• When a Bakemono would generate Ki Tokens (or otherwise gain Ki Tokens)  instead place those Ki Tokens on this card. • Whenever a Bakemono model would spend Ki Tokens you may spend them from this card to pay for Ki Feats, Boosts or other effects. • Friendly Bakemono may use feats listed on this card.   • A player may only have one Bakemono Horde card"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 241,
+	"fields": {
+		"name": "Mushroom-Crazed Lunatics",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "savagewave",
+		"description": "• Models in this Warband gain Banzai! • Models in this Warband do not suffer the Melee Penalty for having Run this turn. • Models in this Warband may only declare Melee, Run, or Charge Actions.   (If no Action choice is legal then the model loses all Activation Counters and ends its Action immediately.) • Discard this Theme when a model performs any Action other than Melee, Run, or Charge; or you may choose to Discard this card in any Starting Phase.  Restriction [Bakemono"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 242,
+	"fields": {
+		"name": "Wrath of the Red Sun",
+		"cycle": "Risen Sun",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "savagewave",
+		"description": "• Whenever a Friendly Oni or Onisho model deals Damage in a Melee Exchange, place a Counter on this card at the end of the activation. • Whenever a Friendly Oni or Onisho model Kills an Enemy model in a Melee Exchange, place 2 Counters on this card at the end of the activation. • Whenever a Friendly Oni or Onisho model is Killed in a Melee Exchange, remove a Counter from this card at the end of the activation. • Remove all Counters from this card in the End Phase. • Friendly Oni and Onisho models gain +1 Melee Weapon Strength for each Counter on this card.  Permitted [Oni, Onisho"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 243,
+	"fields": {
+		"name": "Gathering in the Dark",
+		"cycle": "Weeping Sky",
+		"cost": "2",
+		"max": "1",
+		"faction": "savagewave",
+		"description": "Play in the Starting Phase. Until the End Phase whenever an Opponent spends a Pass Token, add 1 Ki Token to the Bakemono Horde Card"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 244,
+	"fields": {
+		"name": "Impending Doom",
+		"cycle": "Weeping Sky",
+		"cost": "1",
+		"max": "1",
+		"faction": "savagewave",
+		"description": "Play in the Starting Phase. Choose one of the following: • Choose a model, that model gains an additional one of its Markers, Counters orTokens of your choice, excluding Activation Counters and Ammo Tokens. • Choose a model, that model removes one of its Markers, Counters or Tokens of your choice, excluding Activation Counters and Ammo Tokens.  Requirement [Warband with a Shugenja model"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 245,
+	"fields": {
+		"name": "Spoiled Rations",
+		"cycle": "Weeping Sky",
+		"cost": "2",
+		"max": "1",
+		"faction": "savagewave",
+		"description": "Play in the Starting Phase. Until the End Phase Enemy models gain Indomitable (-1) to a minimum of 0"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 246,
+	"fields": {
+		"name": "Endless Numbers",
+		"cycle": "Risen Sun",
+		"cost": "3",
+		"max": "1",
+		"faction": "savagewave",
+		"description": "Attached card gains the \"Horde\" Type. X is equal to 3 per model bought on the Attached card.  Requirement [Bakemono] Exclusion [Unique, Cavalry"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 247,
+	"fields": {
+		"name": "Spirit of the Consumed",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "savagewave",
+		"description": "Attached model gains +1 Ki Statistic.  Requirement [Oni"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 248,
+	"fields": {
+		"name": "Unearthly Rage",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "savagewave",
+		"description": "When Attached model uses Oni Rage you may have it gain Unblockable (1) until the End Phase. Discard this card during the End Phase if you do so"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 249,
+	"fields": {
+		"name": "Red Spot Mushrooms",
+		"cycle": "None",
+		"cost": "-1",
+		"max": "1",
+		"faction": "savagewave",
+		"description": "Attached Model gains Impetuous (1).  Restriction [Horde Bakemono"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 250,
+	"fields": {
+		"name": "Battle Hungry",
+		"cycle": "Weeping Sky",
+		"cost": "2",
+		"max": "1",
+		"faction": "savagewave",
+		"description": "When the Attached model places all its Melee dice into Attack during a Melee Exchange, any Wounds taken by the Attached model are halved until the end of the Melee Exchange.  Requirement [Onisho"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 251,
+	"fields": {
+		"name": "Ghost Heart Mushroom",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "savagewave",
+		"description": "During the Starting Phase, Attached model may gain Intangible and Sixth Sense, and its weapons gain Spirit Block, until the End Phase. If it does, discard this card in the End Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 252,
+	"fields": {
+		"name": "Nightblood Mushrooms",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "savagewave",
+		"description": "During the Starting Phase Attached model may gain +2 Melee Strength, Aggressive, Cloudwalk, Fearless, 1 Impetuous Marker, and Tough (+1) until the End Phase. If it does, during the End Phase this model suffers 2 Wounds, then discard this card.  Requirement [Bakemono model in a Warband with a Bakemono Shugenja"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 253,
+	"fields": {
+		"name": "Poisoned Weapons",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "savagewave",
+		"description": "Attached model's Melee Weapons gain Poison (1/1)"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 254,
+	"fields": {
+		"name": "The Horns of Power",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "savagewave",
+		"description": "When Attached model performs a Wait Action, it gains Brutal (+2) until the End Phase.  Requirement [Oni"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 255,
+	"fields": {
+		"name": "Soul Medallion",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "savagewave",
+		"description": "When the attached model is killed, add 4 Ki tokens to the Bakemono horde card.  Restriction [Bakemono"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 256,
+	"fields": {
+		"name": "Crimson Sky Mushroom",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "savagewave",
+		"description": "Attached model cannot be Healed. Double the Attached model's Melee Pool, and it gains +2 Strength to its Melee Weapons. Every End Phase mark 1 Wound Box on the Attached model.  Requirement [Raider model in a Warband with a Bakemono Shugenja"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 257,
+	"fields": {
+		"name": "Dokutsurutake Mushroom",
+		"cycle": "None",
+		"cost": "4",
+		"max": "1",
+		"faction": "savagewave",
+		"description": "When Attached model is killed, all non-Bakemono models within a 3\" Pulse gain a Poison (1) Marker. If any Bakemono are in the Pulse, choose 1 to gain this card, if permitted.  Requirement [Bakemono model in a Warband with a Bakemono Shugenja"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 258,
+	"fields": {
+		"name": "Shitake Mushroom",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "savagewave",
+		"description": "Attached model gains Immune [Stunned, Disease].  Requirement [Bakemono model in a Warband with a Bakemono Shugenja"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 259,
+	"fields": {
+		"name": "Bought Loyalty",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "Play when an Enemy non-Insignificant, non-Soulless model declares an action. That model must make a Ki Challenge Test (6). If it fails then its activation ends and it loses an Activation Counter"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 260,
+	"fields": {
+		"name": "Hotei's Blessing",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "Play during the Starting Phase. Until the End Phase Friendly models may reroll 1s for tests once per test"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 261,
+	"fields": {
+		"name": "Kiss From a Rose",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "Play during the Starting Phase. A non-Soulless Enemy model in BtB with a Friendly Rose model must make a Ki Challenge Test (5) or gain 1 Control Marker"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 262,
+	"fields": {
+		"name": "Drunk on Sake",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "Play in the Starting Phase of turn 1. Choose X Enemy non-Soulless, non-Insignificant models with a Ki Statistic of 1 or less. Those models lose 1 Activation Counter"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 263,
+	"fields": {
+		"name": "Inside Information",
+		"cycle": "None",
+		"cost": "1",
+		"max": "3",
+		"faction": "silvermoon",
+		"description": "Play during the Starting Phase. Choose an Enemy model. That model gains an Impetuous Marker"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 264,
+	"fields": {
+		"name": "Control Fate",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "Play this card during the Starting Phase to add any permitted Event card with cost X or less to the Warband"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 265,
+	"fields": {
+		"name": "Shrewd Negotiation",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "When an Opposing Player uses an Event Card costing X Rice or less, you may immediately play this card to cancel that Event card. The Event card is discarded just as if it had taken effect"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 266,
+	"fields": {
+		"name": "Raise the Stakes",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "Play in the Starting Phase. Until the End Phase any model declaring a Scenario Action must spend 1 Ki Token. If it cannot spend this Ki Token, then the model cannot declare the Scenario Action"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 267,
+	"fields": {
+		"name": "Ebisu's Tithe",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "Play during the Starting Phase after models gain Activation Counters. Choose X non-Soulless, non-Insignificant Enemy models with a Ki Statistic of 1 or less. Those models must spend 1 Ki Token or lose an Activation Counter"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 268,
+	"fields": {
+		"name": "Hidden Agenda",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "Play before Deployment, add up to X Rice of Event Cards to your Warband for free. Do not show these to your Opponent; this is HIDDEN INFORMATION until the Event is used"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 269,
+	"fields": {
+		"name": "Inopportune Beginning",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "After choosing table sides, place a 50mm base in the Opponent's Deployment Zone. Models may not be placed on or in BtB with it. Remove the base before the start of the game"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 270,
+	"fields": {
+		"name": "Travelling Show",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "silvermoon",
+		"description": "• In the Starting Phase choose an Enemy model. It must make a Ki Challenge Test (6) or gain an Impetuous Marker • During the Starting Phase, 1 Friendly model gains a Luck Token. Whenever a Friendly model within 6\" makes a Fear Test, Attack Roll, Defence Roll, Damage Roll, or Opposed Ki Test, the model may spend the Token to reroll 1 of the dic"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 271,
+	"fields": {
+		"name": "Iron Fist Gumi",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "silvermoon",
+		"description": "• Druing the Starting Phase one Friendly model gains a Virtue Token • Shatei models gain Bravery • Once per turn, after you may a Dice Roll, reroll any single dice in the rol"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 272,
+	"fields": {
+		"name": "Jade Rose Gumi",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "silvermoon",
+		"description": "• Friendly Rose models gain Flank • Friendly Rose models gain Disguise (+1) • During the Starting Phase, choose an Enemy model. It makes a Ki Challenge Test (6). If  it fails you may change its Facin"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 273,
+	"fields": {
+		"name": "Yokozuna's Revenge",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "silvermoon",
+		"description": "• During Deployment nominate an Enemy model. Yokozuna Akashi gains Aggressive, +1 Melee Strength Modifier, and Sharp (1) while resolving Melee Exchanges with that model • Each turn the first failed Opposed Ki Test for an Enemy Ki Feat is ignored. The Friendly model is considered to have succeeded and the Enemy model failed instead • Friendly models gain Bodyguard [Yokozuna Akashi](3\") and Co-ordinated Attack [Yokozuna Akashi] • This Theme may recruit Lua as a Ronin model • Warbands using this theme must recruit Yokozuna Akash"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 274,
+	"fields": {
+		"name": "Food Monopoly",
+		"cycle": "Risen Sun",
+		"cost": "2",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "During the Starting Phase choose an Enemy model. That model gains Slow and Weak until the End Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 275,
+	"fields": {
+		"name": "In the Hands of the Kami",
+		"cycle": "Risen Sun",
+		"cost": "0",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "Play before dice are rolled for any test by a Friendly model. Guess the final result of your roll. If you are correct, add 1 Ki Token to the Friendly model"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 276,
+	"fields": {
+		"name": "Underhanded Ploy",
+		"cycle": "Weeping Sky",
+		"cost": "2",
+		"max": "2",
+		"faction": "silvermoon",
+		"description": "Play after an Enemy model succeeds at a Challenge Test. That model must retake that test"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 277,
+	"fields": {
+		"name": "Two-Headed Coin",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "Once per game, after this model flips tails when using the Fortune trait, it may choose to count the flip as heads instead"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 278,
+	"fields": {
+		"name": "Disguised",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "The Attached model begins the game with a Disguise (5) Marker"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 279,
+	"fields": {
+		"name": "Lucky Number 8",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "When Attached model rolls a result of exactly 7 after any modifiers for any test, instead count the final result as 8"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 280,
+	"fields": {
+		"name": "Genzai's Own Luck",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "When this model rolls dice for any test, any supporting dice that rolled a 6 will add +2 to the result instead of +1"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 281,
+	"fields": {
+		"name": "Lookout",
+		"cycle": "Weeping Sky",
+		"cost": "1",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "Other Friendly models within 6\" of the Attached model cannot be Surprised.  Requirement [Urchin"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 282,
+	"fields": {
+		"name": "Oda's Tutelage",
+		"cycle": "Weeping Sky",
+		"cost": "1",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "Attached model's Melee Weapons gain Grapple Defence (0).  Requirement [Buto"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 283,
+	"fields": {
+		"name": "Maneki-Neko",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "During the Starting Phase the Attached model gains a Luck Token. When a Friendly model within 6\" makes a Fear Test, Attack Roll, Defence Roll, Damage Roll, or Opposed Ki Test this model may spend the Token to reroll 1 of the dice"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 284,
+	"fields": {
+		"name": "Daikokuten's Coin String",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "Attached model generates 1 additional Ki Token during Ki Generation"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 285,
+	"fields": {
+		"name": "Barding",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "Attached Animal model gains Armour (1)"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 286,
+	"fields": {
+		"name": "Hotei's Hourglass",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "Attached model gains: Once per test this model may re-roll 1s before determining the final result"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 287,
+	"fields": {
+		"name": "Tamano-no-Mae's Veil",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "silvermoon",
+		"description": "When Attached model makes a Wait Action, while out of BtB and LoS of all Enemy models it may gain a Disguise (5) Marker"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 288,
+	"fields": {
+		"name": "Drain Spirit",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "cult",
+		"description": "Play after the Ki Generation step. Choose an Enemy non-Soulless model and transfer up to 2 Ki Tokens from that model to Friendly models within 3\""
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 289,
+	"fields": {
+		"name": "Breath of Yurei",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "cult",
+		"description": "Play during Deployment. Until the End Phase of the first turn, non-Sixth Sense, non-Soulless models cannot draw LoS further than 2\".  During the Starting Phase of turn 2 you may forfeit the Tactical Test, if you do, this effect persists until the End Phase of turn 2"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 290,
+	"fields": {
+		"name": "Feed on Fear",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "cult",
+		"description": "Play during Deployment, for the rest of the game whenever an Enemy model fails a Fear Test, adid 1 Ki Token to this card. When this card has 4 Ki Tokens, you may distribute them to any Friendly models then discard this card"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 291,
+	"fields": {
+		"name": "Glimpse of Jigoku",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "cult",
+		"description": "Play during the Starting Phase. Choose an Enemy model, it must make a Ki Challenge Test (6). If it fails it treats all Enemy models as having Fear (6) and Terror until the End Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 292,
+	"fields": {
+		"name": "Immaculate Mask",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "cult",
+		"description": "When a Burakumin is Killed, replace the model by Deploying an Exhausted, Prone non-Unique Kairai with 1 unmarked Wound box"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 293,
+	"fields": {
+		"name": "Random Act of Unkindness",
+		"cycle": "None",
+		"cost": "2",
+		"max": "3",
+		"faction": "cult",
+		"description": "Play in the Starting Phase. Your Opponent must either choose 1 of his models in play or a model State (except Reloading, Disguised or Held). If a model was chosen, choose any State and apply that State Marker to that model. If a State was chosen, choose a model and apply the dhosen State Marker to that model.  Any numeric values will be 1"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 294,
+	"fields": {
+		"name": "Curse of Forgetfulness",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "cult",
+		"description": "Choose an Enemy model that is not BtB with a Friendly model and within 3\" of a Friendly Burakumin, and choose a Standard Action. The chosen model may not perform the chosen Action"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 295,
+	"fields": {
+		"name": "Visions of Jigoku",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "cult",
+		"description": "Choose a Frightened Enemy model. That model makes a Challenge Ki Test (5) or it gains a Control Marker"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 296,
+	"fields": {
+		"name": "Things That Go Bump in the Night",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "cult",
+		"description": "• Burakumin begin the game with 1 Ki Token • Automatically win the Tactical Test for turn 4;  Enemy models cannot use Ki Boosts until the End Phase  Permitted [Burakumin, Yokai"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 297,
+	"fields": {
+		"name": "Nightmares of Jigoku",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "cult",
+		"description": "• Kami gain Scout (0/2\") • Burakumin gain Bodyguard [Yokai, Shugenja](3\") • Automatically win the Tactical Test for turn 4. • In the Starting Phase of turn 4, choose 2 Enemy models to gain Spirit (-1) until the End Phase.  Permitted [Yokai, Kami, Ronin Kami, Burakumin, Shugenja, models with Cultist"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 298,
+	"fields": {
+		"name": "Death and Decay",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "cult",
+		"description": "• Kairai gain Scout (0/2\") • Whenever a non-Soulless model is Killed, replace it with a Prone Risen Kairai with 0 Activation Counters • Automatically win the Tactical Test for turn 4 • In the Starting Phase of turn 4, Friendly Kairai models each gain 1 Ki Token  Permitted [Gok, Kairai, Burakumin, Kato"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 299,
+	"fields": {
+		"name": "Nightmares Unleashed",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "cult",
+		"description": "All Enemy models must make a Fear Test with Challenge Number (5) or become Frightened.  Restriction [Warbands with the 'We Three Meet Again' Theme card."
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 300,
+	"fields": {
+		"name": "We Three Meet Again",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "cult",
+		"description": "• Yuta models cost 1 fewer Rice to recruit. • The 'Yuta of Yurei' Communal card begins the game with 2 Ki. • Whenever an Enemy, non-Soulless model is Killed, add 1 Ki Token to the 'Yuta of Yurei' Communal card. • Automatically win the Tactical Roll for turn 4. In the Start Phase of turn 4, add 2 Ki Tokens to the Yuta of Yurei' Communal card.  Permitted [Yuta models, Kairai, Burakumin, Gashadokuro"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 301,
+	"fields": {
+		"name": "Yuta of Yurei",
+		"cycle": "None",
+		"cost": "0",
+		"max": "0",
+		"faction": "cult",
+		"description": "When a Yuta model would gain Ki, place that Ki on this card. Yuta models may use feats on this card as it they were printed on their own card. Any time a Yuta model needs to spend Ki Tokens, it may spend them from this card. A player may only have 1 'Yuta of Yurei' card"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 302,
+	"fields": {
+		"name": "Crush the Oppressed",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "cult",
+		"description": "Double the number (retaining the same values) of all State Markers on all models. Note this will not affect Markers that are limited to 1 per model"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 303,
+	"fields": {
+		"name": "Rest in Peace",
+		"cycle": "None",
+		"cost": "0",
+		"max": "1",
+		"faction": "cult",
+		"description": "Show this card to your Opponent before the game. They choose to play it or not. Tadao begins the game with 4 Ki Tokens and can never be Leached from. All Minimoto models gain Vengeance [Tadao]"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 304,
+	"fields": {
+		"name": "Sharing is Killing",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "cult",
+		"description": "Choose an Enemy model. Make a Success Level 0 Damage Roll against that model. That model's Controller may then choose 1 of your models and make a SL 0 Damage Roll on that model, if they do you must use this event again immediately with a cumulative +1 on the Success Level for both players. All damage from this event ignores Tough. No model may be chosen more than once"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 305,
+	"fields": {
+		"name": "Grave Misfortune",
+		"cycle": "Weeping Sky",
+		"cost": "2",
+		"max": "1",
+		"faction": "cult",
+		"description": "Play in the Starting Phase of turn 4. Until the End Phase, when resolving a Test, any dice your Opponent rolls that have a value of 4 are treated as a value of 1 instead"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 306,
+	"fields": {
+		"name": "Grievous Sins",
+		"cycle": "Weeping Sky",
+		"cost": "17",
+		"max": "1",
+		"faction": "cult",
+		"description": "Play during Deployment. Recruit any one Orphan model that is not currently recruited into this Warband.  Requirement [Ikiryo] Exclusion [Death &amp; Decay theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 307,
+	"fields": {
+		"name": "Pariah's Voice",
+		"cycle": "Weeping Sky",
+		"cost": "2",
+		"max": "1",
+		"faction": "cult",
+		"description": "Play in the Starting Phase. Until the End Phase, while a Friendly Burakumin model is using an Opposed Ki Feat, the Target gains Spirit (-1). During the End Phase you may decide the order States are resolved"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 308,
+	"fields": {
+		"name": "Fresh",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "cult",
+		"description": "Attached models may re-roll their first Rise Test each turn. This card may be attached to Insignificant models. X = The number of models recruited on the profile card, this card may be bought for as many models as there are Wound Tracks on the Attached card"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 309,
+	"fields": {
+		"name": "Ijimyo's Masks",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "cult",
+		"description": "Attached Models gain Fear (6). X= The number of models recruited on the profile card; this card may be bought for as many models as there are Wound Tracks on the Attached card.  Requirement [Kairai, Burakumin"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 310,
+	"fields": {
+		"name": "Fearsome Presence",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "cult",
+		"description": "Attached model gains Dread (1) while not the Activating model"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 311,
+	"fields": {
+		"name": "Bargain with Yurei",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "cult",
+		"description": "If any Dice Roll would cause the Attached model to be Killed it must be re-rolled. The second result is kept (unless another effect also causes a re-roll) even if it still causes the Attached model to be Killed"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 312,
+	"fields": {
+		"name": "New Moon",
+		"cycle": "Risen Sun",
+		"cost": "1",
+		"max": "1",
+		"faction": "cult",
+		"description": "When this model makes an Attack with an Entangling weapon or a Grapple Attack, the Attack causes full Damage Roll (Strength +0) in addition to its normal effects.  Requirement [The Harionago"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 313,
+	"fields": {
+		"name": "Desperate Meaures",
+		"cycle": "Risen Sun",
+		"cost": "2",
+		"max": "1",
+		"faction": "cult",
+		"description": "Attached model gains Cultist (+1/+0\") and may only Damage itself when using Cultist.  Requirement [model with the Cultist trait"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 314,
+	"fields": {
+		"name": "Spirit Defence Ritual",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "cult",
+		"description": "The first time in the game the Attached model takes Damage, instead discard this card.  Exclusion [Soulless} Restriction [Warbands with the 'We Three meet Again' Theme card"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 315,
+	"fields": {
+		"name": "Kimiko's Whistle",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "cult",
+		"description": "When the Attached model summons a model into play, that model enters play with an additional Ki Token. This may not cause the model to exceed its maximum Ki Statistic"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 316,
+	"fields": {
+		"name": "Violence Fetish",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "cult",
+		"description": "This model gains Melee boost (2).  Restriction [Burakumin"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 317,
+	"fields": {
+		"name": "Sacrificial Knife",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "cult",
+		"description": "In the Starting Phase you may Kill a Friendly, non-Soulless model that you own in BtB with the Attached model and add 4 Ki Tokens to the 'Yuta of Yurei' Communal Card"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 318,
+	"fields": {
+		"name": "Blow the Man Down",
+		"cycle": "None",
+		"cost": "2",
+		"max": "2",
+		"faction": "jung",
+		"description": "Target an Enemy model within 3\" of a friendly Kaizoku. That model must make a Size Challenge Test (6) or be pushed 3\" in any direction and become Prone"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 319,
+	"fields": {
+		"name": "Bounty",
+		"cycle": "None",
+		"cost": "2",
+		"max": "2",
+		"faction": "jung",
+		"description": "After Deployment choose a Unqiue Enemy model. That model gains a Death Sentence Marker"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 320,
+	"fields": {
+		"name": "Squall",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "jung",
+		"description": "Play in any Starting Phase. Until the following End Phase, models making Ranged Attacks suffer a +2 modifier to the Target Number of Ranged Attack Tests"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 321,
+	"fields": {
+		"name": "Plunder",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "jung",
+		"description": "When an Enemy model with any Enhancement - Equipment cards is removed from play as a result of a Melee Exchange, Attatch those cards to the Friendly model that killed the Enemy model. Tgnore the limit on Equipment, Requirements and Exclusions"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 322,
+	"fields": {
+		"name": "Weather Gauge",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "jung",
+		"description": "Play at the start of the game. Choose whether you will deploy your Warband first or second. No Tactical Test is made"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 323,
+	"fields": {
+		"name": "Kamikaze",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "jung",
+		"description": "In the Starting Phase, choose up to X Friendly Jung models, place each model within 1\" of its current position and not in an Enemy model's ZoC.  X cannot be greater than 3.  If Jung Mari is recruited into this Warband, This card gains x2 Max"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 324,
+	"fields": {
+		"name": "Black Sails",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "jung",
+		"description": "Kancho: Jung Hibiki Juhin: Jung Tora  •During the Start Phase, choose 1 Friendly Kaizoku model to gain one Activation Counter. •When a Friendly Kaizoku model succesfully uses Sidestep Defence, it gains 1 Ki Token.  Permitted [Any Jung Profile, Ronin Yokai, Ronin Kaizoku] Exsclusion [Other Kancho or Juhin than those listed, Kami"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 325,
+	"fields": {
+		"name": "Queen of the Waves",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "jung",
+		"description": "Kancho: Jung Mari Juhin: Fijiwaro  •During the Starting Phase, place 1 Friendly Jung model within 1\" of its current location. •During Deployment you may choose 2 Friendly Jung models to gain Flank  Permitted [Any Jung profile, Ronin Kami, Ronin Yokai, Ronin Kaizoku] Exclusion [Other Kancho or Juhin than those listed, Kanimiman, Buto"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 326,
+	"fields": {
+		"name": "Docks of Ryu",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "jung",
+		"description": "Kancho: Jung Minato Juhin: Yuji  •During the Starting Phase choose 1 model to gain Tireless until the End Phase •If your Opponent has more Victory Points than you, you may distribute an additional 2 Ki Tokens amongst Friendly Jung models in the Ki Generations step.  Permitted [Any Jung profile, Ronin Kami] Exclusion [Other Kancho or Juhin than those listed, Kanimiman, Samemiman"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 327,
+	"fields": {
+		"name": "Landing Party",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "jung",
+		"description": "•Once per game, during any Starting Phase Kaizoku models gain Tough (1) while in BtB with an objective, within a Scenario Zone or while a VIM until the End Phase. •During the last turn of the game, Kaizoku models gain +2 Move statistic.   Exclusion [Kancho, More than 1 Juhin"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 328,
+	"fields": {
+		"name": "Shanghai",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "jung",
+		"description": "Play when a Juhin model Kills an Enemy non-Soulless, non-Unique model in a Melee Exchange. Instead, that model remains in play with 1 unmarked Wound box and 3 Control Markers"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 329,
+	"fields": {
+		"name": "Ebb and Flow",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "jung",
+		"description": "Play after declaring an Activating model. Move a Friendly, Small model up to 2\" toward an Enemy table edge. At the end of this activation, move that model 2\" directly toward the opposite table edge"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 330,
+	"fields": {
+		"name": "Conclave of Captains",
+		"cycle": "Risen Sun",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "jung",
+		"description": "• Friendly Kancho models gain Co-ordinated Attack [Kancho]. • Kaizoku Models gain the Villager type.  Exclusion [Juhin other than Tora, Kanimiman,Samemiman] Permitted [Ronin Yokai, Jung models, Hiroto, the Drunken Master"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 331,
+	"fields": {
+		"name": "Miyakomo Rising",
+		"cycle": "Risen Sun",
+		"cost": "2",
+		"max": "1",
+		"faction": "jung",
+		"description": "• Until the End Phase, Friendly Shugenja gain Cultist (1/6\"). • Until the End Phase, Friendly Kami gain Leech (1/6\") and may only Target Friendly Shugenja with the Leech Trait"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 332,
+	"fields": {
+		"name": "Sea Legs",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "jung",
+		"description": "The Attatched model gains Immune [Prone"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 333,
+	"fields": {
+		"name": "Taunt",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "jung",
+		"description": "Attatched model gains: During the Starting Phase, Target an Enemy model in LoS and within 12\". Make an Opposed Ki Test against the Target model. If succesful the Target model gains Aggressive until the End Phase.   Requirement (Highest Rice Cost in Warband) Note: there is currently no way to automatically check for this"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 334,
+	"fields": {
+		"name": "Whale Harpoon",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "jung",
+		"description": "When a Friendly Kaizoku causes Damage with a Thrown Harpoon, you may have the Target half its Move Statistic until the End Phase. If you do, discard this card"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 335,
+	"fields": {
+		"name": "Drunk!",
+		"cycle": "Weeping Sky",
+		"cost": "1",
+		"max": "1",
+		"faction": "jung",
+		"description": "Attached model gains Immune [Stunned] and Unstable. While Attached model has no marked Wound boxes, it gains Fearless and Dodge (1).  Requirement [Kaizoku"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 336,
+	"fields": {
+		"name": "Irreverence",
+		"cycle": "Weeping Sky",
+		"cost": "2",
+		"max": "1",
+		"faction": "jung",
+		"description": "Kami selecting or Targeting the Attached model must first succeed at a Ki Challenge Test (5). If they fail, their action is considered resolved and the Kami loses an Activation Counter.  Requirement [Warband without any Kami, Shugenja, or Jung Mari] Exclusion [Queen of the Waves theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 337,
+	"fields": {
+		"name": "Eye Patch",
+		"cycle": "None",
+		"cost": "-4",
+		"max": "1",
+		"faction": "jung",
+		"description": "The Attatched model makes Ranged Attacks at +2 to the Target Number and cannon gain any benefit from Cover"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 338,
+	"fields": {
+		"name": "Peg Leg",
+		"cycle": "None",
+		"cost": "-1",
+		"max": "1",
+		"faction": "jung",
+		"description": "Attatched model gains Unstable and cannon declare Run or Charge Actions"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 339,
+	"fields": {
+		"name": "Sharkeye Pendant",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "jung",
+		"description": "When this model is killed, it cannot be replaced by any other model and no model may gain Ki Tokens as a result"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 340,
+	"fields": {
+		"name": "Silver Bullets",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "jung",
+		"description": "Attached model's Pistol or Arquebus Weapon gain: Bleed (1/1)"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 341,
+	"fields": {
+		"name": "Balance",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ronin",
+		"description": "Play in the Starting Phase. Until the End Phase, Players may not re-roll dice"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 342,
+	"fields": {
+		"name": "Grace of the Kami",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ronin",
+		"description": "Play before rolling dice for any test. For this test, results of 1 are not discarded. They have a value of 1 and count towards the result, as well as any tie breaks"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 343,
+	"fields": {
+		"name": "Preordain",
+		"cycle": "None",
+		"cost": "3",
+		"max": "1",
+		"faction": "ronin",
+		"description": "Before Deployment, roll 2D6 and note down their values. At any point in the game when either Player makes a roll, before the dice are rolles, you may substitute 1 of the D6. The value is set and cannot be re-rolled or substituted again. Then delete the number used. Any other dice are rolled, re-rolled, and substituted by other effects as normal. Once both numbers have been used, Discard this card"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 344,
+	"fields": {
+		"name": "Second Chance",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ronin",
+		"description": "After rolling dice for any Opposed Test, you may re-roll all the dice used in the test. If you do, your Opponent may choose any of their dice to re-roll"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 345,
+	"fields": {
+		"name": "Ordered for Battle",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "ronin",
+		"description": "• After recruiting the Warband to the correct Rice Cost, choose another 30 Rice of cards as Reserves. These are not added to the main list but kept separate. The Warband with and without Reserves must be legal. • Before Deployment you may switch cards in the Reserves with cards in the main list, the main list must remain legal.  Enhancement cards may not be attached to or removed from profile cards.  Show the new list to your Opponent before the game. • In a timed event, you have 5 minutes to make substitutions"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 346,
+	"fields": {
+		"name": "Strategic Deployment",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "ronin",
+		"description": "When recruiting you may make 2 separate Warbands of the same Faction. Before Deployment, choose which to play. If both Players are using this Theme, show both lists to your Opponent and choose in secret which to play. Declare at the same time. Any Unique models may only be recruited into one of these Warbands. Non-unique models may be duplicated in both lists. In a timed event, both Players have 5 minutes to choose which Warband to use"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 347,
+	"fields": {
+		"name": "War Weary",
+		"cycle": "Risen Sun",
+		"cost": "3",
+		"max": "1",
+		"faction": "ronin",
+		"description": "In the first turn of the game, models receive only 1 Activation Counter instead of 2"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 348,
+	"fields": {
+		"name": "Year of the Risen Sun",
+		"cycle": "Risen Sun",
+		"cost": "1",
+		"max": "1",
+		"faction": "ronin",
+		"description": "Play on turn 1. All models gain +1 Ki Token"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 349,
+	"fields": {
+		"name": "Ganbatte",
+		"cycle": "Risen Sun",
+		"cost": "1",
+		"max": "1",
+		"faction": "ronin",
+		"description": "After the dice roll to see if the game will end, you may discard this card to re-roll the dice"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 350,
+	"fields": {
+		"name": "Blessing of Kah'Non",
+		"cycle": "Risen Sun",
+		"cost": "1",
+		"max": "1",
+		"faction": "ronin",
+		"description": "This turn any Damage Roll where the individual dice values of the Damage Roll are the same number is ignored"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 351,
+	"fields": {
+		"name": "Celebration of Life",
+		"cycle": "Risen Sun",
+		"cost": "1",
+		"max": "1",
+		"faction": "ronin",
+		"description": "Play in the Starting Phase. All Soulless models gain Insignificant until the End Phase"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 352,
+	"fields": {
+		"name": "Dauntless",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ronin",
+		"description": "Play in the Starting Phase. Hozumi models gain Immune [Frightened] until the End Phase.  Requirement [The Hozumi Family Theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 353,
+	"fields": {
+		"name": "Beloved Nobles",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ronin",
+		"description": "Play during Ki Generation. Immediately distribute 3 Ki Tokens between non-Soulless models in the Warband.  Requirement [The Hozumi Family Theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 354,
+	"fields": {
+		"name": "Swordsmanship",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ronin",
+		"description": "Play before Deployment. Each Time Kenmeina succeeds in an Attack or Defence of a Melee Exchange, gain 1 Scenario Point. Each Time Hozumi Koga does not succeed in an Attack or Defence roll in a Melee Exchange, gain 1 Scenario Point. This effect lasts for the whole game.  Requirement [The Kiyozumi Family Theme]"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 355,
+	"fields": {
+		"name": "Beneath Notice",
+		"cycle": "None",
+		"cost": "1",
+		"max": "3",
+		"faction": "ronin",
+		"description": "When a Kiyozumi model is involved in a Melee Exchange, the Kiyozumi model gains Indomitable (X) until the Melee Exchange is resolved. X is equal to the number of non-Samurai the Kiyozumi model is in BtB with.  Requirement [ The Kiyozumi Family theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 356,
+	"fields": {
+		"name": "Banished!",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ronin",
+		"description": "After Deployment, choose an Enemy Hozumi model, that model is placed Elsewhere and gains Flank, it may enter play using those rules.  Requirement [ The Kiyozumi Family Theme"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 357,
+	"fields": {
+		"name": "Arashi's Fan",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ronin",
+		"description": "Attached model gains Ranged Defence (+2)"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 358,
+	"fields": {
+		"name": "Hotai's Coin",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ronin",
+		"description": "Attached model can re-roll 1s rolled for a test, once per test. If any of the re-rolled dice is a 1, discard this card"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 359,
+	"fields": {
+		"name": "Paragon",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ronin",
+		"description": "Attached model gains 1 Virtue Token during the Starting Phase of the first turn"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 360,
+	"fields": {
+		"name": "The Imperial March",
+		"cycle": "None",
+		"cost": "0",
+		"max": "  </modifie",
+		"faction": "ronin",
+		"description": "• After Deployment choose 1 Enemy model to gain a Death Sentence Marker • Enemy models cannot spend Ki Tokens to remove Death Sentence Marker"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 361,
+	"fields": {
+		"name": "Demon-Face Mask",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ronin",
+		"description": "Attached model gains Immune [Blind] and Fear (3)"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 362,
+	"fields": {
+		"name": "Minimoto Steel Helm",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ronin",
+		"description": "Attached model gains Immune [Stun]"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 363,
+	"fields": {
+		"name": "Obscure Charm",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ronin",
+		"description": "Unknown models may not Target or Move into BtB with this model"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 364,
+	"fields": {
+		"name": "Finesse",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ronin",
+		"description": "While involved in a Melee Exchange with Attached model, Enemy models lose the Brutal Trait"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 365,
+	"fields": {
+		"name": "Magamata",
+		"cycle": "Risen Sun",
+		"cost": "2",
+		"max": "1",
+		"faction": "ronin",
+		"description": "When Attached model uses a Target Ki Feat with a Range value, you may spend 1 additional Ki to extend the range of the feat by 2\""
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 366,
+	"fields": {
+		"name": "Pacifism",
+		"cycle": "Risen Sun",
+		"cost": "1",
+		"max": "1",
+		"faction": "ronin",
+		"description": "If this model is in play at the end of the turn, gain 1 Scenario Point. Discard this card as soon as this model declares a Ranged Attack or Scenario Action, participates in a Melee Exchange, or makes an Opposed Ki Test.  Requirement (Highest Rice Cost in Warband) Note: there is currently no simple way to automatically check for this"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 367,
+	"fields": {
+		"name": "Prayer Scroll",
+		"cycle": "Risen Sun",
+		"cost": "2",
+		"max": "1",
+		"faction": "ronin",
+		"description": "Attached model gains Immune [Spirit Block]"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 368,
+	"fields": {
+		"name": "Wolf Heart Talisman",
+		"cycle": "Risen Sun",
+		"cost": "2",
+		"max": "1",
+		"faction": "ronin",
+		"description": "Attached model gains Bravery for its first Fear Test of the game, then discard this card"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 369,
+	"fields": {
+		"name": "The Eagle Banner",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ronin",
+		"description": "While Attached model is within 6\" of an Enemy model, Friendly Loyal models with LOS to the Attached model gain Banzai!. Friendly models with LOS to Attached model gain Vengeance [Prefecture]. Attached model is considered Medium Sized for the purposes of this ability. Requirement [Tru'pah"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 370,
+	"fields": {
+		"name": "The Hozumi Family",
+		"cycle": "None",
+		"cost": "0",
+		"max": "1",
+		"faction": "ronin",
+		"description": "• Friendly models begin the game with 1 Ki Token. • Hozumi, Taiyo and Ryokeen models may always be recruited into this theme. • In the Starting Phase you may choose 1 Enemy model to gain the Aloof Trait until the End Phase. • In the Starting Phase, choose 1 Friendly, non-Hozumi model. That model gains Coordinated Attack [Hozumi] until the End Phase.  Permitted [Hozumi, Taiyo, Ryokeen, Ronin models]"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 371,
+	"fields": {
+		"name": "The Kiyozumi Family",
+		"cycle": "None",
+		"cost": "0",
+		"max": "1",
+		"faction": "ronin",
+		"description": "• Before the first turn, you may change the alignment of 1 Objective. If you choose not to do this Kiyozumi models count as 2 models when calculating Zone Control until you score a Victory Point. • Kiyozumi, Kenmeina models may always be recruited into this theme. • Once per game, in the Starting Phase, use this ability. You win all tie breaks, regardless of the usual Rules Conflicts resolution until the End Phase. If you both have this ability, resolve the tie break normally.  Permitted [Kiyozumi, Kenmeina, Ronin models]"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 372,
+	"fields": {
+		"name": "Accepted into the Shadow",
+		"cycle": "None",
+		"cost": "2",
+		"max": "0",
+		"faction": "ronin",
+		"description": "Attached model gains the Ninja Type and the following Unique Effects:  At the start of this model's activation choose 1 of the following: • This model gains Intangible until the end of the activation. • Until the end of this activation, if this model Kills an Enemy model in a Melee Exchange, it gains an Activation Counter.  Kohai: During Deployment, this model gains the Ki Feat of 1 Friendly Ninja model in its Warband, it is assumed that the Ki Feat is written on this model's card. If multiple models in the Warband have this rule, they may not choose the same named feat.  Requirement [Kiyozumi Kicho]"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 373,
+	"fields": {
+		"name": "Bright Nurture",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ronin",
+		"description": "In the Starting Phase, place the Attached model within 1\" of its current location.  Requirement [Ryokeen"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 374,
+	"fields": {
+		"name": "Dark Nurture",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ronin",
+		"description": "The Attached model gains Fear (5) and when the Attached model makes a Melee Damage Roll, it may mark X Wounds, up to its current Unmarked Wound boxes. If it does, this model's Bite Weapon gains +X Weapon Strength.  Requirement [Ryokeen"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 375,
+	"fields": {
+		"name": "Loyalty",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ronin",
+		"description": "If the Attached model begins its activation within 3\" of Koga or a Friendly Monk; it loses Cowardly for the rest of the activation.  Requirement [Taiyo"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 376,
+	"fields": {
+		"name": "Man of the People",
+		"cycle": "None",
+		"cost": "2",
+		"max": "0",
+		"faction": "ronin",
+		"description": "Attached model gains Leadership [ Villager, Peasant](1/4\"). The Attached model may be Recruited into a Warband with the Bastions of the Mountain Theme.  Requirement [Hozumi Daihanji"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 377,
+	"fields": {
+		"name": "Plans Made, Bargains Kept",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ronin",
+		"description": "When a non-Soulless model within 4\" of the Attached model is Killed, the Attached model gains 1 Ghost Token.  Requirement [Hozumi Maha"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 378,
+	"fields": {
+		"name": "True Love",
+		"cycle": "None",
+		"cost": "2",
+		"max": "0",
+		"faction": "ronin",
+		"description": "Attached model begins the game with 1 additional Ki Token. If the Attached model is recruited into a Warband with Kiyozumi Hinadori, it gains Fearless. Attached model may be recruited into any Warband that has recruited Kiyozumi Hinadori but not The Kiyozumi Family Theme.  Requirement [Hozumi Koga"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 379,
+	"fields": {
+		"name": "Broken Spirit",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ronin",
+		"description": "Whenever this model takes Damage or fails a Ki Test add 1 Depression Counter to this card. For each Depression Counter on this model reduce its Maximum Ki by 1 and it gains Bodyguard [Kiyozumi](+1\").  Requirement [Kiyozumi Haiboku"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 380,
+	"fields": {
+		"name": "Inducted into the Miko",
+		"cycle": "None",
+		"cost": "2",
+		"max": "0",
+		"faction": "ronin",
+		"description": "While this model is in play, when a Friendly model spends a Virtue Token you may choose the following effect: • You may force a Damage Roll against this model to be re-rolled.  If this model is recruited into a Warband with Hozumi Koga, Koga and this model begin the game with a Virtue Token. This model may be recruited into any Warband that has recruited Hozumi Koga but not The Hozumi Family Theme.  Requirement [Kiyozumi Hinadori"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 381,
+	"fields": {
+		"name": "Iron Will",
+		"cycle": "None",
+		"cost": "2",
+		"max": "1",
+		"faction": "ronin",
+		"description": "The Attached model gains Mantra. Discard this card when the Attached model does not succeed in an Opposed Ki Test.  Requirement [Kiyozumi Sadaka"
+	}
+}, {
+	"model": "bushido.event",
+	"pk": 382,
+	"fields": {
+		"name": "Professional",
+		"cycle": "None",
+		"cost": "1",
+		"max": "1",
+		"faction": "ronin",
+		"description": "While this model has Ki Tokens equal to its Maximum Ki Limit, it gains Fearless and Tough (1).  Requirement (Kenmeina"
+	}
+}]

@@ -1,0 +1,17 @@
+{% extends "bushido/base.html" %}
+{% block title %}<title>Traits</title>{% endblock %}
+{% block content %}
+    <h2>Traits</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        {% for trait in trait_list %}
+        <tr>
+            <td>{{ trait.name }}</a></td>
+            <td>{{ trait.description }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
