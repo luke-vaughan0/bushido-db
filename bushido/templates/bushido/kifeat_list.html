@@ -1,0 +1,22 @@
+{% extends "bushido/base.html" %}
+{% block title %}<title>Ki Feats</title>{% endblock %}
+{% block content %}
+    <h2>Feats</h2>
+    <table>
+    <tr>
+        <th>Name</th>
+        <th>Cost</th>
+        <th>Timing</th>
+        <th>Type</th>
+    </tr>
+        {% for feat in kifeat_list %}
+    <tr>
+        <td><a href="/bushido/info/feat/{{feat.pk}}">{{ feat.name }}</a></td>
+        <td>{{ feat.cost }}</td>
+        <td>{{ feat.timing }}</td>
+        <td>{{ feat.featType }}</td>
+        <td>{{ feat.description }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

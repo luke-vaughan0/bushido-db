@@ -1,0 +1,33 @@
+{% extends "bushido/base.html" %}
+{% block title %}<title>Models</title>{% endblock %}
+{% block content %}
+    <h2>Models</h2>
+<form method="get" action="">
+    <select name="wwww">
+        <option value="shiho" name="Shiho">Shiho</option>
+    </select>
+</form>
+<h1>test</h1>
+<form action="" method="get">
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Melee Pool</th>
+            <th>Ranged Pool</th>
+            <th>Move Pool</th>
+            <th>Wounds</th>
+        </tr>
+        {% for item in unit_list %}
+        <tr>
+            <td><a href="/bushido/info/model/{{item.pk}}">{{ item.name }}</a></td>
+            <td>{{ item.meleePool }}</td>
+        <td>{{ item.rangedPool }}</td>
+        <td>{{ item.movePool }}</td>
+            <td>{{ item.wounds }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

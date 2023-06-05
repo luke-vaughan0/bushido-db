@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{{user.username}}<br>
+{% for list in lists %}
+<a href="/bushido/list/{{list.units}}">{{list.name}}</a>
+{% endfor %}
+</body>
+</html>
