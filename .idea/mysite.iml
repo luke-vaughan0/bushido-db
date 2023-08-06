@@ -4,6 +4,7 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/bushido/fixtures/old" />
       <excludeFolder url="file://$MODULE_DIR$/bushido/fixtures/old2" />
+      <excludeFolder url="file://$MODULE_DIR$/bushido/static/bushido/shiho" />
       <excludeFolder url="file://$MODULE_DIR$/bushido/static/bushido/unofficial" />
       <excludeFolder url="file://$MODULE_DIR$/bushido/static/mdb5-free-standard" />
     </content>
