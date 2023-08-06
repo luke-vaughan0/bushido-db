@@ -11,6 +11,16 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+import sys
+import oracledb
+from dotenv import load_dotenv
+
+load_dotenv()
+
+oracledb.version = "8.3.0"
+sys.modules["cx_Oracle"] = oracledb
+import cx_Oracle
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,18 +30,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-tl7iyu((v*kmmu8mi)r5ap6(p-th!y+i8$hfhuedi9mvq42^)7'
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', False)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', "132.145.58.188"]
+LOGIN_URL = '/bushido/accounts/login/'
 LOGIN_REDIRECT_URL = '/bushido/'
 
 # Application definition
 
 INSTALLED_APPS = [
-    'polls.apps.PollsConfig',
     'bushido.apps.BushidoConfig',
     'bushido.templatetags.bushidofilters',
     'django.contrib.admin',
@@ -40,6 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -76,12 +88,23 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
+DATABASES={
+    'default':
+    {
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': os.environ['ORACLE_CS'],
+        'USER': os.environ['ORACLE_USER'],
+        'PASSWORD': os.environ['ORACLE_PASSWORD'],
+    }
+}
+
+
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}
+}"""
 
 
 # Password validation
@@ -119,8 +142,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = "/var/www/bushido/static"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}

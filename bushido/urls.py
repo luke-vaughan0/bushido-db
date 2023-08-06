@@ -2,10 +2,20 @@ from django.urls import include, path
 from . import views
 from bushido.views import BushidoListView, BushidoUnitListView, FeatListView, TraitListView
 from django.contrib.auth import views as auth_views
+from rest_framework import routers, serializers, viewsets
 
 app_name = 'bushido'
+
+
+# Routers provide an easy way of automatically determining the URL conf.
+router = routers.DefaultRouter()
+router.register(r'models', views.ModelViewSet)
+router.register(r'kifeats', views.KiFeatViewSet)
+router.register(r'traits', views.TraitViewSet)
+
 urlpatterns = [
     path('', views.index, name='index'),
+    path('api/', include(router.urls)),
     path('list/<str:listid>/', views.viewList),
     path('list/', views.createList),
     path('all/', BushidoListView.as_view(), name='allModels'),
