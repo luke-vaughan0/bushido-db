@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "bushido/base.html" %}
+<head>
+    <meta charset="UTF-8">
+    {% block title %}<title>Bushido Database</title>{% endblock %}
+</head>
+{% block content %}
+<body>
+<h1>Welcome
+{% if user.is_authenticated %}
+    - {{ user.username }}
+    {% endif %}
+</h1>
+Eventually there may be some content here, but for now use the links on the left
+
+</body>
+{% endblock %}
+</html>

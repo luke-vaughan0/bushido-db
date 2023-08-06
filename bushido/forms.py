@@ -11,10 +11,17 @@ class FilterForm(forms.Form):
 
 
 class EditUnit(forms.ModelForm):
+    uniqueEffects = forms.CharField(widget=forms.Textarea, required=False)
+
     class Meta:
         model = Unit
-        exclude = ["kiFeats", "traits"]
-        # fields = '__all__'  # ["name", "meleePool", "meleeBoost", "rangedPool"]
+        exclude = ["kiFeats", "traits", "faction"]
+
+
+class EditUnitFeats(forms.ModelForm):
+    class Meta:
+        model = Unit
+        fields = ["kiFeats"]
 
 
 class CreateListForm(forms.ModelForm):
@@ -22,19 +29,3 @@ class CreateListForm(forms.ModelForm):
         model = List
         fields = ["name", "theme", "privacy"]
 
-
-"""class EditUnit(forms.Form):
-    name = forms.CharField(max_length=30)
-    meleePool = forms.CharField(max_length=3)
-    meleeBoost = forms.CharField(max_length=3)
-    rangedPool = forms.CharField(max_length=3)
-    rangedBoost = forms.CharField(max_length=3)
-    movePool = forms.CharField(max_length=3)
-    moveBoost = forms.CharField(max_length=3)
-    kiStat = forms.CharField(max_length=3)
-    kiBoost = forms.CharField(max_length=3)
-    kiMax = forms.CharField(max_length=3)
-    wounds = forms.CharField(max_length=3)
-    size = forms.CharField(max_length=10)
-    cost = forms.CharField(max_length=10)
-    faction = forms.CharField(max_length=15)"""

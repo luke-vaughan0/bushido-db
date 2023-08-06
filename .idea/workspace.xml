@@ -7,7 +7,115 @@
     <bookmark url="file://$PROJECT_DIR$/bushido/views.py" line="104" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="263038a5-eaca-4b65-a211-b772f9e87293" name="Default Changelist" comment="" />
+    <list default="true" id="263038a5-eaca-4b65-a211-b772f9e87293" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bushido/signals.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bushido/templates/bushido/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/mysite.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mysite.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/bushido/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/bushido/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/fixtures/backup.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/fixtures/events - Copy.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/fixtures/events.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/fixtures/kifeats.json" beforeDir="false" afterPath="$PROJECT_DIR$/bushido/fixtures/kifeats.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/fixtures/themes.json" beforeDir="false" afterPath="$PROJECT_DIR$/bushido/fixtures/themes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/fixtures/traits - Copy.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/fixtures/traits.json" beforeDir="false" afterPath="$PROJECT_DIR$/bushido/fixtures/traits.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/fixtures/unitfeats.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/fixtures/units - Copy.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/fixtures/units.json" beforeDir="false" afterPath="$PROJECT_DIR$/bushido/fixtures/units.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/fixtures/unittraits - Copy.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/fixtures/unittraits.json" beforeDir="false" afterPath="$PROJECT_DIR$/bushido/fixtures/unittraits.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/fixtures/unittypes.json" beforeDir="false" afterPath="$PROJECT_DIR$/bushido/fixtures/unittypes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/bushido/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/bushido/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0002_rename_unitfeats_unitfeat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0003_kifeat_type.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0004_auto_20221005_1344.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0005_alter_kifeat_cost_alter_unit_kimax_alter_unit_kistat_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0006_unit_kiboost_unit_meleeboost_unit_moveboost_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0007_unit_cost_unit_faction.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0008_rename_type_kifeat_feattype_kifeat_featrange_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0009_alter_kifeat_timing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0010_alter_kifeat_timing.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0011_unit_kifeats.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0012_trait_unittrait_unit_traits.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0013_list.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0014_enhancement_event_list_privacy.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0015_theme_alter_enhancement_description_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0016_faction_trait_full.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0017_alter_trait_full_alter_trait_name.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0018_alter_event_max_alter_unit_kiboost_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0019_unittype.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0020_alter_theme_validation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0021_list_theme_remove_list_units_listunit_list_units.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0022_alter_list_id_alter_listunit_id.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0023_alter_list_id.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0024_remove_list_theme_alter_list_id.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0025_remove_list_units_delete_listunit.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0026_delete_list.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0027_list.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0028_alter_list_id.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0029_alter_list_id.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0030_alter_list_id.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0031_list_owner_alter_list_id.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0032_list_privacy_list_theme_alter_list_id_listunit_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0033_alter_list_id.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0034_alter_list_id_delete_unitfeat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0035_listunit_enhancements_alter_list_id.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0036_alter_list_id_alter_listunit_equipment.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0037_alter_list_id_alter_listunit_enhancements.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/migrations/0038_alter_list_id.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bushido/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/savagewave/Bobata Front.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/savagewave/Bobata Reverse.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/savagewave/Rashka Front.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/savagewave/Rashka Reverse.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/savagewave/Yamimure Front.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/savagewave/Yamimure Reverse.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/savagewave/Zuba Front.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/savagewave/Zuba Reverse.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/shiho/Heimin.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/shiho/Kazuki.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/shiho/Loyal Kyudoka.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/shiho/Loyal Yarimen.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/shiho/Maki.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/shiho/Shiho Hiroto.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/shiho/Shiho Keita.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/shiho/Shiho Misaki.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/shiho/Shiho Sayaka.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/shiho/Shiho Shota.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/shiho/Shiho Takuya.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/shiho/Shiho Wimpie.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/shiho/Shiho Yusuke.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/shiho/Tanaka Gorak.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/shiho/Tanaka Kazuo.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/shiho/Tanaka Muna.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/shiho/Tanaka Nobuko.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/shiho/Tanaka Tsuki.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/shiho/Tanaka Yue.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/shiho/Tsukis Pack.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/static/bushido/shiho/Yoshitaka.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/templates/bushido/edit_unit.html" beforeDir="false" afterPath="$PROJECT_DIR$/bushido/templates/bushido/edit_unit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/templates/bushido/unit_details.html" beforeDir="false" afterPath="$PROJECT_DIR$/bushido/templates/bushido/unit_details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/templatetags/bushidofilters.py" beforeDir="false" afterPath="$PROJECT_DIR$/bushido/templatetags/bushidofilters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/bushido/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bushido/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/bushido/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/templates/polls/detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/templates/polls/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/templates/polls/results.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/views.py" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -253,20 +361,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Luke Vaughan/Desktop/misc programs/mysite"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Luke Vaughan/Desktop/misc programs/mysite/bushido/templates/bushido&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Luke Vaughan\Desktop\misc programs\mysite\bushido\templates" />
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Luke Vaughan\Desktop\misc programs\mysite\bushido\templates\bushido" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Luke Vaughan\Desktop\misc programs\mysite\bushido\templates" />
       <recent name="C:\Users\Luke Vaughan\Desktop\misc programs\mysite\bushido\templates\bushido" />
     </key>
   </component>
@@ -314,6 +424,17 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/django/views/generic/base.py">

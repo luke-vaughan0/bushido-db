@@ -2,19 +2,123 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.views.generic import ListView
-from bushido.models import Unit, KiFeat, UnitTrait, Trait, Theme, Event, List, ListUnit
+from bushido.models import Unit, KiFeat, UnitTrait, Trait, Theme, Event, List, ListUnit, Weapon, UserProfile, WeaponTrait, WeaponSpecial
 from django.db.models import Q
 from django.contrib import auth
-from .forms import FilterForm, EditUnit, CreateListForm
+from django.contrib.staticfiles import finders
+from .forms import *
 from django.contrib.auth.decorators import permission_required
+from rest_framework import routers, serializers, viewsets, permissions
+
+
+class FeatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = KiFeat
+        fields = "__all__"
+
+
+class WeaponTraitSerializer(serializers.ModelSerializer):
+    id = serializers.ReadOnlyField(source='trait.id')
+    name = serializers.ReadOnlyField(source='trait.name')
+    full = serializers.ReadOnlyField(source='trait.full')
+    formatted = serializers.SerializerMethodField()
+
+    class Meta:
+        model = WeaponTrait
+        exclude = ["weapon", "trait"]
+
+    def get_formatted(self, obj):
+        return obj.trait.full.replace("X", obj.X).replace("Y", obj.Y).replace("Descriptor", obj.descriptor).replace("Bonus", obj.descriptor)
+
+
+class WeaponSpecialSerializer(serializers.ModelSerializer):
+    id = serializers.ReadOnlyField(source='special.id')
+    name = serializers.ReadOnlyField(source='special.name')
+
+    class Meta:
+        model = WeaponSpecial
+        exclude = ["weapon", "special"]
+
+
+class WeaponSerializer(serializers.ModelSerializer):
+    traits = WeaponTraitSerializer(source="weapontrait_set", many=True)
+    specials = WeaponSpecialSerializer(source="weaponspecial_set", many=True)
+    class Meta:
+        model = Weapon
+        exclude = ["unit", "id"]
+
+
+class UnitTraitSerializer(serializers.ModelSerializer):
+    id = serializers.ReadOnlyField(source='trait.id')
+    name = serializers.ReadOnlyField(source='trait.name')
+    full = serializers.ReadOnlyField(source='trait.full')
+    formatted = serializers.SerializerMethodField()
+
+    class Meta:
+        model = UnitTrait
+        exclude = ["unit", "trait"]
+
+    def get_formatted(self, obj):
+        return obj.trait.full.replace("X", obj.X).replace("Y", obj.Y).replace("Descriptor", obj.descriptor).replace("Bonus", obj.descriptor)
+
+
+# Serializers define the API representation.
+class UnitSerializer(serializers.ModelSerializer):
+    kiFeats = FeatSerializer(many=True)
+    traits = UnitTraitSerializer(source="unittrait_set", many=True)
+    types = serializers.SlugRelatedField(many=True, read_only=True, slug_field="type")
+    weapons = WeaponSerializer(source="weapon_set", many=True)
+
+    class Meta:
+        model = Unit
+        #exclude = ['cost']
+        fields = "__all__"
+
+
+class KiFeatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = KiFeat
+        fields = "__all__"
+
+
+class TraitSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Trait
+        fields = "__all__"
+
+
+class ModelViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    Retrieve model information
+    """
+    queryset = Unit.objects.all()
+    serializer_class = UnitSerializer
+    permission_classes = []
+    filterset_fields = "__all__"
+
+
+class KiFeatViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    Retrieve ki feat information
+    """
+    queryset = KiFeat.objects.all()
+    serializer_class = KiFeatSerializer
+    permission_classes = []
+    filterset_fields = "__all__"
+
+
+class TraitViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    Retrieve ki feat information
+    """
+    queryset = Trait.objects.all()
+    serializer_class = TraitSerializer
+    permission_classes = []
+    filterset_fields = "__all__"
 
 
 def index(request):
-    if request.user.is_authenticated:
-        text = "Hello " + request.user.username + ". You're at the index page"
-    else:
-        text = "Hello. You're at the index page"
-    return HttpResponse(text)
+    return render(request, 'bushido/index.html')
 
 
 def featDetails(request, featid):
@@ -26,9 +130,20 @@ def featDetails(request, featid):
 def unitDetails(request, unitid):
     unit = get_object_or_404(Unit, pk=unitid)
     traits = UnitTrait.objects.filter(unit=unit)
+    weapons = Weapon.objects.filter(unit=unit)
     cardFront = 'bushido/' + unit.faction + "/" + unit.name + " Front.jpg"
     cardBack = 'bushido/' + unit.faction + "/" + unit.name + " Reverse.jpg"
-    return render(request, 'bushido/unit_details.html', {'unit': unit, 'cardFront': cardFront, 'cardBack': cardBack, 'traits': traits})
+    if finders.find("bushido/unofficial/" + unit.faction + "/" + unit.name + " Front.png"):
+        cardFront = "bushido/unofficial/" + unit.faction + "/" + unit.name + " Front.png"
+    if finders.find("bushido/unofficial/" + unit.faction + "/" + unit.name + " Reverse.png"):
+        cardBack = "bushido/unofficial/" + unit.faction + "/" + unit.name + " Reverse.png"
+    if request.user.is_authenticated:
+        if not UserProfile.objects.get(user=request.user).useUnofficialCards:
+            cardFront = 'bushido/' + unit.faction + "/" + unit.name + " Front.jpg"
+            cardBack = 'bushido/' + unit.faction + "/" + unit.name + " Reverse.jpg"
+
+
+    return render(request, 'bushido/unit_details.html', {'unit': unit, 'cardFront': cardFront, 'cardBack': cardBack, 'traits': traits, 'weapons': weapons})
 
 
 @permission_required("unit.change_unit")
@@ -37,14 +152,26 @@ def editUnit(request, unitid):
     traits = UnitTrait.objects.filter(unit=unit)
     cardFront = 'bushido/' + unit.faction + "/" + unit.name + " Front.jpg"
     cardBack = 'bushido/' + unit.faction + "/" + unit.name + " Reverse.jpg"
+    if finders.find("bushido/unofficial/" + unit.faction + "/" + unit.name + " Front.png"):
+        cardFront = "bushido/unofficial/" + unit.faction + "/" + unit.name + " Front.png"
+    if finders.find("bushido/unofficial/" + unit.faction + "/" + unit.name + " Reverse.png"):
+        cardBack = "bushido/unofficial/" + unit.faction + "/" + unit.name + " Reverse.png"
+    if request.user.is_authenticated:
+        if not UserProfile.objects.get(user=request.user).useUnofficialCards:
+            cardFront = 'bushido/' + unit.faction + "/" + unit.name + " Front.jpg"
+            cardBack = 'bushido/' + unit.faction + "/" + unit.name + " Reverse.jpg"
     if request.method == "POST":
-        form = EditUnit(request.POST, instance=unit)
-        if form.is_valid():
-            form.save()
+        unitForm = EditUnit(request.POST, instance=unit)
+        featForm = EditUnitFeats(request.POST, instance=unit)
+        #if unitForm.is_valid() and featForm.is_valid():
+        if unitForm.is_valid():
+            unitForm.save()
+            #featForm.save()
             return HttpResponseRedirect("./")
     else:
-        form = EditUnit(instance=unit)
-    return render(request, 'bushido/edit_unit.html', {'unit': unit, 'cardFront': cardFront, 'cardBack': cardBack, 'traits': traits, "form": form})
+        unitForm = EditUnit(instance=unit)
+        featForm = EditUnitFeats(instance=unit)
+    return render(request, 'bushido/edit_unit.html', {'unit': unit, 'cardFront': cardFront, 'cardBack': cardBack, 'traits': traits, "form": unitForm, "featForm": featForm})
 
 
 def themeDetails(request, themeid):

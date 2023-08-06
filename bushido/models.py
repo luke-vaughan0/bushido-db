@@ -3,12 +3,19 @@ from django.conf import settings
 import shortuuid
 
 
+class UserProfile(models.Model):
+    def __str__(self):
+        return self.user.username
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    useUnofficialCards = models.BooleanField(default=True)
+
+
 class Unit(models.Model):
 
     def __str__(self):
         return self.name
 
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=50)
     meleePool = models.CharField(max_length=3, default="0")
     meleeBoost = models.CharField(max_length=3, default="0", blank=True)
     rangedPool = models.CharField(max_length=3, default="0")
@@ -18,13 +25,18 @@ class Unit(models.Model):
     kiStat = models.CharField(max_length=3, default="0")
     kiBoost = models.CharField(max_length=3, default="0", blank=True)
     kiMax = models.CharField(max_length=3, default="0")
-    wounds = models.CharField(max_length=3, default="0", blank=True)
-    size = models.CharField(max_length=10, default="0")
+    wounds = models.CharField(max_length=3, default="5", blank=True)
+    size = models.CharField(max_length=10, default="Small")
+    baseSize = models.CharField(max_length=3, default="30")
     cost = models.CharField(max_length=10, default="0")
-    faction = models.CharField(max_length=15, default="0")
+    faction = models.CharField(max_length=15, default="ronin")
+    uniqueEffects = models.CharField(max_length=1500, default="", blank=True)
 
     kiFeats = models.ManyToManyField('KiFeat')
     traits = models.ManyToManyField('Trait', through='UnitTrait')
+
+    class Meta:
+        ordering = ["faction", "name"]
 
 
 class KiFeat(models.Model):
@@ -47,12 +59,20 @@ class KiFeat(models.Model):
         ("Sp", "Special"),
     ]
 
+    Choices = [
+        ("Pe", "Personal"),
+        ("Ta", "Target"),
+        ("Pu", "Pulse"),
+        ("Au", "Aura"),
+        ("Sp", "Special"),
+    ]
+
     name = models.CharField(max_length=30)
-    cost = models.CharField(max_length=5)
+    cost = models.CharField(max_length=6)
     timing = models.CharField(max_length=8, choices=TimingChoices, default="A")
     featType = models.CharField(max_length=8, choices=TypeChoices, default="Pe")
-    featRange = models.CharField(max_length=5, default="0")
-    description = models.CharField(max_length=300)
+    featRange = models.CharField(max_length=5, default="", blank=True)
+    description = models.CharField(max_length=600)
 
 
 class Trait(models.Model):
@@ -62,7 +82,7 @@ class Trait(models.Model):
 
     name = models.CharField(max_length=30)
     full = models.CharField(max_length=40)
-    description = models.CharField(max_length=300)
+    description = models.CharField(max_length=1300)
 
 
 class Special(models.Model):
@@ -70,7 +90,8 @@ class Special(models.Model):
         return self.name
 
     name = models.CharField(max_length=50)
-    description = models.CharField(max_length=300)
+    description = models.CharField(max_length=600)
+    exceptional = models.BooleanField(default=False)
 
 
 class UnitTrait(models.Model):
@@ -82,7 +103,7 @@ class UnitTrait(models.Model):
     trait = models.ForeignKey(Trait, on_delete=models.CASCADE)
     X = models.CharField(max_length=3, default="0", blank=True)
     Y = models.CharField(max_length=3, default="0", blank=True)
-    descriptor = models.CharField(max_length=10, default="", blank=True)
+    descriptor = models.CharField(max_length=20, default="", blank=True)
 
 
 class UnitType(models.Model):
@@ -90,15 +111,8 @@ class UnitType(models.Model):
     def __str__(self):
         return self.unit.name + " - " + self.type
 
-    unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
+    unit = models.ForeignKey(Unit, related_name="types", on_delete=models.CASCADE)
     type = models.CharField(max_length=30)
-
-
-#class UnitFeat(models.Model):
-#    def __str__(self):
-#        return self.unit.name + " - " + self.feat.name
-#    unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
-#    feat = models.ForeignKey(KiFeat, on_delete=models.CASCADE)
 
 
 class Faction(models.Model):
@@ -112,10 +126,10 @@ class Faction(models.Model):
 class Event(models.Model):
     def __str__(self):
         return self.name
-    name = models.CharField(max_length=30, default="")
+    name = models.CharField(max_length=50, default="")
     cycle = models.CharField(max_length=30, default="None")
     cost = models.CharField(max_length=5, default="0")
-    max = models.CharField(max_length=5, default="1", blank=True)
+    max = models.CharField(max_length=100, default="1", blank=True)
     faction = models.CharField(max_length=15, default="")
     description = models.CharField(max_length=1000, default="")
 
@@ -152,7 +166,7 @@ class List(models.Model):
     ]
 
     name = models.CharField(max_length=30, default="")
-    id = models.CharField(max_length=20, primary_key=True, unique=True, default=shortuuid.uuid, editable=False)
+    id = models.CharField(max_length=25, primary_key=True, unique=True, default=shortuuid.uuid, editable=False)
     units = models.ManyToManyField('Unit', through='ListUnit')
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=0)
     privacy = models.CharField(max_length=8, choices=PrivacyChoices, default="Public")
@@ -174,7 +188,7 @@ class Weapon(models.Model):
         return self.unit.name + " - " + self.name
     name = models.CharField(max_length=30, default="")
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
-    strength = models.CharField(max_length=5, default="+0")
+    strength = models.CharField(max_length=8, default="+0")
     isRanged = models.BooleanField(default=False)
     shortRange = models.CharField(max_length=5, default="", blank=True)
     mediumRange = models.CharField(max_length=5, default="", blank=True)
@@ -191,7 +205,7 @@ class WeaponTrait(models.Model):
     trait = models.ForeignKey(Trait, on_delete=models.CASCADE)
     X = models.CharField(max_length=3, default="0", blank=True)
     Y = models.CharField(max_length=3, default="0", blank=True)
-    descriptor = models.CharField(max_length=10, default="", blank=True)
+    descriptor = models.CharField(max_length=20, default="", blank=True)
 
 
 class WeaponSpecial(models.Model):
@@ -200,4 +214,4 @@ class WeaponSpecial(models.Model):
 
     weapon = models.ForeignKey(Weapon, on_delete=models.CASCADE)
     special = models.ForeignKey(Special, on_delete=models.CASCADE)
-    cost = models.CharField(max_length=3, default="0", blank=True)
+    cost = models.CharField(max_length=3, default="0")
