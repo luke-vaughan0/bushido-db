@@ -43,6 +43,7 @@ class WeaponSpecialSerializer(serializers.ModelSerializer):
 class WeaponSerializer(serializers.ModelSerializer):
     traits = WeaponTraitSerializer(source="weapontrait_set", many=True)
     specials = WeaponSpecialSerializer(source="weaponspecial_set", many=True)
+
     class Meta:
         model = Weapon
         exclude = ["unit", "id"]
