@@ -35,7 +35,7 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', False)
 
-ALLOWED_HOSTS = ['localhost', "132.145.58.188", "*.bushidodb.ddns.net"]
+ALLOWED_HOSTS = ['localhost', "132.145.58.188", "*.bushidodb.ddns.net", "bushidodb.ddns.net"]
 LOGIN_URL = '/bushido/accounts/login/'
 LOGIN_REDIRECT_URL = '/bushido/'
 
