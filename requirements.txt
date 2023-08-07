@@ -1,4 +1,6 @@
-Django==4.1.1
+Django==4.2.4
 djangorestframework==3.14.0
 shortuuid==1.0.11
 oracledb==1.3.2
+python-dotenv~=1.0.0
+django-filter==23.2
