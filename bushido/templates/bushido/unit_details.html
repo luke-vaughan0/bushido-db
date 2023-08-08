@@ -5,80 +5,108 @@
 {% load bushidofilters %}
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block title %}<title>{{unit.name}} - Info</title>{% endblock %}
 </head>
 {% block content %}
 <body>
-<h1>{{unit.name}}</h1>
-{% for type in unit.unittype_set.all %}
-    {% if type.type not in unit.name %}
-  {{ type.type }},
-{% endif %}
-    {% endfor %}
-<br>
-<br>
-<img src="{% static cardFront %}" height=500 alt = "{{unit.name}}"><img src="{% static cardBack %}" height=500 alt = "{{unit.name}}">
-<h4>Stats:</h4>
-<table>
-    <tr>
-        <th>Cost</th>
-        <th>Melee</th>
-        <th>Ranged</th>
-        <th>Ki</th>
-        <th>Move</th>
-        <th>Wounds</th>
-        <th>Size</th>
-    </tr>
-    <tr>
-        <td>{{unit.cost}}</td>
-        <td>{{unit.meleePool}} {{unit.meleeBoost|addBrackets}}</td>
-        <td>{{unit.rangedPool}} {{unit.rangedBoost|addBrackets}}</td>
-        <td>{{unit.kiStat}}/{{unit.kiMax}} {{unit.kiBoost|addBrackets}}</td>
-        <td>{{unit.movePool}} {{unit.moveBoost|addBrackets}}</td>
-        <td>{{unit.wounds}}</td>
-        <td>{{unit.size}} {{unit.baseSize}}mm</td>
-        <td></td>
-    </tr>
-</table>
-<br>
-<h4>Weapons:</h4>
-{% for weapon in weapons %}
-        {{ weapon|formatWeapon|safe }}
-    {% endfor %}
-<br>
-<h4>Traits:</h4>
-{% for trait in traits %}
-    {% if forloop.last %}
-        {{ trait|formatTrait }}
-    {% else %}
-         {{ trait|formatTrait }},
-    {% endif %}
-    {% endfor %}
-<br>
-<h4>Feats:</h4>
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Cost</th>
-        <th>Timing</th>
-        <th>Type</th>
-    </tr>
-        {% for feat in unit.kiFeats.all %}
-    <tr>
-        <td><a href="/bushido/info/feat/{{feat.pk}}">{{ feat.name }}</a></td>
-        <td>{{ feat.cost }}</td>
-        <td>{{ feat.timing }}</td>
-        <td>{{ feat.featType }}</td>
-    </tr>
-    {% endfor %}
-</table>
-<br>
-<h4>Unique Effects:</h4>
-{{ unit.uniqueEffects|linebreaks }}
-{% if perms.bushido.change_unit %}
-<br>
-<a href="./edit">Edit model</a>
-{% endif %}
+<div class="container m-0">
+    <div>
+        <h1>{{unit.name}}</h1>
+        <p>{% for type in unit.types.all %}
+            {% if type.type not in unit.name %}
+          {{ type.type }},
+        {% endif %}
+            {% endfor %}</p>
+        </div>
+    <hr>
+    <div class="container" style="max-width: 1000px;">
+        <div class="row gx-0">
+            <div class="col-lg-6"><img src="{% static cardFront %}" class="img-fluid d-block" alt = "{{unit.name}} Front"></div>
+            <div class="col-lg-6"><img src="{% static cardBack %}" class="img-fluid d-block" alt = "{{unit.name}} Back"></div>
+        </div>
+    </div>
+    <hr>
+    <div>
+    <h4>Stats:</h4>
+        <table class="table">
+            <thead class="table-group-divider">
+            <tr>
+                <th>Cost</th>
+                <th>Melee</th>
+                <th>Ranged</th>
+                <th>Ki</th>
+                <th>Move</th>
+                <th>Wounds</th>
+                <th>Size</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{unit.cost}}</td>
+                <td>{{unit.meleePool}} {{unit.meleeBoost|addBrackets}}</td>
+                <td>{{unit.rangedPool}} {{unit.rangedBoost|addBrackets}}</td>
+                <td>{{unit.kiStat}}/{{unit.kiMax}} {{unit.kiBoost|addBrackets}}</td>
+                <td>{{unit.movePool}} {{unit.moveBoost|addBrackets}}</td>
+                <td>{{unit.wounds}}</td>
+                <td>{{unit.size}} {{unit.baseSize}}mm</td>
+                </tbody>
+            </tr>
+        </table>
+    </div>
+    <div>
+    <h4>Weapons:</h4>
+        {% for weapon in weapons %}
+            <div>
+                {{ weapon|formatWeapon|safe }}
+            </div>
+            {% endfor %}
+    </div>
+    <hr>
+    <div>
+        <h4>Traits:</h4>
+        {% for trait in traits %}
+            {% if forloop.last %}
+                {{ trait|formatTrait }}
+            {% else %}
+                 {{ trait|formatTrait }},
+            {% endif %}
+            {% endfor %}
+    </div>
+    <hr>
+    <div>
+    <h4>Feats:</h4>
+    <table class="table">
+        <thead class="table-group-divider">
+        <tr>
+            <th>Name</th>
+            <th>Cost</th>
+            <th>Timing</th>
+            <th>Type</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for feat in unit.kiFeats.all %}
+        <tr>
+            <td><a href="/bushido/info/feat/{{feat.pk}}">{{ feat.name }}</a></td>
+            <td>{{ feat.cost }}</td>
+            <td>{{ feat.timing }}</td>
+            <td>{{ feat.featType }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <div>
+        <h4>Unique Effects:</h4>
+        {{ unit.uniqueEffects|linebreaks }}
+        {% if perms.bushido.change_unit %}
+        <br>
+        <a href="./edit">Edit model</a>
+        {% endif %}
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 {% endblock %}
 </html>
