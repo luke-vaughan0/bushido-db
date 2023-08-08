@@ -9,47 +9,24 @@ from django.contrib.staticfiles import finders
 from .forms import *
 from django.contrib.auth.decorators import permission_required
 from rest_framework import routers, serializers, viewsets, permissions
+from drf_dynamic_fields import DynamicFieldsMixin
 
 
-class FeatSerializer(serializers.ModelSerializer):
+class ReadOnlyModelSerializer(serializers.ModelSerializer):
+    def get_fields(self, *args, **kwargs):
+        fields = super().get_fields(*args, **kwargs)
+        for field in fields:
+            fields[field].read_only = True
+        return fields
+
+
+class KiFeatSerializer(ReadOnlyModelSerializer):
     class Meta:
         model = KiFeat
         fields = "__all__"
 
 
-class WeaponTraitSerializer(serializers.ModelSerializer):
-    id = serializers.ReadOnlyField(source='trait.id')
-    name = serializers.ReadOnlyField(source='trait.name')
-    full = serializers.ReadOnlyField(source='trait.full')
-    formatted = serializers.SerializerMethodField()
-
-    class Meta:
-        model = WeaponTrait
-        exclude = ["weapon", "trait"]
-
-    def get_formatted(self, obj):
-        return obj.trait.full.replace("X", obj.X).replace("Y", obj.Y).replace("Descriptor", obj.descriptor).replace("Bonus", obj.descriptor)
-
-
-class WeaponSpecialSerializer(serializers.ModelSerializer):
-    id = serializers.ReadOnlyField(source='special.id')
-    name = serializers.ReadOnlyField(source='special.name')
-
-    class Meta:
-        model = WeaponSpecial
-        exclude = ["weapon", "special"]
-
-
-class WeaponSerializer(serializers.ModelSerializer):
-    traits = WeaponTraitSerializer(source="weapontrait_set", many=True)
-    specials = WeaponSpecialSerializer(source="weaponspecial_set", many=True)
-
-    class Meta:
-        model = Weapon
-        exclude = ["unit", "id"]
-
-
-class UnitTraitSerializer(serializers.ModelSerializer):
+class UnitTraitSerializer(ReadOnlyModelSerializer):
     id = serializers.ReadOnlyField(source='trait.id')
     name = serializers.ReadOnlyField(source='trait.name')
     full = serializers.ReadOnlyField(source='trait.full')
@@ -63,12 +40,44 @@ class UnitTraitSerializer(serializers.ModelSerializer):
         return obj.trait.full.replace("X", obj.X).replace("Y", obj.Y).replace("Descriptor", obj.descriptor).replace("Bonus", obj.descriptor)
 
 
+class WeaponTraitSerializer(ReadOnlyModelSerializer):
+    id = serializers.ReadOnlyField(source='trait.id')
+    name = serializers.ReadOnlyField(source='trait.name')
+    full = serializers.ReadOnlyField(source='trait.full')
+    formatted = serializers.SerializerMethodField()
+
+    class Meta:
+        model = WeaponTrait
+        exclude = ["weapon", "trait"]
+
+    def get_formatted(self, obj):
+        return obj.trait.full.replace("X", obj.X).replace("Y", obj.Y).replace("Descriptor", obj.descriptor).replace("Bonus", obj.descriptor)
+
+
+class WeaponSpecialSerializer(ReadOnlyModelSerializer):
+    id = serializers.ReadOnlyField(source='special.id')
+    name = serializers.ReadOnlyField(source='special.name')
+
+    class Meta:
+        model = WeaponSpecial
+        exclude = ["weapon", "special"]
+
+
+class WeaponSerializer(ReadOnlyModelSerializer):
+    traits = UnitTraitSerializer(source="weapontraits", many=True)
+    specials = WeaponSpecialSerializer(source="weaponspecials", many=True)
+
+    class Meta:
+        model = Weapon
+        exclude = ["unit", "id"]
+
+
 # Serializers define the API representation.
-class UnitSerializer(serializers.ModelSerializer):
-    kiFeats = FeatSerializer(many=True)
+class UnitSerializer(DynamicFieldsMixin, ReadOnlyModelSerializer):
+    kiFeats = KiFeatSerializer(many=True)
     traits = UnitTraitSerializer(source="unittrait_set", many=True)
     types = serializers.SlugRelatedField(many=True, read_only=True, slug_field="type")
-    weapons = WeaponSerializer(source="weapon_set", many=True)
+    weapons = WeaponSerializer(source="weapons.all", many=True)
 
     class Meta:
         model = Unit
@@ -76,13 +85,7 @@ class UnitSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class KiFeatSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = KiFeat
-        fields = "__all__"
-
-
-class TraitSerializer(serializers.ModelSerializer):
+class TraitSerializer(ReadOnlyModelSerializer):
     class Meta:
         model = Trait
         fields = "__all__"
@@ -92,7 +95,8 @@ class ModelViewSet(viewsets.ReadOnlyModelViewSet):
     """
     Retrieve model information
     """
-    queryset = Unit.objects.all()
+    queryset = Unit.objects.prefetch_related('kiFeats', 'traits', 'unittrait_set__trait', 'types',
+                                             "weapons__weaponspecials__special", "weapons__weapontraits__trait")
     serializer_class = UnitSerializer
     permission_classes = []
     filterset_fields = "__all__"

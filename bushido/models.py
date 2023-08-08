@@ -187,7 +187,7 @@ class Weapon(models.Model):
     def __str__(self):
         return self.unit.name + " - " + self.name
     name = models.CharField(max_length=30, default="")
-    unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
+    unit = models.ForeignKey(Unit, related_name="weapons", on_delete=models.CASCADE)
     strength = models.CharField(max_length=8, default="+0")
     isRanged = models.BooleanField(default=False)
     shortRange = models.CharField(max_length=5, default="", blank=True)
@@ -201,7 +201,7 @@ class WeaponTrait(models.Model):
     def __str__(self):
         return self.weapon.unit.name + " - " + self.weapon.name + " - " + self.trait.name
 
-    weapon = models.ForeignKey(Weapon, on_delete=models.CASCADE)
+    weapon = models.ForeignKey(Weapon, related_name="weapontraits", on_delete=models.CASCADE)
     trait = models.ForeignKey(Trait, on_delete=models.CASCADE)
     X = models.CharField(max_length=3, default="0", blank=True)
     Y = models.CharField(max_length=3, default="0", blank=True)
@@ -212,6 +212,6 @@ class WeaponSpecial(models.Model):
     def __str__(self):
         return self.weapon.unit.name + " - " + self.weapon.name + " - " + self.special.name
 
-    weapon = models.ForeignKey(Weapon, on_delete=models.CASCADE)
+    weapon = models.ForeignKey(Weapon, related_name="weaponspecials", on_delete=models.CASCADE)
     special = models.ForeignKey(Special, on_delete=models.CASCADE)
     cost = models.CharField(max_length=3, default="0")

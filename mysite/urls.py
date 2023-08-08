@@ -19,4 +19,5 @@ from django.urls import include, path
 urlpatterns = [
     path("bushido/", include("bushido.urls")),
     path('admin/', admin.site.urls),
+    path("__debug__/", include("debug_toolbar.urls")),
 ]
