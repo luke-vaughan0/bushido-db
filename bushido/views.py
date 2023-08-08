@@ -134,7 +134,7 @@ def featDetails(request, featid):
 
 def unitDetails(request, unitid):
     unit = get_object_or_404(Unit, pk=unitid)
-    traits = UnitTrait.objects.filter(unit=unit)
+    traits = UnitTrait.objects.filter(unit=unit).prefetch_related("trait")
     weapons = Weapon.objects.filter(unit=unit)
     cardFront = 'bushido/' + unit.faction + "/" + unit.name + " Front.jpg"
     cardBack = 'bushido/' + unit.faction + "/" + unit.name + " Reverse.jpg"
@@ -253,11 +253,14 @@ class BushidoListView(ListView):
     template_name = "bushido/unit_list.html"
 
     def get_queryset(self):
-        filters = self.request.GET
-        print(filters)
-        if len(filters) == 0:
-            return Unit.objects.all()
-        return []
+        fields = self.request.GET.dict()
+        sort_fields = fields.pop("sort", "").split(",")
+        if sort_fields == [""]:
+            sort_fields = []
+        queryset = Unit.objects.order_by(*[item[1:] if item.startswith("-") else "-" + item for item in sort_fields])
+        queryset = queryset.filter(**fields)
+        return queryset
+
 
 
 class FeatListView(ListView):
