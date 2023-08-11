@@ -36,8 +36,8 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
 # CSP settings
-CSP_STYLE_SRC = ["'self'", "cdn.jsdelivr.net"]
-CSP_SCRIPT_SRC = ["'self'"]
+CSP_STYLE_SRC = ["'self'", "cdn.jsdelivr.net", "cdn.datatables.net"]
+CSP_SCRIPT_SRC = ["'self'", "cdn.datatables.net",]
 
 
 # SECURITY WARNING: keep the secret key used in production secret!

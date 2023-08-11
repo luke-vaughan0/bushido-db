@@ -1,29 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
 {% extends "bushido/base.html" %}
 {% load static %}
 {% load bushidofilters %}
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% block title %}<title>{{unit.name}} - Info</title>{% endblock %}
-</head>
+{% block title %}<title>{{unit.name}} - Info</title>{% endblock %}
 {% block content %}
-<body>
 <div class="container m-0">
     <div>
         <h1>{{unit.name}}</h1>
-        <p>{% for type in unit.types.all %}
-            {% if type.type not in unit.name %}
-          {{ type.type }},
-        {% endif %}
-            {% endfor %}</p>
-        </div>
+        <p class="fw-light">{{unit.faction.name}}</p>
+        <ul class="list-group list-group-horizontal">
+            {% for type in unit.types.all %}
+                {% if type.type not in unit.name %}
+                    <li class="list-group-item py-1">{{ type.type }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
     <hr>
-    <div class="container" style="max-width: 1000px;">
+    <div class="container card-container">
         <div class="row gx-0">
-            <div class="col-lg-6"><img src="{% static cardFront %}" class="img-fluid d-block" alt = "{{unit.name}} Front"></div>
-            <div class="col-lg-6"><img src="{% static cardBack %}" class="img-fluid d-block" alt = "{{unit.name}} Back"></div>
+            <div class="col-lg-6"><img src="{% static cardFront %}" class="img-fluid d-block" alt = "{{unit.cardName}} Front"></div>
+            <div class="col-lg-6"><img src="{% static cardBack %}" class="img-fluid d-block" alt = "{{unit.cardName}} Back"></div>
         </div>
     </div>
     <hr>
@@ -54,24 +50,39 @@
             </tr>
         </table>
     </div>
-    <div>
-    <h4>Weapons:</h4>
-        {% for weapon in weapons %}
-            <div>
-                {{ weapon|formatWeapon|safe }}
+    <div class="container">
+        <div class="row">
+            <h4>Weapons:</h4>
+        </div>
+        <div class="row">
+        {% for weapon in unit.weapons.all %}
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{weapon.name}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{weapon.strength}} | {% if weapon.isRanged %}Ranged {{weapon.shortRange}}/{{weapon.mediumRange}}/{{weapon.longRange}}{% else %}Melee{% endif %}</h6>
+                        <ul class="list-group list-group-flush">
+                            {% for trait in weapon.weapontraits.all %}
+                                <li class="list-group-item">{{trait.formatted}}</li>
+                            {% endfor %}
+                            {% for special in weapon.weaponspecials.all %}
+                                <li class="list-group-item">{{special.special.name}} ({{special.cost}})</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
             </div>
             {% endfor %}
+        </div>
     </div>
     <hr>
     <div>
         <h4>Traits:</h4>
-        {% for trait in traits %}
-            {% if forloop.last %}
-                {{ trait|formatTrait }}
-            {% else %}
-                 {{ trait|formatTrait }},
-            {% endif %}
+        <ul class="list-group list-group-horizontal">
+            {% for trait in unit.unittrait_set.all %}
+                <li class="list-group-item py-1">{{ trait.formatted }}</li>
             {% endfor %}
+        </ul>
     </div>
     <hr>
     <div>
@@ -99,14 +110,14 @@
     </div>
     <div>
         <h4>Unique Effects:</h4>
-        {{ unit.uniqueEffects|linebreaks }}
+        <p>{{ unit.uniqueEffects|linebreaks }}</p>
+        {% block edit %}
         {% if perms.bushido.change_unit %}
         <br>
         <a href="./edit">Edit model</a>
         {% endif %}
+        {% endblock %}
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-</body>
 {% endblock %}
-</html>

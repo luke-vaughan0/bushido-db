@@ -1,25 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
 {% extends "bushido/base.html" %}
 {% load static %}
-<head>
-    <meta charset="UTF-8">
-    {% block title %}<title>{{faction}} - Info</title>{% endblock %}
-</head>
+{% block title %}<title>{{faction.name}} - Info</title>{% endblock %}
 {% block content %}
-<body>
-<h1>{{faction}}</h1><br>
-<h4>Themes:</h4>
-{% for theme in themes %}
-<li><a href="/bushido/info/theme/{{theme.pk}}">{{ theme.name }}</a></li>
-    {% endfor %}
+<div class="container m-0">
+    <div class="row">
+        <h2>{{faction.name}}</h2>
+    </div>
+    <div class="row">
+<p>{{faction.description}}</p>
+    </div>
+    <div class="row">
 <h4>Faction models:</h4>
-{% for unit in units %}
-<li><a href="/bushido/info/model/{{unit.pk}}">{{ unit.name }}</a></li>
+<ul class="list-group">
+    {% for unit in faction.unit_set.all %}
+    <a class="list-group-item list-group-item-action" href="/bushido/info/model/{{unit.pk}}">{{ unit.name }}</a>
+        {% endfor %}
+</ul>
+    </div>
+    <hr>
+    <div class="row">
+<h4>Faction Themes:</h4>
+<ul class="list-group">
+{% for theme in faction.theme_set.all %}
+<a class="list-group-item list-group-item-action" href="/bushido/info/theme/{{theme.pk}}">{{ theme.name }}</a>
     {% endfor %}
+    </ul>
+    </div>
+    <hr>
+    <div class="row">
 <h4>Faction Events, Enhancements, Equipment:</h4>
-{% for event in events %}
-<li><a href="/bushido/info/event/{{event.pk}}">{{ event.name }}</a></li>
+<ul class="list-group">
+{% for event in faction.event_set.all %}
+<a class="list-group-item list-group-item-action" href="/bushido/info/event/{{event.pk}}">{{ event.name }}</a>
     {% endfor %}
+        </ul>
+    </div>
+</div>
 {% endblock %}
-</html>

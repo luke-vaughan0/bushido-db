@@ -1,0 +1,17 @@
+{% extends "bushido/base.html" %}
+{% block title %}<title>Factions</title>{% endblock %}
+{% block content %}
+<div class="container m-0">
+    <div class="row">
+        <h2>Factions</h2>
+    </div>
+    <div class="row">
+        <ul class="list-group">
+        {% for faction in faction_list %}
+            <a class="list-group-item list-group-item-action" href="{% url 'bushido:factionDetails' factionid=faction.id %}">
+                {{faction.name}}
+            </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

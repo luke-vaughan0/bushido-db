@@ -2,12 +2,12 @@ from django import forms
 from bushido.models import Unit, List
 
 
-class FilterForm(forms.Form):
-    factions = list(Unit.objects.values_list("faction", flat=True).distinct())
-    choices = []
-    for faction in factions:
-        choices.append((faction, faction))
-    faction = forms.ChoiceField(choices=choices)
+#class FilterForm(forms.Form):
+#    factions = list(Unit.objects.values_list("faction", flat=True).distinct())
+#    choices = []
+#    for faction in factions:
+#        choices.append((faction, faction))
+#    faction = forms.ChoiceField(choices=choices)
 
 
 class EditUnit(forms.ModelForm):
