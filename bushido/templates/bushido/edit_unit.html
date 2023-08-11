@@ -1,69 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-{% extends "bushido/base.html" %}
+{% extends "bushido/unit_details.html" %}
 {% load static %}
 {% load bushidofilters %}
-<head>
-    <meta charset="UTF-8">
-    <link href="{% static 'mdb5-free-standard/css/mdb.min.css' %}" rel="stylesheet" type="text/css"/>
-    {% block title %}<title>{{unit.name}} - Info</title>{% endblock %}
-</head>
-{% block content %}
-<body>
-<h1>{{unit.name}}</h1><br>
-<img src="{% static cardFront %}" height=500 alt = "{{unit.name}}"><img src="{% static cardBack %}" height=500 alt = "{{unit.name}}">
-<h4>Stats:</h4>
-<table>
-    <tr>
-        <th>Cost</th>
-        <th>Melee</th>
-        <th>Ranged</th>
-        <th>Ki</th>
-        <th>Move</th>
-    </tr>
-    <tr>
-        <td>{{unit.cost}}</td>
-        <td>{{unit.meleePool}} {{unit.meleeBoost|addBrackets}}</td>
-        <td>{{unit.rangedPool}} {{unit.rangedBoost|addBrackets}}</td>
-        <td>{{unit.kiStat}}/{{unit.kiMax}} {{unit.kiBoost|addBrackets}}</td>
-        <td>{{unit.movePool}} {{unit.moveBoost|addBrackets}}</td>
-        <td></td>
-    </tr>
-</table>
-<h4>Traits:</h4>
-{% for trait in traits %}
-        {{ trait|formatTrait }},
-    {% endfor %}
-<h4>Feats:</h4>
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Cost</th>
-        <th>Timing</th>
-        <th>Type</th>
-    </tr>
-        {% for feat in unit.kiFeats.all %}
-    <tr>
-        <td><a href="/bushido/info/feat/{{feat.pk}}">{{ feat.name }}</a></td>
-        <td>{{ feat.cost }}</td>
-        <td>{{ feat.timing }}</td>
-        <td>{{ feat.featType }}</td>
-    </tr>
-    {% endfor %}
-</table>
+{% block title %}<title>{{unit.name}} - Info</title>{% endblock %}
+
+{% block edit %}
 <form action="" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit">
 </form>
-<br><br>
-<!--<form action="" method="post">
-    {% csrf_token %}
-    {{ featForm }}
-    <input type="submit" value="Submit">
-</form>-->
-
-<script src="{% static 'mdb5-free-standard/js/mdb.min.js' %}"></script>
-</body>
 {% endblock %}
-</html>

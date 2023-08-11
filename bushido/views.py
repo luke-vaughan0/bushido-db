@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.views.generic import ListView
-from bushido.models import Unit, KiFeat, UnitTrait, Trait, Theme, Event, List, ListUnit, Weapon, UserProfile, WeaponTrait, WeaponSpecial
-from django.db.models import Q
+from bushido.models import Unit, KiFeat, UnitTrait, Trait, Theme, Event, List, ListUnit, Weapon, UserProfile,\
+    WeaponTrait, WeaponSpecial, Faction, Special, Enhancement
+from django.db.models import Q, Prefetch
+from django.db import models
 from django.contrib import auth
 from django.contrib.staticfiles import finders
 from .forms import *
@@ -77,6 +79,7 @@ class UnitSerializer(DynamicFieldsMixin, ReadOnlyModelSerializer):
     kiFeats = KiFeatSerializer(many=True)
     traits = UnitTraitSerializer(source="unittrait_set", many=True)
     types = serializers.SlugRelatedField(many=True, read_only=True, slug_field="type")
+    faction = serializers.ReadOnlyField(source='faction.name')
     weapons = WeaponSerializer(source="weapons.all", many=True)
 
     class Meta:
@@ -96,7 +99,7 @@ class ModelViewSet(viewsets.ReadOnlyModelViewSet):
     Retrieve model information
     """
     queryset = Unit.objects.prefetch_related('kiFeats', 'traits', 'unittrait_set__trait', 'types',
-                                             "weapons__weaponspecials__special", "weapons__weapontraits__trait")
+                                             "weapons__weaponspecials__special", "weapons__weapontraits__trait").select_related('faction')
     serializer_class = UnitSerializer
     permission_classes = []
     filterset_fields = "__all__"
@@ -126,6 +129,22 @@ def index(request):
     return render(request, 'bushido/index.html')
 
 
+def search(request):
+    search_query = request.GET["search"]
+    search_models = [Unit, KiFeat, Trait, Theme, Special, Faction, Event, Enhancement]
+    search_results = []
+    for model in search_models:
+        fields = [x for x in model._meta.fields if isinstance(x, models.CharField)]
+        search_queries = [Q(**{x.name + "__icontains" : search_query}) for x in fields]
+        q_object = Q()
+        for query in search_queries:
+            q_object = q_object | query
+
+        results = model.objects.filter(q_object)
+        search_results.append(results)
+    return render(request, 'bushido/search.html', {"search_results": search_results})
+
+
 def featDetails(request, featid):
     feat = get_object_or_404(KiFeat, pk=featid)
     units = Unit.objects.filter(kiFeats=feat)
@@ -133,50 +152,54 @@ def featDetails(request, featid):
 
 
 def unitDetails(request, unitid):
-    unit = get_object_or_404(Unit, pk=unitid)
-    traits = UnitTrait.objects.filter(unit=unit).prefetch_related("trait")
-    weapons = Weapon.objects.filter(unit=unit)
-    cardFront = 'bushido/' + unit.faction + "/" + unit.name + " Front.jpg"
-    cardBack = 'bushido/' + unit.faction + "/" + unit.name + " Reverse.jpg"
-    if finders.find("bushido/unofficial/" + unit.faction + "/" + unit.name + " Front.png"):
-        cardFront = "bushido/unofficial/" + unit.faction + "/" + unit.name + " Front.png"
-    if finders.find("bushido/unofficial/" + unit.faction + "/" + unit.name + " Reverse.png"):
-        cardBack = "bushido/unofficial/" + unit.faction + "/" + unit.name + " Reverse.png"
+    unit = get_object_or_404(
+        Unit.objects.prefetch_related(
+            Prefetch('unittrait_set', queryset=UnitTrait.objects.select_related('trait')),
+            Prefetch('weapons', queryset=Weapon.objects.prefetch_related('weaponspecials__special', 'weapontraits__trait')),
+
+        ),
+        pk=unitid
+    )
+    cardFront = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Front.jpg"
+    cardBack = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Reverse.jpg"
+    if finders.find("bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Front.png"):
+        cardFront = "bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Front.png"
+    if finders.find("bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Reverse.png"):
+        cardBack = "bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Reverse.png"
     if request.user.is_authenticated:
         if not UserProfile.objects.get(user=request.user).useUnofficialCards:
-            cardFront = 'bushido/' + unit.faction + "/" + unit.name + " Front.jpg"
-            cardBack = 'bushido/' + unit.faction + "/" + unit.name + " Reverse.jpg"
+            cardFront = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Front.jpg"
+            cardBack = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Reverse.jpg"
 
 
-    return render(request, 'bushido/unit_details.html', {'unit': unit, 'cardFront': cardFront, 'cardBack': cardBack, 'traits': traits, 'weapons': weapons})
+    return render(request, 'bushido/unit_details.html', {'unit': unit, 'cardFront': cardFront, 'cardBack': cardBack,})
 
 
 @permission_required("unit.change_unit")
 def editUnit(request, unitid):
     unit = get_object_or_404(Unit, pk=unitid)
-    traits = UnitTrait.objects.filter(unit=unit)
-    cardFront = 'bushido/' + unit.faction + "/" + unit.name + " Front.jpg"
-    cardBack = 'bushido/' + unit.faction + "/" + unit.name + " Reverse.jpg"
-    if finders.find("bushido/unofficial/" + unit.faction + "/" + unit.name + " Front.png"):
-        cardFront = "bushido/unofficial/" + unit.faction + "/" + unit.name + " Front.png"
-    if finders.find("bushido/unofficial/" + unit.faction + "/" + unit.name + " Reverse.png"):
-        cardBack = "bushido/unofficial/" + unit.faction + "/" + unit.name + " Reverse.png"
+    cardFront = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Front.jpg"
+    cardBack = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Reverse.jpg"
+    if finders.find("bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Front.png"):
+        cardFront = "bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Front.png"
+    if finders.find("bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Reverse.png"):
+        cardBack = "bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Reverse.png"
     if request.user.is_authenticated:
         if not UserProfile.objects.get(user=request.user).useUnofficialCards:
-            cardFront = 'bushido/' + unit.faction + "/" + unit.name + " Front.jpg"
-            cardBack = 'bushido/' + unit.faction + "/" + unit.name + " Reverse.jpg"
+            cardFront = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Front.jpg"
+            cardBack = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Reverse.jpg"
     if request.method == "POST":
         unitForm = EditUnit(request.POST, instance=unit)
-        featForm = EditUnitFeats(request.POST, instance=unit)
-        #if unitForm.is_valid() and featForm.is_valid():
+        # featForm = EditUnitFeats(request.POST, instance=unit)
+        # if unitForm.is_valid() and featForm.is_valid():
         if unitForm.is_valid():
             unitForm.save()
-            #featForm.save()
+            # featForm.save()
             return HttpResponseRedirect("./")
     else:
         unitForm = EditUnit(instance=unit)
-        featForm = EditUnitFeats(instance=unit)
-    return render(request, 'bushido/edit_unit.html', {'unit': unit, 'cardFront': cardFront, 'cardBack': cardBack, 'traits': traits, "form": unitForm, "featForm": featForm})
+        # featForm = EditUnitFeats(instance=unit)
+    return render(request, 'bushido/edit_unit.html', {'unit': unit, 'cardFront': cardFront, 'cardBack': cardBack, "form": unitForm,})
 
 
 def themeDetails(request, themeid):
@@ -186,13 +209,9 @@ def themeDetails(request, themeid):
     return render(request, 'bushido/theme_details.html', {'theme': theme, 'card': card, 'permitted': permitted})
 
 
-def factionPage(request, faction):
-    units = Unit.objects.filter(faction=faction)
-    if len(units) == 0:
-        return HttpResponseNotFound()
-    themes = Theme.objects.filter(faction=faction)
-    events = Event.objects.filter(faction=faction)
-    return render(request, 'bushido/faction.html', {'faction': faction, 'units': units, 'themes': themes, 'events': events})
+def factionPage(request, factionid):
+    faction = get_object_or_404(Faction, pk=factionid)
+    return render(request, 'bushido/faction.html',{'faction': faction,})
 
 
 def userProfile(request, username):
@@ -249,18 +268,16 @@ class BushidoUnitListView(ListView):
 
 class BushidoListView(ListView):
     model = Unit
-    form_class = FilterForm
+    #form_class = FilterForm
     template_name = "bushido/unit_list.html"
 
     def get_queryset(self):
-        fields = self.request.GET.dict()
-        sort_fields = fields.pop("sort", "").split(",")
-        if sort_fields == [""]:
-            sort_fields = []
-        queryset = Unit.objects.order_by(*[item[1:] if item.startswith("-") else "-" + item for item in sort_fields])
-        queryset = queryset.filter(**fields)
-        return queryset
+        return Unit.objects.get_unique_card_names().prefetch_related("faction")
 
+
+class FactionListView(ListView):
+    model = Faction
+    template_name = "bushido/faction_list.html"
 
 
 class FeatListView(ListView):
