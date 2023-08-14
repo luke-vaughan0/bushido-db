@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import OuterRef, Subquery
 from django.conf import settings
+from simple_history.models import HistoricalRecords
 import shortuuid
 
 
@@ -54,6 +55,7 @@ class Unit(models.Model):
     traits = models.ManyToManyField('Trait', through='UnitTrait')
 
     objects = UnitManager()
+    history = HistoricalRecords()
 
     class Meta:
         ordering = ["faction", "name"]
