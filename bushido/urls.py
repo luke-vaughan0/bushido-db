@@ -29,5 +29,7 @@ urlpatterns = [
     path('info/model/<int:unitid>/edit', views.editUnit, name='editUnit'),
     path('info/faction/<int:factionid>/', views.factionPage, name='factionDetails'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/profile/<str:username>/', views.userProfile, name='userProfile'),
+    path('accounts/register/', views.register, name='register'),
+    path('accounts/profile/', views.userProfile, name='userProfile'),
+    #path('accounts/profile/<str:username>/', views.userProfile, name='userProfile'),
 ]

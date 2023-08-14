@@ -37,7 +37,7 @@ SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
 # CSP settings
 CSP_STYLE_SRC = ["'self'", "cdn.jsdelivr.net", "cdn.datatables.net"]
-CSP_SCRIPT_SRC = ["'self'", "cdn.datatables.net",]
+CSP_SCRIPT_SRC = ["'self'", "cdn.jsdelivr.net", "cdn.datatables.net", "unpkg.com"]
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -49,6 +49,7 @@ DEBUG = os.environ.get('DJANGO_DEBUG', False)
 ALLOWED_HOSTS = ['localhost', "132.145.58.188", "*.bushidodb.ddns.net", "bushidodb.ddns.net"]
 LOGIN_URL = '/bushido/accounts/login/'
 LOGIN_REDIRECT_URL = '/bushido/'
+LOGOUT_REDIRECT_URL = '/bushido/'
 
 # Application definition
 

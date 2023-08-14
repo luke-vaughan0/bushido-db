@@ -1,15 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
-
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.views.generic import ListView
 from bushido.models import Unit, KiFeat, UnitTrait, Trait, Theme, Event, List, ListUnit, Weapon, UserProfile,\
     WeaponTrait, WeaponSpecial, Faction, Special, Enhancement
 from django.db.models import Q, Prefetch
 from django.db import models
-from django.contrib import auth
+from django.contrib import auth, messages
 from django.contrib.staticfiles import finders
 from .forms import *
 from django.contrib.auth.decorators import permission_required
+from django.contrib.auth import login
 from rest_framework import routers, serializers, viewsets, permissions
 from drf_dynamic_fields import DynamicFieldsMixin
 
@@ -129,6 +129,20 @@ def index(request):
     return render(request, 'bushido/index.html')
 
 
+def register(request):
+    form = RegisterForm()
+
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('/bushido/')
+        else:
+            return render(request, 'registration/register.html', {'registerForm': form})
+    return render(request, 'registration/register.html', {"registerForm": form})
+
+
 def search(request):
     search_query = request.GET["search"]
     search_models = [Unit, KiFeat, Trait, Theme, Special, Faction, Event, Enhancement]
@@ -175,7 +189,7 @@ def unitDetails(request, unitid):
     return render(request, 'bushido/unit_details.html', {'unit': unit, 'cardFront': cardFront, 'cardBack': cardBack,})
 
 
-@permission_required("unit.change_unit")
+@permission_required("bushido.change_unit")
 def editUnit(request, unitid):
     unit = get_object_or_404(Unit, pk=unitid)
     cardFront = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Front.jpg"
@@ -214,10 +228,18 @@ def factionPage(request, factionid):
     return render(request, 'bushido/faction.html',{'faction': faction,})
 
 
-def userProfile(request, username):
-    user = get_object_or_404(auth.get_user_model(), username=username)
-    lists = "" #List.objects.filter(owner=user)
-    return render(request, 'bushido/user_profile.html', {'user': user, 'lists': lists})
+def userProfile(request):
+    if request.method == 'POST':
+        form = UserSettingsForm(request.POST, instance=request.user.userprofile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your profile is updated successfully')
+        else:
+            messages.error(request, 'Something went wrong')
+
+    else:
+        form = UserSettingsForm(instance=request.user.userprofile)
+    return render(request, 'bushido/user_profile.html', {'form': form})
 
 
 def userLists(request, username):

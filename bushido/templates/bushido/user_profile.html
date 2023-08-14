@@ -1,13 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{{user.username}}<br>
-{% for list in lists %}
-<a href="/bushido/list/{{list.units}}">{{list.name}}</a>
-{% endfor %}
-</body>
-</html>
+{% extends "bushido/base.html" %}
+{% block title %}<title>{{user.username}}</title>{% endblock %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container m-0">
+  <div class="row">
+    <div class="col-lg-6">
+      <h2>Profile</h2>
+      <div>
+        <h4>Settings</h4>
+        <form method="post" action="{% url 'bushido:userProfile' %}">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <input class="btn btn-outline-secondary" type="submit" value="Submit">
+        </form>
+      </div>
+    </div>
+  </div>
+  {% for list in lists %}
+    <a href="#">{{list.name}}</a>
+  {% endfor %}
+</div>
+{% endblock %}
