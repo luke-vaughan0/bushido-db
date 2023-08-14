@@ -15,5 +15,11 @@ $(document).ready( function () {
     if (panes.length) {
         table.searchPanes.container().prependTo(panes);
     }
-
 } );
+
+$('body').on('keypress', function(keyPress) {
+    var input = $('input[name="search"]');
+    if(!$(':focus').length && !input.is(':focus') && keyPress.key.match(/^[0-9a-zA-Z]+$/)) {
+        input.trigger("focus");
+    }
+});
