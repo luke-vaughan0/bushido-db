@@ -15,7 +15,7 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    useUnofficialCards = models.BooleanField(default=True)
+    use_unofficial_cards = models.BooleanField(default=True)
 
 
 class Faction(models.Model):

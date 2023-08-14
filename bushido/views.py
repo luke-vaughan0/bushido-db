@@ -167,7 +167,7 @@ def unitDetails(request, unitid):
     if finders.find("bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Reverse.png"):
         cardBack = "bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Reverse.png"
     if request.user.is_authenticated:
-        if not UserProfile.objects.get(user=request.user).useUnofficialCards:
+        if not UserProfile.objects.get(user=request.user).use_unofficial_cards:
             cardFront = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Front.jpg"
             cardBack = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Reverse.jpg"
 
@@ -185,7 +185,7 @@ def editUnit(request, unitid):
     if finders.find("bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Reverse.png"):
         cardBack = "bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Reverse.png"
     if request.user.is_authenticated:
-        if not UserProfile.objects.get(user=request.user).useUnofficialCards:
+        if not UserProfile.objects.get(user=request.user).use_unofficial_cards:
             cardFront = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Front.jpg"
             cardBack = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Reverse.jpg"
     if request.method == "POST":
