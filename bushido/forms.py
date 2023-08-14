@@ -1,5 +1,7 @@
 from django import forms
-from bushido.models import Unit, List
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from bushido.models import Unit, List, UserProfile
 
 
 #class FilterForm(forms.Form):
@@ -9,9 +11,14 @@ from bushido.models import Unit, List
 #        choices.append((faction, faction))
 #    faction = forms.ChoiceField(choices=choices)
 
+class RegisterForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password1', 'password2']
+
 
 class EditUnit(forms.ModelForm):
-    uniqueEffects = forms.CharField(widget=forms.Textarea, required=False)
+    uniqueEffects = forms.CharField(label="Unique Effects", widget=forms.Textarea, required=False)
 
     class Meta:
         model = Unit
@@ -22,6 +29,12 @@ class EditUnitFeats(forms.ModelForm):
     class Meta:
         model = Unit
         fields = ["kiFeats"]
+
+
+class UserSettingsForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        exclude = ["user"]
 
 
 class CreateListForm(forms.ModelForm):

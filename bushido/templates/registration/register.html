@@ -1,0 +1,23 @@
+{% extends "bushido/base.html" %}
+{% block title %}<title>Bushido Database - Register</title>{% endblock %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container m-0">
+  <div class="row">
+    <div class="col-lg-6">
+      <h2>Register</h2>
+      <div>
+        <form method="post" action="{% url 'bushido:register' %}">
+          {% csrf_token %}
+          {{ registerForm|crispy }}
+          <input class="btn btn-outline-secondary" type="submit" value="Submit">
+        </form>
+      </div>
+      <div class="py-5">
+        <hr>
+        <p><a class="btn btn-outline-secondary" href="{% url 'bushido:login' %}">Already have an account?</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
