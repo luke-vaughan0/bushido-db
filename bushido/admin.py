@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.forms import TextInput, Textarea
 from django.db import models
+from simple_history.admin import SimpleHistoryAdmin
 
 from .models import Unit, KiFeat, Trait, UnitTrait, Event, Theme, UnitType, List, ListUnit, Special, Weapon, WeaponTrait, WeaponSpecial, Enhancement, UserProfile
 
@@ -11,7 +12,7 @@ class ThemeAdmin(admin.ModelAdmin):
     }
 
 
-admin.site.register(Unit)
+admin.site.register(Unit, SimpleHistoryAdmin)
 admin.site.register(KiFeat)
 admin.site.register(Trait)
 admin.site.register(UnitTrait)

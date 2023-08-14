@@ -63,6 +63,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_filters',
+    'crispy_forms',
+    'crispy_bootstrap5',
+    'simple_history',
     'debug_toolbar'
 ]
 
@@ -76,6 +79,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'csp.middleware.CSPMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware'
 ]
 
 INTERNAL_IPS = [
@@ -161,7 +165,11 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = "/var/www/bushido/static"
-STATICFILES_DIRS = [BASE_DIR / "static"]
+# STATICFILES_DIRS = [BASE_DIR / "static"]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 
 # Default primary key field type
