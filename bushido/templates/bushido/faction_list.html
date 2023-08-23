@@ -2,6 +2,14 @@
 {% block title %}<title>Factions</title>{% endblock %}
 {% block content %}
 <div class="container m-0">
+    <div>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'bushido:index' %}">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Factions</a></li>
+      </ol>
+    </nav>
+  </div>
     <div class="row">
         <h2>Factions</h2>
     </div>
