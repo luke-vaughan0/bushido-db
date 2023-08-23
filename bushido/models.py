@@ -102,7 +102,7 @@ class KiFeat(models.Model):
     isOpposed = models.BooleanField(default=False)
     noMove = models.BooleanField(default=False)
     noBTB = models.BooleanField(default=False)
-    restriction = models.CharField(max_length=8, choices=RestrictionChoices, default="")
+    limit = models.CharField(max_length=8, choices=RestrictionChoices, default="", blank=True)
     description = models.CharField(max_length=600)
 
     class Meta:
