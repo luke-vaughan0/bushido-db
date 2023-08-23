@@ -12300,6 +12300,7 @@ h2, .h2 {
 
 tr:target td:first-child span {
   background-color: #e9d2fd;
+  color: black;
 }
 
 .scrollable-list {

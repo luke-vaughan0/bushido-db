@@ -19,10 +19,6 @@
     <script defer src="{% static 'jQuery/jquery.min.js' %}"></script>
     <script defer src="{% static 'DataTables/datatables.min.js' %}"></script>
     <script defer src="{% static 'bushido/bushido.js' %}"></script>
-    <script defer type="text/javascript" src="/admin/jsi18n/"></script>
-    <script defer type="text/javascript" src="{% static 'admin/js/core.js' %}"></script>
-    <script defer type="text/javascript" src="{% static 'admin/js/SelectBox.js' %}"></script>
-    <script defer type="text/javascript" src="{% static 'admin/js/SelectFilter2.js' %}"></script>
   </head>
   <body>
     <div class="container-fluid min-vh-100 d-flex flex-column">
@@ -30,34 +26,40 @@
       <div class="row">
         <div class="col px-0">
           <header>
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <nav class="navbar navbar-expand-sm bg-body-tertiary">
               <div class="container">
-                <a class="navbar-brand" href="{% url 'bushido:index' %}">Bushido DB</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <form class="d-flex" role="search" action="{% url 'bushido:search' %}">
-                    <input class="form-control me-2" type="search" name="search" placeholder="Search" value="{{request.GET.search}}" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                  </form>
-                </div>
-                <div class="d-flex justify-content-end">
-                  {% if user.is_authenticated %}
-                  <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      {{ user.username }}
+                <div class="row flex-grow-1">
+                  <div class="col-12 col-lg-2 d-flex justify-content-between">
+                    <a class="navbar-brand" href="{% url 'bushido:index' %}">Bushido DB</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-sidebar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
                     </button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="{% url 'bushido:userProfile' %}">Profile</a></li>
-                      <!--li><a class="dropdown-item" href="#">Settings</a></li-->
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="{% url 'bushido:logout' %}">Log out</a></li>
-                    </ul>
                   </div>
-                  {% else %}
-                    <a class="btn btn-secondary" href="{% url 'bushido:login' %}">Login</a>
-                  {% endif %}
+                  <div class="col-8 col-lg-4 my-1 my-lg-0">
+                    <form class="d-flex" role="search" action="{% url 'bushido:search' %}">
+                      <input class="form-control me-2" type="search" name="search" placeholder="Search" value="{{request.GET.search}}" aria-label="Search">
+                      <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                  </div>
+                  <div class="col-4 col-lg-6 my-1 my-lg-0">
+                    <div class="d-flex justify-content-end">
+                      {% if user.is_authenticated %}
+                      <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          {{ user.username }}
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="{% url 'bushido:userProfile' %}">Profile</a></li>
+                          <!--li><a class="dropdown-item" href="#">Settings</a></li-->
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="{% url 'bushido:logout' %}">Log out</a></li>
+                        </ul>
+                      </div>
+                      {% else %}
+                        <a class="btn btn-secondary" href="{% url 'bushido:login' %}">Login</a>
+                      {% endif %}
+                    </div>
+                  </div>
                 </div>
               </div>
             </nav>
@@ -66,7 +68,7 @@
       </div>
   {% endblock %}
       <div class="row flex-grow-1">
-        <div class="col-sm-2 my-md-4 border-end sidebar">
+        <div class="col-sm-2 my-0 my-md-4 border-end navbar-expand-sm collapse sidebar d-sm-block" id="main-sidebar">
         {% block sidebar %}
           <ul class="nav flex-column">
             <li class="nav-item"><a class="nav-link" href="{% url 'bushido:index' %}">Home</a></li>
@@ -76,9 +78,10 @@
             <li class="nav-item"><a class="nav-link" href="{% url 'bushido:allTraits' %}">Traits</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'bushido:allSpecials' %}">Special Abilities</a></li>
           </ul>
+            </nav>
        {% endblock %}
         </div>
-        <div class="col-sm-10 py-md-4">{% block content %}{% endblock %}</div>
+        <div class="col-sm-10 py-4">{% block content %}{% endblock %}</div>
       </div>
       <div class="row">
         <div class="col">

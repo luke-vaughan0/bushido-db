@@ -38,6 +38,7 @@ SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 # CSP settings
 CSP_STYLE_SRC = ["'self'", "cdn.jsdelivr.net", "cdn.datatables.net"]
 CSP_SCRIPT_SRC = ["'self'", "cdn.jsdelivr.net", "cdn.datatables.net", "unpkg.com"]
+CSP_IMG_SRC = ["'self'", "data:"]
 
 
 PERMISSIONS_POLICY = {
