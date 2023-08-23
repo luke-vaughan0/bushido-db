@@ -1,6 +1,6 @@
 from django.urls import include, path
 from . import views
-from bushido.views import BushidoListView, BushidoUnitListView, FeatListView, TraitListView, FactionListView
+from bushido.views import BushidoListView, BushidoUnitListView, FeatListView, TraitListView, FactionListView, SpecialListView
 from django.contrib.auth import views as auth_views
 from rest_framework import routers, serializers, viewsets
 
@@ -18,16 +18,17 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('list/<str:listid>/', views.viewList),
     path('list/', views.createList),
-    path('all/', BushidoListView.as_view(), name='allModels'),
+    path('info/models/', BushidoListView.as_view(), name='allModels'),
     path('search/', views.search, name='search'),
-    path('allfeats/', FeatListView.as_view(), name='allFeats'),
-    path('alltraits/', TraitListView.as_view(), name='allTraits'),
-    path('allfactions/', FactionListView.as_view(), name='allFactions'),
-    path('info/feat/<int:featid>/', views.featDetails, name='featDetails'),
-    path('info/theme/<int:themeid>/', views.themeDetails, name='featDetails'),
-    path('info/model/<int:unitid>/', views.unitDetails, name='unitDetails'),
-    path('info/model/<int:unitid>/edit', views.editUnit, name='editUnit'),
-    path('info/faction/<int:factionid>/', views.factionPage, name='factionDetails'),
+    path('info/feats/', FeatListView.as_view(), name='allFeats'),
+    path('info/traits/', TraitListView.as_view(), name='allTraits'),
+    path('info/factions/', FactionListView.as_view(), name='allFactions'),
+    path('info/specials/', SpecialListView.as_view(), name='allSpecials'),
+    path('info/feats/<int:featid>/', views.featDetails, name='featDetails'),
+    path('info/themes/<int:themeid>/', views.themeDetails, name='themeDetails'),
+    path('info/models/<int:unitid>/', views.unitDetails, name='modelDetails'),
+    path('info/models/<int:unitid>/edit/', views.editUnit, name='editModel'),
+    path('info/factions/<int:factionid>/', views.factionPage, name='factionDetails'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/register/', views.register, name='register'),
     path('accounts/profile/', views.userProfile, name='userProfile'),

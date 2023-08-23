@@ -1,12 +1,120 @@
-{% extends "bushido/unit_details.html" %}
+{% extends "bushido/base.html" %}
 {% load static %}
 {% load bushidofilters %}
+{% load crispy_forms_tags %}
 {% block title %}<title>{{unit.name}} - Info</title>{% endblock %}
-
-{% block edit %}
-<form action="" method="post">
+{% block content %}
+<div class="container m-0">
+  <form action="" method="post">
     {% csrf_token %}
-    {{ form }}
+    <div>
+      {{ form.name|as_crispy_field }}
+      <p class="fw-light">{{unit.faction.name}}</p>
+      <ul class="list-group list-group-horizontal">
+        {% for type in unit.types.all %}
+        {% if type.type not in unit.name %}
+        <li class="list-group-item py-1">{{ type.type }}</li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+    <hr>
+    <div class="container card-container">
+      <div class="row gx-0">
+        <div class="col-lg-6"><img src="{% static cardFront %}" class="img-fluid d-block" alt = "{{unit.cardName}} Front"></div>
+        <div class="col-lg-6"><img src="{% static cardBack %}" class="img-fluid d-block" alt = "{{unit.cardName}} Back"></div>
+      </div>
+      <div class="row my-2">
+        <hr>
+        <p>Card Name</p>
+        {{ form.cardName|as_crispy_field }}
+      </div>
+    </div>
+    <hr>
+    <div>
+      <h4>Stats:</h4>
+      <table class="table">
+        <thead class="table-group-divider">
+        <tr>
+          <th>Cost</th>
+          <th>Melee</th>
+          <th>Ranged</th>
+          <th>Ki</th>
+          <th>Move</th>
+          <th>Wounds</th>
+          <th>Size</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>{{form.cost|as_crispy_field}}</td>
+          <td>{{form.meleePool|as_crispy_field }} {{form.meleeBoost|as_crispy_field }}</td>
+          <td>{{form.rangedPool|as_crispy_field}} {{form.rangedBoost|as_crispy_field}}</td>
+          <td>{{form.kiStat|as_crispy_field}}/{{form.kiMax|as_crispy_field}} {{form.kiBoost|as_crispy_field}}</td>
+          <td>{{form.movePool|as_crispy_field}} {{form.moveBoost|as_crispy_field}}</td>
+          <td>{{form.wounds|as_crispy_field}}</td>
+          <td>
+            {{form.size|as_crispy_field}}
+            <div class="input-group">
+              {{form.baseSize}}
+              <span class="input-group-text">mm</span>
+            </div>
+          </td>
+        </tbody>
+        </tr>
+      </table>
+    </div>
+    <h4>Weapons:</h4>
+    <div class="container">
+      <div class="row">
+        {% for weapon in unit.weapons.all %}
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{weapon.name}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{weapon.strength}} | {% if weapon.isRanged %}Ranged {{weapon.shortRange}}/{{weapon.mediumRange}}/{{weapon.longRange}}{% else %}Melee{% endif %}</h6>
+              <ul class="list-group list-group-flush">
+                {% for trait in weapon.weapontraits.all %}
+                <a class="list-group-item list-group-item-action" href="{% url 'bushido:allTraits' %}#{{trait.trait.name}}">{{ trait.formatted }}</a>
+                {% endfor %}
+                {% for special in weapon.weaponspecials.all %}
+                <a class="list-group-item list-group-item-action" href="{% url 'bushido:allSpecials' %}#{{special.special.name}}">{{special.special.name}} ({{special.cost}})</a>
+                <!--li class="list-group-item">{{special.special.name}} ({{special.cost}})</li-->
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <hr>
+    <div>
+      <h4>Traits:</h4>
+      <ul class="list-group list-group-horizontal">
+        {% for trait in unit.unittrait_set.all %}
+        <li class="list-group-item py-1">{{ trait.formatted }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <hr>
+    <h4>Feats:</h4>
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+          <div class="scrollable-list">
+            <ul class="list-group">
+          {{ form.kiFeats }}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h4>Unique Effects:</h4>
+      <p>{{ form.uniqueEffects|as_crispy_field }}</p>
+    </div>
     <input type="submit" value="Submit">
-</form>
+  </form>
+</div>
 {% endblock %}

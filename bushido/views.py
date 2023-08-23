@@ -174,8 +174,7 @@ def search(request):
 
 def featDetails(request, featid):
     feat = get_object_or_404(KiFeat, pk=featid)
-    units = Unit.objects.filter(kiFeats=feat)
-    return render(request, 'bushido/feat_details.html', {'feat': feat, 'units': units})
+    return render(request, 'bushido/feat_details.html', {'feat': feat})
 
 
 def unitDetails(request, unitid):
@@ -194,7 +193,7 @@ def unitDetails(request, unitid):
     if finders.find("bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Reverse.png"):
         cardBack = "bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Reverse.png"
     if request.user.is_authenticated:
-        if not UserProfile.objects.get(user=request.user).use_unofficial_cards:
+        if not request.user.userprofile.use_unofficial_cards:
             cardFront = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Front.jpg"
             cardBack = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Reverse.jpg"
 
@@ -212,7 +211,7 @@ def editUnit(request, unitid):
     if finders.find("bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Reverse.png"):
         cardBack = "bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Reverse.png"
     if request.user.is_authenticated:
-        if not UserProfile.objects.get(user=request.user).use_unofficial_cards:
+        if not request.user.userprofile.use_unofficial_cards:
             cardFront = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Front.jpg"
             cardBack = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Reverse.jpg"
     if request.method == "POST":
@@ -222,7 +221,7 @@ def editUnit(request, unitid):
         if unitForm.is_valid():
             unitForm.save()
             # featForm.save()
-            return HttpResponseRedirect("./")
+            return HttpResponseRedirect("../")
     else:
         unitForm = EditUnit(instance=unit)
         # featForm = EditUnitFeats(instance=unit)
@@ -238,7 +237,7 @@ def themeDetails(request, themeid):
 
 def factionPage(request, factionid):
     faction = get_object_or_404(Faction, pk=factionid)
-    return render(request, 'bushido/faction.html',{'faction': faction,})
+    return render(request, 'bushido/faction.html', {'faction': faction})
 
 
 def userProfile(request):

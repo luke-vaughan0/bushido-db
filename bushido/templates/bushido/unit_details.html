@@ -4,120 +4,129 @@
 {% block title %}<title>{{unit.name}} - Info</title>{% endblock %}
 {% block content %}
 <div class="container m-0">
-    <div>
-        <h1>{{unit.name}}</h1>
-        <p class="fw-light">{{unit.faction.name}}</p>
-        <ul class="list-group list-group-horizontal">
-            {% for type in unit.types.all %}
-                {% if type.type not in unit.name %}
-                    <li class="list-group-item py-1">{{ type.type }}</li>
-                {% endif %}
-            {% endfor %}
-        </ul>
+  <div>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'bushido:index' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'bushido:factionDetails' factionid=unit.faction.id%}">{{unit.faction.name}}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Model</li>
+      </ol>
+    </nav>
+  </div>
+  <div>
+    <h1>{{unit.name}}</h1>
+    <p class="fw-light">{{unit.faction.name}}</p>
+    <ul class="list-group list-group-horizontal">
+      {% for type in unit.types.all %}
+      {% if type.type not in unit.name %}
+      <li class="list-group-item py-1">{{ type.type }}</li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+  <hr>
+  <div class="container card-container">
+    <div class="row gx-0">
+      <div class="col-lg-6"><img src="{% static cardFront %}" class="img-fluid d-block" alt = "{{unit.cardName}} Front"></div>
+      <div class="col-lg-6"><img src="{% static cardBack %}" class="img-fluid d-block" alt = "{{unit.cardName}} Back"></div>
     </div>
-    <hr>
-    <div class="container card-container">
-        <div class="row gx-0">
-            <div class="col-lg-6"><img src="{% static cardFront %}" class="img-fluid d-block" alt = "{{unit.cardName}} Front"></div>
-            <div class="col-lg-6"><img src="{% static cardBack %}" class="img-fluid d-block" alt = "{{unit.cardName}} Back"></div>
-        </div>
-    </div>
-    <hr>
-    <div>
+  </div>
+  <hr>
+  <div>
     <h4>Stats:</h4>
-        <table class="table">
-            <thead class="table-group-divider">
-            <tr>
-                <th>Cost</th>
-                <th>Melee</th>
-                <th>Ranged</th>
-                <th>Ki</th>
-                <th>Move</th>
-                <th>Wounds</th>
-                <th>Size</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>{{unit.cost}}</td>
-                <td>{{unit.meleePool}} {{unit.meleeBoost|addBrackets}}</td>
-                <td>{{unit.rangedPool}} {{unit.rangedBoost|addBrackets}}</td>
-                <td>{{unit.kiStat}}/{{unit.kiMax}} {{unit.kiBoost|addBrackets}}</td>
-                <td>{{unit.movePool}} {{unit.moveBoost|addBrackets}}</td>
-                <td>{{unit.wounds}}</td>
-                <td>{{unit.size}} {{unit.baseSize}}mm</td>
-                </tbody>
-            </tr>
-        </table>
+    <table class="table">
+      <thead class="table-group-divider">
+      <tr>
+        <th>Cost</th>
+        <th>Melee</th>
+        <th>Ranged</th>
+        <th>Ki</th>
+        <th>Move</th>
+        <th>Wounds</th>
+        <th>Size</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>{{unit.cost}}</td>
+        <td>{{unit.meleePool}} <span class="badge border border-light rounded-circle text-bg-dark">{{unit.meleeBoost}}</span></td>
+        <td>{{unit.rangedPool}} <span class="badge border border-light rounded-circle text-bg-dark">{{unit.rangedBoost}}</span></td>
+        <td>{{unit.kiStat}}/{{unit.kiMax}} <span class="badge border border-light rounded-circle text-bg-dark">{{unit.kiBoost}}</span></td>
+        <td>{{unit.movePool}} <span class="badge border border-light rounded-circle text-bg-dark">{{unit.moveBoost}}</span></td>
+        <td>{{unit.wounds}}</td>
+        <td>{{unit.size}} {{unit.baseSize}}mm</td>
+      </tbody>
+      </tr>
+    </table>
+  </div>
+  <div class="container">
+    <div class="row">
+      <h4>Weapons:</h4>
     </div>
-    <div class="container">
-        <div class="row">
-            <h4>Weapons:</h4>
+    <div class="row">
+      {% for weapon in unit.weapons.all %}
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{weapon.name}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{weapon.strength}} | {% if weapon.isRanged %}Ranged {{weapon.shortRange}}/{{weapon.mediumRange}}/{{weapon.longRange}}{% else %}Melee{% endif %}</h6>
+            <ul class="list-group list-group-flush">
+              {% for trait in weapon.weapontraits.all %}
+              <a class="list-group-item list-group-item-action" href="{% url 'bushido:allTraits' %}#{{trait.trait.name}}">{{ trait.formatted }}</a>
+              {% endfor %}
+              {% for special in weapon.weaponspecials.all %}
+              <a class="list-group-item list-group-item-action" href="{% url 'bushido:allSpecials' %}#{{special.special.name}}">{{special.special.name}} ({{special.cost}})</a>
+              <!--li class="list-group-item">{{special.special.name}} ({{special.cost}})</li-->
+              {% endfor %}
+            </ul>
+          </div>
         </div>
-        <div class="row">
-        {% for weapon in unit.weapons.all %}
-            <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{weapon.name}}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{weapon.strength}} | {% if weapon.isRanged %}Ranged {{weapon.shortRange}}/{{weapon.mediumRange}}/{{weapon.longRange}}{% else %}Melee{% endif %}</h6>
-                        <ul class="list-group list-group-flush">
-                            {% for trait in weapon.weapontraits.all %}
-                                <li class="list-group-item">{{trait.formatted}}</li>
-                            {% endfor %}
-                            {% for special in weapon.weaponspecials.all %}
-                                <li class="list-group-item">{{special.special.name}} ({{special.cost}})</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
+      </div>
+      {% endfor %}
     </div>
-    <hr>
-    <div>
-        <h4>Traits:</h4>
-        <ul class="list-group list-group-horizontal">
-            {% for trait in unit.unittrait_set.all %}
-                <li class="list-group-item py-1">{{ trait.formatted }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    <hr>
-    <div>
+  </div>
+  <hr>
+  <div>
+    <h4>Traits:</h4>
+    <ul class="list-group list-group-horizontal flex-wrap">
+      {% for trait in unit.unittrait_set.all %}
+      <li class="list-group-item py-1">{{ trait.formatted }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <hr>
+  <div>
     <h4>Feats:</h4>
     <table class="table">
-        <thead class="table-group-divider">
-        <tr>
-            <th>Name</th>
-            <th>Cost</th>
-            <th>Timing</th>
-            <th>Type</th>
-        </tr>
-        </thead>
-        <tbody>
-            {% for feat in unit.kiFeats.all %}
-        <tr>
-            <td><a href="/bushido/info/feat/{{feat.pk}}">{{ feat.name }}</a></td>
-            <td>{{ feat.cost }}</td>
-            <td>{{ feat.timing }}</td>
-            <td>{{ feat.featType }}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
+      <thead class="table-group-divider">
+      <tr>
+        <th>Name</th>
+        <th>Cost</th>
+        <th>Timing</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for feat in unit.kiFeats.all %}
+      <tr>
+        <td><a href="{% url 'bushido:featDetails' featid=feat.id%}">{{ feat.name }}</a></td>
+        <td>{{ feat.cost }}</td>
+        <td>{{ feat.timing }}</td>
+        <td>{{ feat.featType }}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
     </table>
-    </div>
-    <div>
-        <h4>Unique Effects:</h4>
-        <p>{{ unit.uniqueEffects|linebreaks }}</p>
-        {% block edit %}
-        {% if perms.bushido.change_unit %}
-        <br>
-        <a href="./edit">Edit model</a>
-        {% endif %}
-        {% endblock %}
-    </div>
+  </div>
+  <div>
+    <h4>Unique Effects:</h4>
+    <p>{{ unit.uniqueEffects|linebreaks }}</p>
+    {% block edit %}
+    {% if perms.bushido.change_unit %}
+    <hr>
+    <a class="btn btn-outline-secondary" href="./edit/" role="button">Edit model</a>
+    {% endif %}
+    {% endblock %}
+  </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 {% endblock %}

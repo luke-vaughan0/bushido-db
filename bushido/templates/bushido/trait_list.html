@@ -12,8 +12,8 @@
         </thead>
         <tbody>
             {% for trait in trait_list %}
-                <tr>
-                    <td>{{ trait.name }}</a></td>
+                <tr id="{{ trait.name }}">
+                    <td><span>{{ trait.name }}</span></td>
                     <td>{{ trait.description }}</td>
                 </tr>
         {% endfor %}

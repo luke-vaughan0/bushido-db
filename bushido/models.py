@@ -15,7 +15,14 @@ class UnitManager(models.Manager):
 class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
+
+    ColourChoices = [
+        ("light", "Light"),
+        ("dark", "Dark"),
+    ]
+
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    website_theme = models.CharField(max_length=10, choices=ColourChoices, default="light")
     use_unofficial_cards = models.BooleanField(default=True)
 
 

@@ -15,7 +15,7 @@
         <tbody>
             {% for feat in kifeat_list %}
                 <tr>
-                    <td><a href="/bushido/info/feat/{{feat.pk}}">{{ feat.name }}</a></td>
+                    <td><a href="{% url 'bushido:featDetails' featid=feat.id%}">{{ feat.name }}</a></td>
                     <td>{{ feat.cost }}</td>
                     <td>{{ feat.timing }}</td>
                     <td>{{ feat.featType }}</td>

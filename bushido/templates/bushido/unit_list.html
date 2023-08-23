@@ -24,7 +24,7 @@
                 <tbody>
                 {% for unit in unit_list %}
                     <tr>
-                        <td><a href="/bushido/info/model/{{unit.pk}}">{{ unit.name }}</a></td>
+                        <td><a href="{% url 'bushido:modelDetails' unitid=unit.id%}">{{ unit.name }}</a></td>
                         <td>{{unit.meleePool}} {{unit.meleeBoost|addBrackets}}</td>
                         <td>{{unit.rangedPool}} {{unit.rangedBoost|addBrackets}}</td>
                         <td>{{unit.kiStat}}/{{unit.kiMax}} {{unit.kiBoost|addBrackets}}</td>
