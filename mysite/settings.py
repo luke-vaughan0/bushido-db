@@ -40,6 +40,26 @@ CSP_STYLE_SRC = ["'self'", "cdn.jsdelivr.net", "cdn.datatables.net"]
 CSP_SCRIPT_SRC = ["'self'", "cdn.jsdelivr.net", "cdn.datatables.net", "unpkg.com"]
 
 
+PERMISSIONS_POLICY = {
+    "accelerometer": [],
+    "ambient-light-sensor": [],
+    "autoplay": [],
+    "camera": [],
+    "display-capture": [],
+    "document-domain": [],
+    "encrypted-media": [],
+    "fullscreen": [],
+    "geolocation": [],
+    "gyroscope": [],
+    "interest-cohort": [],
+    "magnetometer": [],
+    "microphone": [],
+    "midi": [],
+    "payment": [],
+    "usb": [],
+}
+
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
@@ -67,12 +87,14 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'simple_history',
+    'django_sass',
     'debug_toolbar'
 ]
 
 MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'django_permissions_policy.PermissionsPolicyMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
