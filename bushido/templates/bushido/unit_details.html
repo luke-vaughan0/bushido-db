@@ -35,38 +35,57 @@
   <hr>
   <div>
     <h4>Stats:</h4>
-    <table class="table">
-      <thead class="table-group-divider">
-      <tr>
-        <th>Cost</th>
-        <th>Melee</th>
-        <th>Ranged</th>
-        <th>Ki</th>
-        <th>Move</th>
-        <th>Wounds</th>
-        <th>Size</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>{{unit.cost}}</td>
-        <td>{{unit.meleePool}} <span class="badge border border-light rounded-circle text-bg-dark">{{unit.meleeBoost}}</span></td>
-        <td>{{unit.rangedPool}} <span class="badge border border-light rounded-circle text-bg-dark">{{unit.rangedBoost}}</span></td>
-        <td>{{unit.kiStat}}/{{unit.kiMax}} <span class="badge border border-light rounded-circle text-bg-dark">{{unit.kiBoost}}</span></td>
-        <td>{{unit.movePool}} <span class="badge border border-light rounded-circle text-bg-dark">{{unit.moveBoost}}</span></td>
-        <td>{{unit.wounds}}</td>
-        <td>{{unit.size}} {{unit.baseSize}}mm</td>
-      </tbody>
-      </tr>
-    </table>
+    <ul class="list-group list-group-horizontal text-center d-flex flex-wrap">
+      <li class="list-group-item d-flex flex-fill justify-content-center">
+        <div class="mx-2">
+          <div class="fw-bold">Melee</div><hr class="py-0 my-1">
+          {{unit.meleePool}} <span class="badge border border-light rounded-circle text-bg-dark">{{unit.meleeBoost}}</span>
+        </div>
+      </li>
+      <li class="list-group-item d-flex flex-fill justify-content-center">
+        <div class="mx-2">
+          <div class="fw-bold">Ranged</div><hr class="py-0 my-1">
+          {{unit.rangedPool}} <span class="badge border border-light rounded-circle text-bg-dark">{{unit.rangedBoost}}</span>
+        </div>
+      </li>
+      <li class="list-group-item d-flex flex-fill justify-content-center">
+        <div class="mx-2">
+          <div class="fw-bold">Move</div><hr class="py-0 my-1">
+          {{unit.movePool}} <span class="badge border border-light rounded-circle text-bg-dark">{{unit.moveBoost}}</span></span>
+        </div>
+      </li>
+      <li class="list-group-item d-flex flex-fill justify-content-center">
+        <div class="mx-2">
+          <div class="fw-bold">Ki</div><hr class="py-0 my-1">
+          {{unit.kiStat}}/{{unit.kiMax}} <span class="badge border border-light rounded-circle text-bg-dark">{{unit.kiBoost}}</span>
+        </div>
+      </li>
+      <li class="list-group-item d-flex flex-fill justify-content-center">
+        <div class="mx-2">
+          <div class="fw-bold">Wounds</div><hr class="py-0 my-1">
+          {{unit.wounds}}</span>
+        </div>
+      </li>
+      <li class="list-group-item d-flex flex-fill justify-content-center">
+        <div class="mx-2">
+          <div class="fw-bold">Cost</div><hr class="py-0 my-1">
+          {{unit.cost}}</span>
+        </div>
+      </li>
+      <li class="list-group-item d-flex flex-fill justify-content-center">
+        <div class="mx-2">
+          <div class="fw-bold">Size</div><hr class="py-0 my-1">
+          {{unit.size}} {{unit.baseSize}}mm</span>
+        </div>
+      </li>
+    </ul>
   </div>
+  <hr>
+  <h4>Weapons:</h4>
   <div class="container">
     <div class="row">
-      <h4>Weapons:</h4>
-    </div>
-    <div class="row">
       {% for weapon in unit.weapons.all %}
-      <div class="col-sm-4">
+      <div class="col-md-6 col-lg-4 gy-2">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">{{weapon.name}}</h5>
@@ -89,9 +108,9 @@
   <hr>
   <div>
     <h4>Traits:</h4>
-    <ul class="list-group list-group-horizontal flex-wrap">
+    <ul class="list-group list-group-horizontal-md d-flex flex-wrap">
       {% for trait in unit.unittrait_set.all %}
-      <li class="list-group-item py-1">{{ trait.formatted }}</li>
+      <a class="list-group-item list-group-item-action w-auto py-md-2" href="{% url 'bushido:allTraits' %}#{{trait.trait.name}}">{{ trait.formatted }}</a>
       {% endfor %}
     </ul>
   </div>
