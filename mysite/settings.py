@@ -88,6 +88,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'simple_history',
     'django_sass',
+    'ordered_model',
     'debug_toolbar'
 ]
 
