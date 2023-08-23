@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models import OuterRef, Subquery
 from django.conf import settings
 from simple_history.models import HistoricalRecords
+from ordered_model.models import OrderedModel
 import shortuuid
 
 
@@ -26,7 +27,7 @@ class UserProfile(models.Model):
     use_unofficial_cards = models.BooleanField(default=True)
 
 
-class Faction(models.Model):
+class Faction(OrderedModel):
     def __str__(self):
         return self.name
     shortName = models.CharField(max_length=20)
