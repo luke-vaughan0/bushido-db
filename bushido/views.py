@@ -319,6 +319,11 @@ class FeatListView(ListView):
     template_name = "bushido/kifeat_list.html"
 
 
+class SpecialListView(ListView):
+    model = Special
+    template_name = "bushido/special_list.html"
+
+
 class TraitListView(ListView):
     model = Trait
     template_name = "bushido/trait_list.html"
