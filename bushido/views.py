@@ -155,7 +155,20 @@ def search(request):
             q_object = q_object | query
 
         results = model.objects.filter(q_object)
+        if hasattr(model, "faction"):
+            results = results.select_related("faction")
         search_results.append(results)
+    result = [x for x in search_results if x]
+    if len(result) == 1:
+        if len(result[0]) == 1:
+            if result[0][0].name.lower() == search_query.lower():
+                model = result[0][0]
+                classNames = {
+                    "Unit": "Model",
+                    "KiFeat": "Feat"
+                }
+                return redirect('/bushido/info/{}s/{}'.format(
+                    classNames.get(model.__class__.__name__, model.__class__.__name__).lower(), model.pk))
     return render(request, 'bushido/search.html', {"search_results": search_results})
 
 
