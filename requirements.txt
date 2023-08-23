@@ -5,10 +5,14 @@ charset-normalizer==3.2.0
 crispy-bootstrap5==0.7
 cryptography==41.0.3
 Django==4.2.4
+django-appconf==1.0.5
 django-crispy-forms==2.0
 django-csp==3.7
 django-debug-toolbar==4.1.0
 django-filter==23.2
+django-ordered-model==3.7.4
+django-permissions-policy==4.17.0
+django-sass==1.1.0
 django-simple-history==3.3.0
 djangorestframework==3.14.0
 drf-dynamic-fields==0.4.0
@@ -16,6 +20,7 @@ drf-serializer-cache==0.3.4
 hashids==1.3.1
 idna==3.4
 inflection==0.5.1
+libsass==0.22.0
 oracledb==1.3.2
 pycparser==2.21
 python-dotenv==1.0.0
