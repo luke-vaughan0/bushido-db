@@ -30,8 +30,8 @@
         </tr>
     </table><br><br>
     Models with feat:
-    {% for unit in units %}
-    <li><a href="/bushido/info/model/{{unit.pk}}">{{ unit.name }}</a></li>
+    {% for unit in feat.unit_set.all %}
+    <li><a href="{% url 'bushido:modelDetails' unitid=unit.id%}">{{ unit.name }}</a></li>
         {% endfor %}
 </div>
 </body>

@@ -13,7 +13,7 @@
 <h4>Faction models:</h4>
 <ul class="list-group">
     {% for unit in faction.unit_set.all %}
-    <a class="list-group-item list-group-item-action" href="/bushido/info/model/{{unit.pk}}">{{ unit.name }}</a>
+    <a class="list-group-item list-group-item-action" href="{% url 'bushido:modelDetails' unitid=unit.id%}">{{ unit.name }}</a>
         {% endfor %}
 </ul>
     </div>
@@ -22,7 +22,7 @@
 <h4>Faction Themes:</h4>
 <ul class="list-group">
 {% for theme in faction.theme_set.all %}
-<a class="list-group-item list-group-item-action" href="/bushido/info/theme/{{theme.pk}}">{{ theme.name }}</a>
+<a class="list-group-item list-group-item-action" href="{% url 'bushido:themeDetails' themeid=theme.id%}">{{ theme.name }}</a>
     {% endfor %}
     </ul>
     </div>
@@ -31,7 +31,7 @@
 <h4>Faction Events, Enhancements, Equipment:</h4>
 <ul class="list-group">
 {% for event in faction.event_set.all %}
-<a class="list-group-item list-group-item-action" href="/bushido/info/event/{{event.pk}}">{{ event.name }}</a>
+<a class="list-group-item list-group-item-action" href="#">{{ event.name }}</a>
     {% endfor %}
         </ul>
     </div>

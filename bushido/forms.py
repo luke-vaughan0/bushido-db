@@ -1,15 +1,12 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from bushido.models import Unit, List, UserProfile
+from bushido.models import Unit, List, UserProfile, KiFeat
+from django.contrib.admin.widgets import FilteredSelectMultiple
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Field
+from django.forms.widgets import CheckboxSelectMultiple
 
-
-#class FilterForm(forms.Form):
-#    factions = list(Unit.objects.values_list("faction", flat=True).distinct())
-#    choices = []
-#    for faction in factions:
-#        choices.append((faction, faction))
-#    faction = forms.ChoiceField(choices=choices)
 
 class RegisterForm(UserCreationForm):
     class Meta:
@@ -19,10 +16,21 @@ class RegisterForm(UserCreationForm):
 
 class EditUnit(forms.ModelForm):
     uniqueEffects = forms.CharField(label="Unique Effects", widget=forms.Textarea, required=False)
+    # kiFeats = forms.ModelMultipleChoiceField(queryset=KiFeat.objects.all(),
+                                             #widget=FilteredSelectMultiple(
+                                                 #verbose_name=KiFeat._meta.verbose_name_plural, is_stacked=False))
+    kiFeats = forms.ModelMultipleChoiceField(queryset=KiFeat.objects.all(), widget=CheckboxSelectMultiple)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
+        self.fields['name'].widget.attrs['class'] = 'form-control-lg'
+        self.fields['baseSize'].widget.attrs['class'] = 'form-control'
 
     class Meta:
         model = Unit
-        exclude = ["kiFeats", "traits", "faction"]
+        exclude = ["traits", "faction"]
 
 
 class EditUnitFeats(forms.ModelForm):

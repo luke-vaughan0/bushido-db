@@ -17,7 +17,7 @@
 <h4>Permitted Models:</h4>
         <ul class="list-group">
 {% for unit in permitted %}
-<a class="list-group-item list-group-item-action" href="/bushido/info/model/{{unit.pk}}">{{ unit.name }}</a>
+<a class="list-group-item list-group-item-action" href="{% url 'bushido:modelDetails' unitid=unit.id%}">{{ unit.name }}</a>
     {% endfor %}
         </ul>
     </div>
