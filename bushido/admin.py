@@ -12,7 +12,11 @@ class ThemeAdmin(admin.ModelAdmin):
     }
 
 
-admin.site.register(Unit, SimpleHistoryAdmin)
+class UnitAdmin(SimpleHistoryAdmin):
+    filter_horizontal = ["kiFeats"]
+
+
+admin.site.register(Unit, UnitAdmin)
 admin.site.register(KiFeat)
 admin.site.register(Trait)
 admin.site.register(UnitTrait)
