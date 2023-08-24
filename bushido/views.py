@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import permission_required
 from django.contrib.auth import login
 from rest_framework import routers, serializers, viewsets, permissions
 from drf_dynamic_fields import DynamicFieldsMixin
+import jellyfish
 
 
 class ReadOnlyModelSerializer(serializers.ModelSerializer):
@@ -158,18 +159,23 @@ def search(request):
         if hasattr(model, "faction"):
             results = results.select_related("faction")
         search_results.append(results)
-    result = [x for x in search_results if x]
+    fullResult = [x for x in search_results if x]
+    result = [item for model in fullResult for item in model]
+    rankedResults = []
+    for item in result:
+        rankedResults.append([item, jellyfish.jaro_winkler_similarity(item.name, search_query)])
+    rankedResults = sorted(rankedResults, key=lambda x: x[1], reverse=True)
+    result = [x[0] for x in rankedResults]
     if len(result) == 1:
-        if len(result[0]) == 1:
-            if result[0][0].name.lower() == search_query.lower():
-                model = result[0][0]
-                classNames = {
-                    "Unit": "Model",
-                    "KiFeat": "Feat"
-                }
-                return redirect('/bushido/info/{}s/{}'.format(
-                    classNames.get(model.__class__.__name__, model.__class__.__name__).lower(), model.pk))
-    return render(request, 'bushido/search.html', {"search_results": search_results})
+        if result[0].name.lower() == search_query.lower():
+            model = result[0]
+            classNames = {
+                "Unit": "Model",
+                "KiFeat": "Feat"
+            }
+            return redirect('/bushido/info/{}s/{}'.format(
+                classNames.get(model.__class__.__name__, model.__class__.__name__).lower(), model.pk))
+    return render(request, 'bushido/search.html', {"search_results": result})
 
 
 def featDetails(request, featid):
