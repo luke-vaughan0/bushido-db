@@ -8,17 +8,15 @@
     </div>
     <div class="row">
         <ul class="list-group">
-            {% for queryset in search_results %}
-                {% for thing in queryset %}
-                    <a href="/bushido/info/{{thing|className|lower}}s/{{thing.pk}}" class="list-group-item list-group-item-action">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">{{thing.name}}</h5>
-                            <small>{{thing|className}}</small>
-                        </div>
-                        <small>{{thing.faction.name}}</small>
-                        <p class="mb-1">{{thing.description}}</p>
-                    </a>
-                {% endfor %}
+            {% for thing in search_results %}
+                <a href="/bushido/info/{{thing|className|lower}}s/{{thing.pk}}" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{thing.name}}</h5>
+                        <small>{{thing|className}}</small>
+                    </div>
+                    <small>{{thing.faction.name}}</small>
+                    <p class="mb-1">{{thing.description}}</p>
+                </a>
             {% endfor %}
         </ul>
     </div>
