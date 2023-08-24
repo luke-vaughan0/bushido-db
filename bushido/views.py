@@ -163,7 +163,7 @@ def search(request):
     result = [item for model in fullResult for item in model]
     rankedResults = []
     for item in result:
-        rankedResults.append([item, jellyfish.jaro_winkler_similarity(item.name, search_query)])
+        rankedResults.append([item, jellyfish.jaro_winkler_similarity(item.name.lower(), search_query.lower())])
     rankedResults = sorted(rankedResults, key=lambda x: x[1], reverse=True)
     result = [x[0] for x in rankedResults]
     if len(result) == 1:
@@ -192,6 +192,7 @@ def unitDetails(request, unitid):
         ),
         pk=unitid
     )
+    cardUnits = Unit.objects.filter(cardName=unit.cardName)
     cardFront = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Front.jpg"
     cardBack = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Reverse.jpg"
     if finders.find("bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Front.png"):
@@ -203,8 +204,8 @@ def unitDetails(request, unitid):
             cardFront = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Front.jpg"
             cardBack = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Reverse.jpg"
 
-
-    return render(request, 'bushido/unit_details.html', {'unit': unit, 'cardFront': cardFront, 'cardBack': cardBack,})
+    return render(request, 'bushido/unit_details.html',
+                  {'unit': unit, 'cardUnits': cardUnits, 'cardFront': cardFront, 'cardBack': cardBack})
 
 
 @permission_required("bushido.change_unit")

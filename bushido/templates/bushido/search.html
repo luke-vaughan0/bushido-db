@@ -11,7 +11,7 @@
             {% for thing in search_results %}
                 <a href="/bushido/info/{{thing|className|lower}}s/{{thing.pk}}" class="list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{{thing.name}}</h5>
+                        <h5 class="mb-1">{% if thing.cardName %}{% if thing.cardName != thing.name %}{{thing.cardName}} - {% endif %}{% endif %}{{thing.name}}</h5>
                         <small>{{thing|className}}</small>
                     </div>
                     <small>{{thing.faction.name}}</small>
