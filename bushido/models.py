@@ -58,6 +58,8 @@ class Unit(models.Model):
     # faction = models.CharField(max_length=15, default="ronin")
     faction = models.ForeignKey(Faction, on_delete=models.CASCADE)
     uniqueEffects = models.CharField(max_length=1500, default="", blank=True)
+    unique = models.BooleanField(default=True)
+    max = models.CharField(max_length=8, default="1")
 
     kiFeats = models.ManyToManyField('KiFeat')
     traits = models.ManyToManyField('Trait', through='UnitTrait')

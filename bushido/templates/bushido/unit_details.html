@@ -15,7 +15,7 @@
     </nav>
   </div>
   <div>
-    <h1>{{unit.name}}</h1>
+    <h1>{{unit.cardName}}</h1>
     <p class="fw-light">{{unit.faction.name}}</p>
     <ul class="list-group list-group-horizontal">
       {% for type in unit.types.all %}
@@ -33,6 +33,18 @@
     </div>
   </div>
   <hr>
+  {% if cardUnits|length != 1 %}
+  <div class="mb-2">
+    <p>This card represents multiple different models, each with their own abilities. Unless specified, a Warband may not recruit multiples of the same model.</p>
+    <ul class="nav nav-tabs">
+      {% for cardUnit in cardUnits %}
+      <li class="nav-item">
+        <a class="nav-link{% if cardUnit == unit %} active" aria-current="page{% endif %}" href="{% url 'bushido:modelDetails' unitid=cardUnit.id%}">{{cardUnit.name}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
   <div>
     <h4>Stats:</h4>
     <ul class="list-group list-group-horizontal text-center d-flex flex-wrap">
@@ -51,7 +63,7 @@
       <li class="list-group-item d-flex flex-fill justify-content-center">
         <div class="mx-2">
           <div class="fw-bold">Move</div><hr class="py-0 my-1">
-          {{unit.movePool}} <span class="badge border border-light rounded-circle text-bg-dark">{{unit.moveBoost}}</span></span>
+          {{unit.movePool}} <span class="badge border border-light rounded-circle text-bg-dark">{{unit.moveBoost}}</span>
         </div>
       </li>
       <li class="list-group-item d-flex flex-fill justify-content-center">
@@ -63,20 +75,32 @@
       <li class="list-group-item d-flex flex-fill justify-content-center">
         <div class="mx-2">
           <div class="fw-bold">Wounds</div><hr class="py-0 my-1">
-          {{unit.wounds}}</span>
+          {{unit.wounds}}
         </div>
       </li>
       <li class="list-group-item d-flex flex-fill justify-content-center">
         <div class="mx-2">
           <div class="fw-bold">Cost</div><hr class="py-0 my-1">
-          {{unit.cost}}</span>
+          {{unit.cost}}
         </div>
       </li>
       <li class="list-group-item d-flex flex-fill justify-content-center">
         <div class="mx-2">
           <div class="fw-bold">Size</div><hr class="py-0 my-1">
-          {{unit.size}} {{unit.baseSize}}mm</span>
+          {{unit.size}} {{unit.baseSize}}mm
         </div>
+      </li>
+      <li class="list-group-item d-flex flex-fill justify-content-center">
+        {% if unit.unique %}
+        <div class="mx-0 d-flex align-items-center">
+          <div class="fw-bold">Unique</div>
+        </div>
+          {% else %}
+        <div class="mx-2">
+          <div class="fw-bold">Max</div><hr class="py-0 my-1">
+          {{unit.max}}
+        </div>
+        {% endif %}
       </li>
     </ul>
   </div>
@@ -108,15 +132,23 @@
   <hr>
   <div>
     <h4>Traits:</h4>
+    {% if unit.unittrait_set.all|length == 0 %}
+    <p>None</p>
+    {% else %}
     <ul class="list-group list-group-horizontal-md d-flex flex-wrap">
       {% for trait in unit.unittrait_set.all %}
       <a class="list-group-item list-group-item-action w-auto py-md-2" href="{% url 'bushido:allTraits' %}#{{trait.trait.name}}">{{ trait.formatted }}</a>
       {% endfor %}
     </ul>
+    {% endif %}
   </div>
   <hr>
   <div>
     <h4>Feats:</h4>
+    {% if unit.kiFeats.all|length == 0 %}
+    <p>None</p>
+    <hr>
+    {% else %}
     <table class="table">
       <thead class="table-group-divider">
       <tr>
@@ -137,10 +169,15 @@
       {% endfor %}
       </tbody>
     </table>
+    {% endif %}
   </div>
   <div>
     <h4>Unique Effects:</h4>
+    {% if unit.uniqueEffects == "" %}
+    <p>None</p>
+    {% else %}
     <p>{{ unit.uniqueEffects|linebreaks }}</p>
+    {% endif %}
     {% block edit %}
     {% if perms.bushido.change_unit %}
     <hr>
