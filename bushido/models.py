@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import OuterRef, Subquery
+from django.db.models import OuterRef, Subquery, Case, When, Value
 from django.conf import settings
 from simple_history.models import HistoricalRecords
 from ordered_model.models import OrderedModel
