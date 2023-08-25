@@ -11,11 +11,7 @@
       {{ form.name|as_crispy_field }}
       <p class="fw-light">{{unit.faction.name}}</p>
       <ul class="list-group list-group-horizontal">
-        {% for type in unit.types.all %}
-        {% if type.type not in unit.name %}
-        <li class="list-group-item py-1">{{ type.type }}</li>
-        {% endif %}
-        {% endfor %}
+        {{ type_form|crispy }}
       </ul>
     </div>
     <hr>
@@ -70,23 +66,56 @@
     </div>
     <hr>
     <h4>Weapons:</h4>
+    {{ weapon_formset.management_form }}
+    {{ weapon_formset.non_form_errors }}
+    {% for hidden_field in weapon_formset.hidden_fields %}
+    {{ hidden_field.errors }}
+      {{hidden_field}}
+    {% endfor %}
     <div class="container">
       <div class="row">
-        {% for weapon in unit.weapons.all %}
+    {% for form in weapon_formset %}
         <div class="col-sm-4">
+          {{ form.non_form_errors }}
+          {% for hidden_field in form.hidden_fields %}
+          {{ hidden_field.errors }}
+      {{hidden_field}}
+    {% endfor %}
           <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">{{weapon.name}}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">{{weapon.strength}} | {% if weapon.isRanged %}Ranged {{weapon.shortRange}}/{{weapon.mediumRange}}/{{weapon.longRange}}{% else %}Melee{% endif %}</h6>
-              <ul class="list-group list-group-flush">
-                {% for trait in weapon.weapontraits.all %}
-                <a class="list-group-item list-group-item-action" href="{% url 'bushido:allTraits' %}#{{trait.trait.name}}">{{ trait.formatted }}</a>
+            <div class="card-body weapon">
+              {{form.DELETE|as_crispy_field}}
+              <h5 class="card-title">{{form.name|as_crispy_field}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{form.strength|as_crispy_field}}{{form.isRanged|as_crispy_field }}</h6>
+              <div class="range-bands">
+                <p>Range Bands</p>
+                {{form.shortRange}}/{{form.mediumRange}}/{{form.longRange}}
+              </div>
+              <div>
+                {{ form.traits.management_form }}
+                {% for traitform in form.traits %}
+                <div class="border mt-2 p-1">
+                {{ traitform.non_form_errors }}
+                {% for hidden_field in traitform.hidden_fields %}
+                {{ hidden_field.errors }}
+      {{hidden_field}}
+    {% endfor %}
+                {{ traitform|crispy }}
+                  </div>
                 {% endfor %}
-                {% for special in weapon.weaponspecials.all %}
-                <a class="list-group-item list-group-item-action" href="{% url 'bushido:allSpecials' %}#{{special.special.name}}">{{special.special.name}} ({{special.cost}})</a>
-                <!--li class="list-group-item">{{special.special.name}} ({{special.cost}})</li-->
+              </div>
+              <div>
+                {{ form.specials.management_form }}
+                {% for specialform in form.specials %}
+                <div class="border mt-2 p-1">
+                {{ specialform.non_form_errors }}
+                {% for hidden_field in specialform.hidden_fields %}
+                {{ hidden_field.errors }}
+      {{hidden_field}}
+    {% endfor %}
+                {{ specialform|crispy }}
+                </div>
                 {% endfor %}
-              </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -96,11 +125,7 @@
     <hr>
     <div>
       <h4>Traits:</h4>
-      <ul class="list-group list-group-horizontal">
-        {% for trait in unit.unittrait_set.all %}
-        <li class="list-group-item py-1">{{ trait.formatted }}</li>
-        {% endfor %}
-      </ul>
+      {{ trait_form|crispy }}
     </div>
     <hr>
     <h4>Feats:</h4>
@@ -119,6 +144,12 @@
       <h4>Unique Effects:</h4>
       <p>{{ form.uniqueEffects|as_crispy_field }}</p>
     </div>
+    {% if unit.faction.name == "Ronin" %}
+    <div>
+      <h4>Permitted factions:</h4>
+      {{ form.ronin_factions|as_crispy_field }}
+    </div>
+    {% endif %}
     <input class="btn btn-outline-secondary" type="submit" value="Submit">
   </form>
 </div>
