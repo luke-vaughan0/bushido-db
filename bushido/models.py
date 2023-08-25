@@ -180,6 +180,9 @@ class UnitType(models.Model):
     unit = models.ForeignKey(Unit, related_name="types", on_delete=models.CASCADE)
     type = models.CharField(max_length=30)
 
+    class Meta:
+        ordering = ["type"]
+
 
 class Event(models.Model):
     def __str__(self):
