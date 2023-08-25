@@ -13,6 +13,18 @@ class UnitManager(models.Manager):
         return self.filter(pk=Subquery(subquery.values('pk')[:1]))
 
 
+class SpecialManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().annotate(
+            type=Case(
+                When(name__endswith='Attack', then=Value(1)),
+                When(name__endswith='Defense', then=Value(2)),
+                default=Value(3),
+                output_field=models.CharField(),
+            )
+        ).order_by('type', 'name')
+
+
 class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
@@ -132,6 +144,8 @@ class Special(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=600)
     exceptional = models.BooleanField(default=False)
+
+    objects = SpecialManager()
 
 
 class UnitTrait(models.Model):
