@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.views.generic import ListView
 from bushido.models import Unit, KiFeat, UnitTrait, Trait, Theme, Event, List, ListUnit, Weapon, UserProfile,\
@@ -221,18 +221,27 @@ def editUnit(request, unitid):
         if not request.user.userprofile.use_unofficial_cards:
             cardFront = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Front.jpg"
             cardBack = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Reverse.jpg"
+
     if request.method == "POST":
         unitForm = EditUnit(request.POST, instance=unit)
-        # featForm = EditUnitFeats(request.POST, instance=unit)
-        # if unitForm.is_valid() and featForm.is_valid():
-        if unitForm.is_valid():
+        typeForm = TypeFormSet(request.POST, instance=unit, prefix="types")
+        traitForm = TraitFormSet(request.POST, instance=unit, prefix="traits")
+        weapon_formset = WeaponFormSet(request.POST, instance=unit, queryset=Weapon.objects.filter(unit=unit))
+        if unitForm.is_valid() and weapon_formset.is_valid() and traitForm.is_valid() and typeForm.is_valid():
             unitForm.save()
-            # featForm.save()
-            return HttpResponseRedirect("../")
+            weapon_formset.save()
+            traitForm.save()
+            typeForm.save()
+            return redirect(reverse('bushido:modelDetails', kwargs={'unitid': unitid}))
+
     else:
         unitForm = EditUnit(instance=unit)
-        # featForm = EditUnitFeats(instance=unit)
-    return render(request, 'bushido/edit_unit.html', {'unit': unit, 'cardFront': cardFront, 'cardBack': cardBack, "form": unitForm,})
+        typeForm = TypeFormSet(instance=unit, prefix="types")
+        traitForm = TraitFormSet(instance=unit, prefix="traits")
+        weapon_formset = WeaponFormSet(instance=unit, queryset=Weapon.objects.filter(unit=unit), prefix="weapons")
+    return render(request, 'bushido/edit_unit.html',
+                  {'unit': unit, 'cardFront': cardFront, 'cardBack': cardBack,
+                   "form": unitForm, 'weapon_formset': weapon_formset, 'trait_form': traitForm, 'type_form': typeForm})
 
 
 def themeDetails(request, themeid):
