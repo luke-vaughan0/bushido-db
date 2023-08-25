@@ -44,5 +44,14 @@
     {% endfor %}
         </ul>
     </div>
+  <hr>
+      <div>
+<h4>Ronin models:</h4>
+<ul class="list-group">
+    {% for unit in faction.ronin_units.all %}
+    <a class="list-group-item list-group-item-action" href="{% url 'bushido:modelDetails' unitid=unit.id%}">{{ unit.name }}</a>
+        {% endfor %}
+</ul>
+    </div>
 </div>
 {% endblock %}
