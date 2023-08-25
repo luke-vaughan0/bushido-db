@@ -22,6 +22,8 @@ class EditUnit(forms.ModelForm):
                                              #widget=FilteredSelectMultiple(
                                                  #verbose_name=KiFeat._meta.verbose_name_plural, is_stacked=False))
     kiFeats = forms.ModelMultipleChoiceField(queryset=KiFeat.objects.all(), widget=CheckboxSelectMultiple, required=False)
+    ronin_factions = forms.ModelMultipleChoiceField(queryset=Faction.objects.exclude(name="Ronin"), widget=CheckboxSelectMultiple,
+                                             required=False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

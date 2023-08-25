@@ -73,6 +73,7 @@ class Unit(models.Model):
     unique = models.BooleanField(default=True)
     max = models.CharField(max_length=8, default="1")
 
+    ronin_factions = models.ManyToManyField("Faction", related_name="ronin_units")
     kiFeats = models.ManyToManyField('KiFeat')
     traits = models.ManyToManyField('Trait', through='UnitTrait')
 
