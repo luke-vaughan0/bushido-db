@@ -193,14 +193,14 @@ class Event(models.Model):
     max = models.CharField(max_length=100, default="1", blank=True)
     # faction = models.CharField(max_length=15, default="")
     faction = models.ForeignKey(Faction, on_delete=models.CASCADE)
-    description = models.CharField(max_length=1000, default="")
+    description = models.CharField(max_length=2000, default="")
 
 
 class Theme(models.Model):
     def __str__(self):
         return self.faction.name + " - " + self.name
     name = models.CharField(max_length=40, default="")
-    cycle = models.CharField(max_length=30, default="None")
+    cycle = models.CharField(max_length=30, default="")
     # faction = models.CharField(max_length=15, default="")
     faction = models.ForeignKey(Faction, on_delete=models.CASCADE)
     validation = models.CharField(max_length=500, default="Unit.objects.all()")
@@ -210,13 +210,13 @@ class Theme(models.Model):
 class Enhancement(models.Model):
     def __str__(self):
         return self.name
-    name = models.CharField(max_length=30, default="")
+    name = models.CharField(max_length=50, default="")
     cost = models.CharField(max_length=5, default="")
     max = models.CharField(max_length=5, default="")
-    # faction = models.CharField(max_length=15, default="")
+    cycle = models.CharField(max_length=30, default="")
     faction = models.ForeignKey(Faction, on_delete=models.CASCADE)
     isEquipment = models.BooleanField(default=False)
-    description = models.CharField(max_length=1000, default="")
+    description = models.CharField(max_length=2000, default="")
 
 
 class List(models.Model):
