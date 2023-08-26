@@ -3,7 +3,7 @@ from django.forms import TextInput, Textarea
 from django.db import models
 from simple_history.admin import SimpleHistoryAdmin
 
-from .models import Unit, KiFeat, Trait, UnitTrait, Event, Theme, UnitType, List, ListUnit, Special, Weapon, WeaponTrait, WeaponSpecial, Enhancement, UserProfile
+from .models import Unit, KiFeat, Trait, UnitTrait, Event, Theme, UnitType, List, ListUnit, Special, Weapon, WeaponTrait, WeaponSpecial, Enhancement, UserProfile, Faction
 
 
 class ThemeAdmin(admin.ModelAdmin):
@@ -22,6 +22,7 @@ admin.site.register(Trait)
 admin.site.register(UnitTrait)
 admin.site.register(Event)
 admin.site.register(Theme, ThemeAdmin)
+admin.site.register(Faction, ThemeAdmin)
 admin.site.register(UnitType)
 admin.site.register(List)
 admin.site.register(ListUnit)
