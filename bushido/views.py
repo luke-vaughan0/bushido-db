@@ -251,6 +251,18 @@ def themeDetails(request, themeid):
     return render(request, 'bushido/theme_details.html', {'theme': theme, 'card': card, 'permitted': permitted})
 
 
+def eventDetails(request, eventid):
+    event = get_object_or_404(Event, pk=eventid)
+    card = "bushido/themes/" + event.name + ".jpg"
+    return render(request, 'bushido/event_details.html', {'event': event, 'card': card})
+
+
+def enhancementDetails(request, enhancementid):
+    enhancement = get_object_or_404(Enhancement, pk=enhancementid)
+    card = "bushido/themes/" + enhancement.name + ".jpg"
+    return render(request, 'bushido/enhancement_details.html', {'enhancement': enhancement, 'card': card})
+
+
 def factionPage(request, factionid):
     faction = get_object_or_404(Faction, pk=factionid)
     return render(request, 'bushido/faction.html', {'faction': faction})

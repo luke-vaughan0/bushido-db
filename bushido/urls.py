@@ -29,6 +29,8 @@ urlpatterns = [
     path('info/models/<int:unitid>/', views.unitDetails, name='modelDetails'),
     path('info/models/<int:unitid>/edit/', views.editUnit, name='editModel'),
     path('info/factions/<int:factionid>/', views.factionPage, name='factionDetails'),
+    path('info/events/<int:eventid>/', views.eventDetails, name='eventDetails'),
+    path('info/enhancements/<int:enhancementid>/', views.enhancementDetails, name='enhancementDetails'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/register/', views.register, name='register'),
     path('accounts/profile/', views.userProfile, name='userProfile'),

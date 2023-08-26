@@ -39,10 +39,32 @@
     </div>
     <hr>
     <div class="row">
-<h4>Faction Events, Enhancements, Equipment:</h4>
+<h4>Faction Events:</h4>
 <ul class="list-group">
 {% for event in faction.event_set.all %}
-<a class="list-group-item list-group-item-action" href="#">{{ event.name }}</a>
+<a class="list-group-item list-group-item-action" href="{% url 'bushido:eventDetails' eventid=event.id%}">{{ event.name }}</a>
+    {% endfor %}
+        </ul>
+    </div>
+  <hr>
+      <div class="row">
+<h4>Faction Enhancements:</h4>
+<ul class="list-group">
+  {% for enhancement in faction.enhancement_set.all %}
+  {% if not enhancement.isEquipment %}
+<a class="list-group-item list-group-item-action" href="{% url 'bushido:enhancementDetails' enhancementid=enhancement.id%}">{{ enhancement.name }}</a>
+   {% endif %}
+    {% endfor %}
+        </ul>
+    </div>
+  <hr>
+      <div class="row">
+<h4>Faction Equipment:</h4>
+<ul class="list-group">
+  {% for enhancement in faction.enhancement_set.all %}
+  {% if enhancement.isEquipment %}
+<a class="list-group-item list-group-item-action" href="{% url 'bushido:enhancementDetails' enhancementid=enhancement.id%}">{{ enhancement.name }}</a>
+  {% endif %}
     {% endfor %}
         </ul>
     </div>

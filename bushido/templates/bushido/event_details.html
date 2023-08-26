@@ -1,0 +1,45 @@
+{% extends "bushido/base.html" %}
+{% load static %}
+{% block title %}<title>{{event.name}} - Info</title>{% endblock %}
+{% block content %}
+<div class="container m-0">
+  <div>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'bushido:index' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'bushido:allFactions' %}">Factions</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'bushido:factionDetails' factionid=event.faction.id%}">{{event.faction.name}}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Event</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="row">
+    <h2>{{event.name}}</h2>
+    <p class="fw-light">{{event.faction.name}}</p>
+    {% if event.cycle != "" %}
+    <p class="fw-light">{{event.cycle}}</p>
+    {% endif %}
+  </div>
+  <hr>
+  <div class="row">
+    <p>{{event.description|linebreaks}}</p>
+  </div>
+  <hr>
+  <div>
+    <ul class="list-group list-group-horizontal text-center d-flex flex-wrap">
+      <li class="list-group-item d-flex flex-fill justify-content-center">
+        <div class="mx-2">
+          <div class="fw-bold">Cost</div><hr class="py-0 my-1">
+          {{event.cost}}
+        </div>
+      </li>
+      <li class="list-group-item d-flex flex-fill justify-content-center">
+        <div class="mx-2">
+          <div class="fw-bold">Max</div><hr class="py-0 my-1">
+          {{event.max}}
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
