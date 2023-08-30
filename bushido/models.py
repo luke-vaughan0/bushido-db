@@ -3,7 +3,9 @@ from django.db.models import OuterRef, Subquery, Case, When, Value
 from django.conf import settings
 from simple_history.models import HistoricalRecords
 from ordered_model.models import OrderedModel
+from bushido.utils import queryset_from_string
 import shortuuid
+import re
 
 
 class UnitManager(models.Manager):
@@ -51,7 +53,7 @@ class Unit(models.Model):
 
     def __str__(self):
         return self.name
-
+    # game stuff
     name = models.CharField(max_length=50)
     cardName = models.CharField(max_length=50, default="")
     meleePool = models.CharField(max_length=3, default="0")
@@ -67,15 +69,17 @@ class Unit(models.Model):
     size = models.CharField(max_length=10, default="Small")
     baseSize = models.CharField(max_length=3, default="30")
     cost = models.CharField(max_length=10, default="0")
-    # faction = models.CharField(max_length=15, default="ronin")
     faction = models.ForeignKey(Faction, on_delete=models.CASCADE)
     uniqueEffects = models.CharField(max_length=1500, default="", blank=True)
     unique = models.BooleanField(default=True)
     max = models.CharField(max_length=8, default="1")
 
-    ronin_factions = models.ManyToManyField("Faction", related_name="ronin_units")
-    kiFeats = models.ManyToManyField('KiFeat')
-    traits = models.ManyToManyField('Trait', through='UnitTrait')
+    ronin_factions = models.ManyToManyField("Faction", related_name="ronin_units", blank=True)
+    kiFeats = models.ManyToManyField('KiFeat', blank=True)
+    traits = models.ManyToManyField('Trait', through='UnitTrait', blank=True)
+
+    # internal stuff
+    properties = models.CharField(max_length=1000, blank=True)
 
     objects = UnitManager()
     history = HistoricalRecords()
@@ -200,11 +204,50 @@ class Theme(models.Model):
     def __str__(self):
         return self.faction.name + " - " + self.name
     name = models.CharField(max_length=40, default="")
-    cycle = models.CharField(max_length=30, default="")
+    cycle = models.CharField(max_length=30, default="", blank=True)
     # faction = models.CharField(max_length=15, default="")
     faction = models.ForeignKey(Faction, on_delete=models.CASCADE)
-    validation = models.CharField(max_length=500, default="Unit.objects.all()")
-    description = models.CharField(max_length=1000, default="")
+    validation = models.CharField(max_length=500, blank=True)
+    description = models.CharField(max_length=1000, default="No description")
+    restriction = models.CharField(max_length=300, blank=True)
+
+    def save(self, *args, **kwargs):
+        if len(self.validation) == 0 and len(self.restriction) != 0:
+            permitted = re.search(r"Permitted \[(.*)\]", self.restriction)
+            exclusion = re.search(r"Exclusion \[(.*)\]", self.restriction)
+            if exclusion:
+                exclusionList = exclusion.group(1).split(", ")
+            if permitted:
+                permittedList = permitted.group(1).split(", ")
+            if permitted:
+                result = "faction__shortName=\"" + self.faction.shortName + "\" AND types__type__in=["
+                ronin = []
+                for item in permittedList:
+                    if item.find("Ronin") == -1:
+                        result += "\"" + item + "\", "
+                    else:
+                        ronin.append(item)
+                result = result[:-1] + "]"
+                if len(ronin) != 0:
+                    result = "(" + result + ") OR (ronin_factions__shortName=\"" + self.faction.shortName + "\" AND types__type__in=["
+                    for item in ronin:
+                        result += "\"" + item.replace("Ronin ", "") + "\", "
+                    result = result[:-2] + "])"
+            else:
+                result = "faction__shortName=\"" + self.faction.shortName + "\""
+            if exclusion:
+                result += "; EXCLUDE types__type__in=["
+                for item in exclusionList:
+                    result += "\"" + item + "\", "
+                result = result[:-2] + "]"
+            try:
+                test = queryset_from_string(result)
+                if len(test) == 0:
+                    result = "faction__shortName=\"" + self.faction.shortName + "\""
+            except:
+                result = "faction__shortName=\"" + self.faction.shortName + "\""
+            self.validation = result
+        super().save(*args, **kwargs)
 
 
 class Enhancement(models.Model):
