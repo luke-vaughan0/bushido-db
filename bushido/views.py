@@ -167,7 +167,8 @@ def editUnit(request, unitid):
 
 def themeDetails(request, themeid):
     theme = get_object_or_404(Theme, pk=themeid)
-    permitted = queryset_from_string(theme.validation).distinct()
+    permitted = queryset_from_string(theme.validation).exclude(Q(properties__contains="ONLYTHEME") & ~Q(properties__contains="ONLYTHEME " + theme.name)).distinct()
+    permitted |= Unit.objects.filter(properties__contains="ANYTHEME " + theme.faction.shortName).distinct()
     card = "bushido/themes/" + theme.name + ".jpg"
     return render(request, 'bushido/theme_details.html', {'theme': theme, 'card': card, 'permitted': permitted})
 

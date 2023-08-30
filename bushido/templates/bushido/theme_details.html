@@ -3,6 +3,16 @@
 {% block title %}<title>{{theme.name}} - Info</title>{% endblock %}
 {% block content %}
 <div class="container-fluid pe-1">
+    <div>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'bushido:index' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'bushido:allFactions' %}">Factions</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'bushido:factionDetails' factionid=theme.faction.id%}">{{theme.faction.name}}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Theme</li>
+      </ol>
+    </nav>
+  </div>
     <div class="row">
         <h2>{{theme.name}}</h2>
     </div>
@@ -11,7 +21,8 @@
     </div>
     <div class="row">
 <h4>Description:</h4>
-        <p>{{theme.description}}</p>
+        <p>{{theme.description|linebreaks}}
+            {{theme.restriction|linebreaks}}</p>
     </div>
     <div class="row">
 <h4>Permitted Models:</h4>
