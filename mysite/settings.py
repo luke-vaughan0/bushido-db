@@ -40,6 +40,8 @@ CSP_STYLE_SRC = ["'self'", "cdn.jsdelivr.net", "cdn.datatables.net"]
 CSP_SCRIPT_SRC = ["'self'", "cdn.jsdelivr.net", "cdn.datatables.net", "unpkg.com"]
 CSP_IMG_SRC = ["'self'", "data:"]
 
+SITE_ID = 1
+
 
 PERMISSIONS_POLICY = {
     "accelerometer": [],
@@ -83,6 +85,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'rest_framework',
     'django_filters',
     'crispy_forms',
@@ -90,6 +93,7 @@ INSTALLED_APPS = [
     'simple_history',
     'django_sass',
     'ordered_model',
+    'django.contrib.flatpages',
     'debug_toolbar'
 ]
 
@@ -104,7 +108,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'csp.middleware.CSPMiddleware',
-    'simple_history.middleware.HistoryRequestMiddleware'
+    'simple_history.middleware.HistoryRequestMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware'
 ]
 
 INTERNAL_IPS = [
