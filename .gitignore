@@ -6,8 +6,12 @@ __pycache__
 .idea/
 myvenv
 venv/
-fixtures/
-static/
+fixtures/*
+/bushido/migrations/*
+/bushido/static/
+!/bushido/static/bushido/bushido.scss
+!/bushido/static/bushido/bushido.css
+!/bushido/static/bushido/bushido.js
 /config/
 db.sqlite3
 .DS_Store
