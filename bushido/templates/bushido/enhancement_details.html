@@ -21,8 +21,12 @@
     {% endif %}
   </div>
   <hr>
+  <div class="container single-card-container ms-md-4">
+    <img src="{% static card %}" class="img-fluid d-block" alt = "{{enhancement.name}}"></div>
+  </div>
+  <hr>
   <div class="row">
-    <p>{{enhancement.description|linebreaks}}</p>
+    <p>{{enhancement.description|linebreaksbr}}</p>
   </div>
   <hr>
   <div>

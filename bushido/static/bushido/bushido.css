@@ -12298,6 +12298,10 @@ h2, .h2 {
   max-width: 900px;
 }
 
+.single-card-container {
+  max-width: 450px;
+}
+
 tr:target td:first-child span {
   background-color: #e9d2fd;
   color: black;

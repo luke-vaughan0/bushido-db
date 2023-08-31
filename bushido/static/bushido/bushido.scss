@@ -1,0 +1,68 @@
+
+@import "bushido/static/bootstrap/scss/bootstrap";
+
+
+
+[data-bs-theme="bushido"] {
+  --bs-body-color: var(--bs-black);
+  --bs-body-color-rgb: #{to-rgb($black)};
+  --bs-body-bg: #d6c5a9;
+  --bs-body-bg-rgb: #{rgba(214,197,169,255)};
+  --bs-tertiary-bg: #{$blue-600};
+  --bs-background-tertiary: #c4ac8f;
+
+  .dropdown-menu {
+    --bs-dropdown-bg: #{mix($blue-500, $blue-600)};
+    --bs-dropdown-link-active-bg: #{$blue-700};
+  }
+  .navbar, .sidebar {
+    background-color: #c4ac8f;
+}
+
+  .btn-secondary {
+    --bs-btn-bg: #{mix($gray-600, $blue-400, .5)};
+    --bs-btn-border-color: #{rgba($white, .25)};
+    --bs-btn-hover-bg: #{darken(mix($gray-600, $blue-400, .5), 5%)};
+    --bs-btn-hover-border-color: #{rgba($white, .25)};
+    --bs-btn-active-bg: #{darken(mix($gray-600, $blue-400, .5), 10%)};
+    --bs-btn-active-border-color: #{rgba($white, .5)};
+    --bs-btn-focus-border-color: #{rgba($white, .5)};
+    --bs-btn-focus-box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .2);
+  }
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  padding-bottom: 1rem;
+}
+
+.full-height {
+  min-height: 90vh!important;
+}
+
+.card-container {
+  max-width: 900px;
+}
+
+.single-card-container {
+  max-width: 450px;
+}
+
+tr:target td:first-child span {
+    background-color: #e9d2fd;
+    color: black;
+  }
+
+.scrollable-list {
+  max-height: 200px; /* Adjust the height as needed */
+  overflow-y: auto;
+}
+
+#div_id_website_theme .asteriskField {
+    display: none;
+}

@@ -175,13 +175,13 @@ def themeDetails(request, themeid):
 
 def eventDetails(request, eventid):
     event = get_object_or_404(Event, pk=eventid)
-    card = "bushido/themes/" + event.name + ".jpg"
+    card = "bushido/" + event.faction.shortName + "/events/" + event.name + ".jpg"
     return render(request, 'bushido/event_details.html', {'event': event, 'card': card})
 
 
 def enhancementDetails(request, enhancementid):
     enhancement = get_object_or_404(Enhancement, pk=enhancementid)
-    card = "bushido/themes/" + enhancement.name + ".jpg"
+    card = "bushido/" + enhancement.faction.shortName + "/enhancements/" + enhancement.name + ".jpg"
     return render(request, 'bushido/enhancement_details.html', {'enhancement': enhancement, 'card': card})
 
 
