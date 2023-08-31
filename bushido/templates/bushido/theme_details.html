@@ -16,14 +16,17 @@
     <div class="row">
         <h2>{{theme.name}}</h2>
     </div>
-    <div class="row container">
-        <div class="col"><img src="{% static card %}" class="img-fluid d-block" alt = "{{theme.name}}"></div>
+  <hr>
+    <div class="container single-card-container ms-md-4">
+      <img src="{% static card %}" class="img-fluid d-block" alt = "{{theme.name}}">
     </div>
+  <hr>
     <div class="row">
-<h4>Description:</h4>
-        <p>{{theme.description|linebreaks}}
-            {{theme.restriction|linebreaks}}</p>
+      <h4>Description:</h4>
+      <p>{{theme.description|linebreaksbr}}</p>
+      {% if theme.restriction != "" %}<p>{{theme.restriction|linebreaksbr}}</p>{% endif %}
     </div>
+  <hr>
     <div class="row">
 <h4>Permitted Models:</h4>
         <ul class="list-group">
