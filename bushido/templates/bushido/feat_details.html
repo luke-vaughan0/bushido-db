@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
 {% extends "bushido/base.html" %}
-<head>
-    <meta charset="UTF-8">
-    {% block title %}<title>{{feat.name}} - Info</title>{% endblock %}
-</head>
-
+{% block title %}<title>{{feat.name}} - Info</title>{% endblock %}
+{% block metatags %}
+<meta property="og:title" content="{{feat.name}} - BushidoDB">
+<meta property="og:description" content="{{feat.description}}">
+{% endblock %}
 {% block content %}
-<body>
 <div class="container m-0">
     <h1>{{feat.name}}</h1><br>
     <table class="table">
@@ -30,10 +27,9 @@
         </tr>
     </table><br><br>
     Models with feat:
+    <ul>
     {% for unit in feat.unit_set.all %}
     <li><a href="{% url 'bushido:modelDetails' unitid=unit.id%}">{{ unit.name }}</a></li>
         {% endfor %}
-</div>
-</body>
+    </ul>
 {% endblock %}
-</html>
