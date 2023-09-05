@@ -1,6 +1,11 @@
 {% extends "bushido/base.html" %}
 {% load static %}
 {% block title %}<title>{{event.name}} - Info</title>{% endblock %}
+{% block metatags %}
+<meta property="og:title" content="{{event.name}} - BushidoDB">
+<meta property="og:image" content="{% static card %}">
+<meta name="twitter:card" content="summary_large_image">
+{% endblock %}
 {% block content %}
 <div class="container m-0">
   <div>
