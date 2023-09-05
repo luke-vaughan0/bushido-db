@@ -7,6 +7,11 @@ from bushido.utils import queryset_from_string
 import shortuuid
 import re
 
+CycleChoices = [
+        ("Risen Sun", "Risen Sun"),
+        ("Weeping Sky", "Weeping Sky"),
+    ]
+
 
 class UnitManager(models.Manager):
     def get_unique_card_names(self):
@@ -109,7 +114,6 @@ class KiFeat(models.Model):
     ]
 
     RestrictionChoices = [
-        ("", ""),
         ("OPT", "Once per Turn"),
         ("OPG", "Once per Game"),
     ]
@@ -192,7 +196,7 @@ class Event(models.Model):
     def __str__(self):
         return self.name
     name = models.CharField(max_length=50, default="")
-    cycle = models.CharField(max_length=30, default="None")
+    cycle = models.CharField(max_length=30, choices=CycleChoices, blank=True)
     cost = models.CharField(max_length=5, default="0")
     max = models.CharField(max_length=100, default="1", blank=True)
     # faction = models.CharField(max_length=15, default="")
@@ -204,7 +208,7 @@ class Theme(models.Model):
     def __str__(self):
         return self.faction.name + " - " + self.name
     name = models.CharField(max_length=40, default="")
-    cycle = models.CharField(max_length=30, default="", blank=True)
+    cycle = models.CharField(max_length=30, choices=CycleChoices, blank=True)
     # faction = models.CharField(max_length=15, default="")
     faction = models.ForeignKey(Faction, on_delete=models.CASCADE)
     validation = models.CharField(max_length=500, blank=True)
@@ -256,7 +260,7 @@ class Enhancement(models.Model):
     name = models.CharField(max_length=50, default="")
     cost = models.CharField(max_length=5, default="")
     max = models.CharField(max_length=5, default="")
-    cycle = models.CharField(max_length=30, default="")
+    cycle = models.CharField(max_length=30, choices=CycleChoices, blank=True)
     faction = models.ForeignKey(Faction, on_delete=models.CASCADE)
     isEquipment = models.BooleanField(default=False)
     description = models.CharField(max_length=2000, default="")
