@@ -20,7 +20,7 @@ class ModelViewSet(viewsets.ReadOnlyModelViewSet):
     """
     Retrieve model information
     """
-    queryset = Unit.objects.prefetch_related('kiFeats', 'traits', 'unittrait_set__trait', 'types',
+    queryset = Unit.objects.prefetch_related('kiFeats', 'traits', 'ronin_factions', 'unittrait_set__trait', 'types',
                                              "weapons__weaponspecials__special", "weapons__weapontraits__trait").select_related('faction')
     serializer_class = UnitSerializer
     permission_classes = []
@@ -43,6 +43,46 @@ class TraitViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset = Trait.objects.all()
     serializer_class = TraitSerializer
+    permission_classes = []
+    filterset_fields = "__all__"
+
+
+class EventViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    Retrieve ki feat information
+    """
+    queryset = Event.objects.prefetch_related("faction")
+    serializer_class = EventSerializer
+    permission_classes = []
+    filterset_fields = "__all__"
+
+
+class EnhancementViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    Retrieve ki feat information
+    """
+    queryset = Enhancement.objects.prefetch_related("faction")
+    serializer_class = EnhancementSerializer
+    permission_classes = []
+    filterset_fields = "__all__"
+
+
+class ThemeViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    Retrieve ki feat information
+    """
+    queryset = Theme.objects.prefetch_related("faction")
+    serializer_class = ThemeSerializer
+    permission_classes = []
+    filterset_fields = "__all__"
+
+
+class SpecialViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    Retrieve ki feat information
+    """
+    queryset = Special.objects.all()
+    serializer_class = SpecialSerializer
     permission_classes = []
     filterset_fields = "__all__"
 

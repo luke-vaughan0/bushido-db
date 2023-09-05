@@ -73,11 +73,40 @@ class UnitSerializer(DynamicFieldsMixin, ReadOnlyModelSerializer):
 
     class Meta:
         model = Unit
-        #exclude = ['cost']
-        fields = "__all__"
+        exclude = ['properties']
 
 
 class TraitSerializer(ReadOnlyModelSerializer):
     class Meta:
         model = Trait
+        fields = "__all__"
+
+
+class EventSerializer(ReadOnlyModelSerializer):
+    faction = serializers.ReadOnlyField(source='faction.name')
+
+    class Meta:
+        model = Event
+        fields = "__all__"
+
+
+class EnhancementSerializer(ReadOnlyModelSerializer):
+    faction = serializers.ReadOnlyField(source='faction.name')
+
+    class Meta:
+        model = Enhancement
+        fields = "__all__"
+
+
+class ThemeSerializer(ReadOnlyModelSerializer):
+    faction = serializers.ReadOnlyField(source='faction.name')
+
+    class Meta:
+        model = Theme
+        exclude = ["validation"]
+
+
+class SpecialSerializer(ReadOnlyModelSerializer):
+    class Meta:
+        model = Special
         fields = "__all__"
