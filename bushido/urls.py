@@ -12,6 +12,10 @@ router = routers.DefaultRouter()
 router.register(r'models', views.ModelViewSet)
 router.register(r'kifeats', views.KiFeatViewSet)
 router.register(r'traits', views.TraitViewSet)
+router.register(r'events', views.EventViewSet)
+router.register(r'enhancements', views.EnhancementViewSet)
+router.register(r'themes', views.ThemeViewSet)
+router.register(r'specials', views.SpecialViewSet)
 
 urlpatterns = [
     path('', views.index, name='index'),
