@@ -39,7 +39,7 @@ class KiFeatViewSet(viewsets.ReadOnlyModelViewSet):
 
 class TraitViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    Retrieve ki feat information
+    Retrieve trait information
     """
     queryset = Trait.objects.all()
     serializer_class = TraitSerializer
@@ -49,7 +49,7 @@ class TraitViewSet(viewsets.ReadOnlyModelViewSet):
 
 class EventViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    Retrieve ki feat information
+    Retrieve event information
     """
     queryset = Event.objects.prefetch_related("faction")
     serializer_class = EventSerializer
@@ -59,7 +59,7 @@ class EventViewSet(viewsets.ReadOnlyModelViewSet):
 
 class EnhancementViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    Retrieve ki feat information
+    Retrieve enhancement information
     """
     queryset = Enhancement.objects.prefetch_related("faction")
     serializer_class = EnhancementSerializer
@@ -69,7 +69,7 @@ class EnhancementViewSet(viewsets.ReadOnlyModelViewSet):
 
 class ThemeViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    Retrieve ki feat information
+    Retrieve theme information
     """
     queryset = Theme.objects.prefetch_related("faction")
     serializer_class = ThemeSerializer
@@ -79,7 +79,7 @@ class ThemeViewSet(viewsets.ReadOnlyModelViewSet):
 
 class SpecialViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    Retrieve ki feat information
+    Retrieve special ability information
     """
     queryset = Special.objects.all()
     serializer_class = SpecialSerializer
