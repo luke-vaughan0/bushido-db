@@ -6,13 +6,12 @@ from bushido.models import Unit, KiFeat, UnitTrait, Trait, Theme, Event, List, L
 from django.db.models import Q, Prefetch
 from django.db import models
 from django.contrib import auth, messages
-from django.contrib.staticfiles import finders
 from .forms import *
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth import login
 from rest_framework import viewsets
 from bushido.serializers import *
-from bushido.utils import queryset_from_string
+from bushido.utils import queryset_from_string, get_card
 import jellyfish
 
 
@@ -154,16 +153,8 @@ def unitDetails(request, unitid):
         pk=unitid
     )
     cardUnits = Unit.objects.filter(cardName=unit.cardName)
-    cardFront = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Front.jpg"
-    cardBack = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Reverse.jpg"
-    if finders.find("bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Front.png"):
-        cardFront = "bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Front.png"
-    if finders.find("bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Reverse.png"):
-        cardBack = "bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Reverse.png"
-    if request.user.is_authenticated:
-        if not request.user.userprofile.use_unofficial_cards:
-            cardFront = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Front.jpg"
-            cardBack = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Reverse.jpg"
+    cardFront = get_card(request.user, unit, " Front")
+    cardBack = get_card(request.user, unit, " Reverse")
 
     return render(request, 'bushido/unit_details.html',
                   {'unit': unit, 'cardUnits': cardUnits, 'cardFront': cardFront, 'cardBack': cardBack})
@@ -172,16 +163,8 @@ def unitDetails(request, unitid):
 @permission_required("bushido.change_unit")
 def editUnit(request, unitid):
     unit = get_object_or_404(Unit, pk=unitid)
-    cardFront = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Front.jpg"
-    cardBack = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Reverse.jpg"
-    if finders.find("bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Front.png"):
-        cardFront = "bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Front.png"
-    if finders.find("bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Reverse.png"):
-        cardBack = "bushido/unofficial/" + unit.faction.shortName + "/" + unit.cardName + " Reverse.png"
-    if request.user.is_authenticated:
-        if not request.user.userprofile.use_unofficial_cards:
-            cardFront = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Front.jpg"
-            cardBack = 'bushido/' + unit.faction.shortName + "/" + unit.cardName + " Reverse.jpg"
+    cardFront = get_card(request.user, unit, " Front")
+    cardBack = get_card(request.user, unit, " Reverse")
 
     if request.method == "POST":
         unitForm = EditUnit(request.POST, instance=unit)
@@ -209,19 +192,19 @@ def themeDetails(request, themeid):
     theme = get_object_or_404(Theme, pk=themeid)
     permitted = queryset_from_string(theme.validation).exclude(Q(properties__contains="ONLYTHEME") & ~Q(properties__contains="ONLYTHEME " + theme.name)).distinct()
     permitted |= Unit.objects.filter(properties__contains="ANYTHEME " + theme.faction.shortName).distinct()
-    card = "bushido/themes/" + theme.name + ".jpg"
+    card = get_card(request.user, theme)
     return render(request, 'bushido/theme_details.html', {'theme': theme, 'card': card, 'permitted': permitted})
 
 
 def eventDetails(request, eventid):
     event = get_object_or_404(Event, pk=eventid)
-    card = "bushido/" + event.faction.shortName + "/events/" + event.name + ".jpg"
+    card = get_card(request.user, event)
     return render(request, 'bushido/event_details.html', {'event': event, 'card': card})
 
 
 def enhancementDetails(request, enhancementid):
     enhancement = get_object_or_404(Enhancement, pk=enhancementid)
-    card = "bushido/" + enhancement.faction.shortName + "/enhancements/" + enhancement.name + ".jpg"
+    card = get_card(request.user, enhancement)
     return render(request, 'bushido/enhancement_details.html', {'enhancement': enhancement, 'card': card})
 
 
