@@ -1,6 +1,7 @@
 from django.db.models import Q
 import re
 import ast
+from django.contrib.staticfiles import finders
 
 
 def nest_from_brackets(s):
@@ -180,3 +181,20 @@ def testTheme(theme):
         print(actual)
         print(new)
         print(set(actual).difference((set(new))))
+
+
+def get_card(user, item, extra=""):
+    name = item.cardName if hasattr(item, "cardName") else item.name
+    class_names = {
+        "Unit": "Model",
+        "KiFeat": "Feat"
+    }
+    item_type = class_names.get(item.__class__.__name__, item.__class__.__name__).lower()+"s"
+    card = 'bushido/' + item.faction.shortName + "/" + item_type + "/" + name + extra + (".jpg" if not re.match(r".*\.(jpg|png)", extra) else "")
+    print(card)
+    if not finders.find(card.replace("bushido/", "bushido/unofficial/").replace(".jpg", ".png")):
+        return card
+    if user.is_authenticated:
+        if not user.userprofile.use_unofficial_cards:
+            return card
+    return card.replace("bushido/", "bushido/unofficial/").replace(".jpg", ".png")
