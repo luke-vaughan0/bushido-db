@@ -44,6 +44,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     website_theme = models.CharField(max_length=10, choices=ColourChoices, default="light")
     use_unofficial_cards = models.BooleanField(default=True)
+    hide_unofficial_card_message = models.BooleanField(default=False)
 
 
 class Faction(OrderedModel):
@@ -265,6 +266,9 @@ class Enhancement(models.Model):
     isEquipment = models.BooleanField(default=False)
     description = models.CharField(max_length=2000, default="")
 
+    class Meta:
+        ordering = ["faction", "name"]
+
 
 class List(models.Model):
     def __str__(self):
@@ -282,6 +286,7 @@ class List(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=0)
     privacy = models.CharField(max_length=8, choices=PrivacyChoices, default="Public")
     theme = models.ForeignKey(Theme, on_delete=models.CASCADE, default=0)
+    faction = models.ForeignKey(Faction, on_delete=models.CASCADE)
 
 
 class ListUnit(models.Model):
@@ -290,8 +295,11 @@ class ListUnit(models.Model):
 
     list = models.ForeignKey(List, on_delete=models.CASCADE)
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
-    enhancements = models.ManyToManyField('Enhancement', blank=True)
-    equipment = models.CharField(max_length=30, blank=True)
+    enhancements = models.ManyToManyField('Enhancement', blank=True, related_name="used_enhancements", limit_choices_to={"isEquipment": False})
+    equipment = models.ForeignKey(Enhancement, blank=True, null=True, on_delete=models.CASCADE, limit_choices_to={"isEquipment": True})
+
+    class Meta:
+        ordering = ["unit__name"]
 
 
 class Weapon(models.Model):
