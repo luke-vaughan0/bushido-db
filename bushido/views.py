@@ -275,7 +275,6 @@ class BushidoUnitListView(ListView):
 
 class BushidoListView(ListView):
     model = Unit
-    #form_class = FilterForm
     template_name = "bushido/unit_list.html"
 
     def get_queryset(self):

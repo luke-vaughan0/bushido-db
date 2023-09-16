@@ -37,6 +37,14 @@
       <div class="col-lg-6"><img src="{% static cardFront %}" class="img-fluid d-block" alt = "{{unit.cardName}} Front"></div>
       <div class="col-lg-6"><img src="{% static cardBack %}" class="img-fluid d-block" alt = "{{unit.cardName}} Back"></div>
     </div>
+    {% if not user.userprofile.hide_unofficial_card_message %}
+    {% if "/unofficial/" in cardFront or "/unofficial/" in cardBack %}
+    <div class="row mt-1 text-center">
+      <div class="col-lg-6">{% if "/unofficial/" in cardFront %}<p class="fw-light">Unofficial Card</p>{% endif %}</div>
+      <div class="col-lg-6">{% if "/unofficial/" in cardBack %}<p class="fw-light">Unofficial Card</p>{% endif %}</div>
+    </div>
+    {% endif %}
+    {% endif %}
   </div>
   <hr>
   {% if cardUnits|length != 1 %}

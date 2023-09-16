@@ -191,7 +191,6 @@ def get_card(user, item, extra=""):
     }
     item_type = class_names.get(item.__class__.__name__, item.__class__.__name__).lower()+"s"
     card = 'bushido/' + item.faction.shortName + "/" + item_type + "/" + name + extra + (".jpg" if not re.match(r".*\.(jpg|png)", extra) else "")
-    print(card)
     if not finders.find(card.replace("bushido/", "bushido/unofficial/").replace(".jpg", ".png")):
         return card
     if user.is_authenticated:
