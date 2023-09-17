@@ -8,6 +8,7 @@
     {% block metatags %}
     <!--meta property="og:url" content="https://bushidodb.ddns.net/bushido/"-->
     <meta property="og:title" content="BushidoDB">
+    <meta property="og:site_name" content="BushidoDB">
     <meta property="og:description" content="Game data for Bushido, a tabletop miniature game by GCT Studios">
     <!--meta property="og:image" content=""-->
     {% endblock %}
@@ -82,10 +83,23 @@
             <li class="nav-item"><a class="nav-link" href="{% url 'bushido:allTraits' %}">Traits</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'bushido:allSpecials' %}">Special Abilities</a></li>
           </ul>
-            </nav>
        {% endblock %}
         </div>
-        <div class="col-sm-10 py-4">{% block content %}{% endblock %}</div>
+        <div class="col-sm-10 py-4">
+          {% if messages %}
+          {% for message in messages %}
+          <div class="row">
+            <div class="col-lg-8 ">
+              <div class="alert clearfix me-lg-4 {% if message.tags %}alert-{{ message.tags }}{% else %}alert-primary{% endif %}" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          {% endif %}
+          {% block content %}{% endblock %}
+        </div>
       </div>
       <div class="row">
         <div class="col">
