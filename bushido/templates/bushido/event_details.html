@@ -25,8 +25,11 @@
     {% endif %}
   </div>
   <hr>
-  <div class="container single-card-container ms-md-4">
+  <div class="container single-card-container ms-md-4 text-center">
     <img src="{% static card %}" class="img-fluid d-block" alt = "{{event.name}}">
+    {% if not user.userprofile.hide_unofficial_card_message and "/unofficial/" in card  %}
+    <p class="fw-light">Unofficial Card</p>
+    {% endif %}
   </div>
   <hr>
   <div class="row">
