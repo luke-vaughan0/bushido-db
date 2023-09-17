@@ -15,6 +15,12 @@ from bushido.utils import queryset_from_string, get_card
 import jellyfish
 
 
+MESSAGE_TAGS = {
+    messages.DEBUG: "primary",
+    messages.ERROR: "danger",
+}
+
+
 class ModelViewSet(viewsets.ReadOnlyModelViewSet):
     """
     Retrieve model information

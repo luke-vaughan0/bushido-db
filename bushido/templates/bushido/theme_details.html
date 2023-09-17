@@ -7,8 +7,8 @@
 <meta name="twitter:card" content="summary_large_image">
 {% endblock %}
 {% block content %}
-<div class="container-fluid pe-1">
-    <div>
+<div class="container m-0">
+  <div>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'bushido:index' %}">Home</a></li>
@@ -18,9 +18,12 @@
       </ol>
     </nav>
   </div>
-    <div class="row">
-        <h2>{{theme.name}}</h2>
-    </div>
+  <div class="row">
+    <h2 class="pb-0">{{theme.name}}</h2>
+    {% if theme.cycle != "" %}
+    <p class="fw-light">{{theme.cycle}}</p>
+    {% endif %}
+  </div>
   <hr>
     <div class="container single-card-container ms-md-4">
       <img src="{% static card %}" class="img-fluid d-block" alt = "{{theme.name}}">
