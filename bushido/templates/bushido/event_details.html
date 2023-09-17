@@ -51,5 +51,9 @@
       </li>
     </ul>
   </div>
+  {% if perms.bushido.change_event %}
+  <hr>
+  <a class="btn btn-outline-secondary" href="./edit/" role="button">Edit event</a>
+  {% endif %}
 </div>
 {% endblock %}

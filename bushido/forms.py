@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from bushido.models import Unit, List, UserProfile, KiFeat, Weapon, WeaponTrait, WeaponSpecial, UnitTrait, UnitType, Faction
+from bushido.models import Unit, List, UserProfile, KiFeat, Weapon, WeaponTrait, WeaponSpecial, UnitTrait, UnitType, Faction, Theme, Event, Enhancement
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field
@@ -65,6 +65,41 @@ class CreateListForm(forms.ModelForm):
     class Meta:
         model = List
         fields = ["name", "theme", "privacy"]
+
+
+class EditFeat(forms.ModelForm):
+    description = forms.CharField(label="Description", widget=forms.Textarea, required=True)
+
+    class Meta:
+        model = KiFeat
+        fields = "__all__"
+
+
+class EditTheme(forms.ModelForm):
+    description = forms.CharField(label="Description", widget=forms.Textarea, required=True)
+    restriction = forms.CharField(label="Restriction", widget=forms.Textarea, required=False)
+
+    class Meta:
+        model = Theme
+        fields = ["name", "cycle", "description", "restriction"]
+
+
+class EditEvent(forms.ModelForm):
+    description = forms.CharField(label="Description", widget=forms.Textarea, required=True)
+    restriction = forms.CharField(label="Restriction", widget=forms.Textarea, required=False)
+
+    class Meta:
+        model = Event
+        fields = ["name", "cycle", "cost", "max", "description", "restriction"]
+
+
+class EditEnhancement(forms.ModelForm):
+    description = forms.CharField(label="Description", widget=forms.Textarea, required=True)
+    restriction = forms.CharField(label="Restriction", widget=forms.Textarea, required=False)
+
+    class Meta:
+        model = Enhancement
+        fields = ["name", "cycle", "cost", "max", "description", "restriction"]
 
 
 class WeaponTraitForm(forms.ModelForm):
