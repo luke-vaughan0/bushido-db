@@ -192,22 +192,22 @@
     {% else %}
     <p>{{ unit.uniqueEffects|linebreaks }}</p>
     {% endif %}
-    {% if unit.faction.name == "Ronin" %}
-    <div>
-      <h4>Permitted factions:</h4>
-      <ul class="list-group">
-        {% for faction in unit.ronin_factions.all %}
-            <a class="list-group-item list-group-item-action" href="{% url 'bushido:factionDetails' factionid=faction.id %}">
-                {{faction.name}}
-            </a>
-        {% endfor %}
-        </ul>
-    </div>
-    {% endif %}
-    {% if perms.bushido.change_unit %}
-    <hr>
-    <a class="btn btn-outline-secondary" href="./edit/" role="button">Edit model</a>
-    {% endif %}
   </div>
+    {% if unit.faction.name == "Ronin" %}
+  <div>
+    <h4>Permitted factions:</h4>
+    <ul class="list-group">
+      {% for faction in unit.ronin_factions.all %}
+          <a class="list-group-item list-group-item-action" href="{% url 'bushido:factionDetails' factionid=faction.id %}">
+              {{faction.name}}
+          </a>
+      {% endfor %}
+      </ul>
+  </div>
+  {% endif %}
+  {% if perms.bushido.change_unit %}
+  <hr>
+  <a class="btn btn-outline-secondary" href="./edit/" role="button">Edit model</a>
+  {% endif %}
 </div>
 {% endblock %}
