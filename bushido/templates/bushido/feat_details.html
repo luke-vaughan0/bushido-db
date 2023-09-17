@@ -44,5 +44,9 @@
     <a class="list-group-item list-group-item-action" href="{% url 'bushido:modelDetails' unitid=unit.id%}">{{ unit.name }}</a>
     {% endfor %}
   </ul>
+  {% if perms.bushido.change_ki_feat %}
+  <hr>
+  <a class="btn btn-outline-secondary" href="./edit/" role="button">Edit feat</a>
+  {% endif %}
 </div>
 {% endblock %}

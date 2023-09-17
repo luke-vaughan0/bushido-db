@@ -1,0 +1,56 @@
+{% extends "bushido/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}<title>{{event.name}} - Info</title>{% endblock %}
+{% block metatags %}
+<meta property="og:title" content="{{event.name}} - BushidoDB">
+<meta property="og:image" content="{% static card %}">
+<meta name="twitter:card" content="summary_large_image">
+{% endblock %}
+{% block content %}
+<div class="container m-0">
+  <form action="" method="post">
+    {% csrf_token %}
+    <div>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'bushido:index' %}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'bushido:allFactions' %}">Factions</a></li>
+          <li class="breadcrumb-item"><a href="{% url 'bushido:factionDetails' factionid=event.faction.id%}">{{event.faction.name}}</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Event</li>
+        </ol>
+      </nav>
+    </div>
+    <div class="row">
+      <h2 class="pb-0">{{form.name|as_crispy_field}}</h2>
+      {{form.cycle|as_crispy_field}}
+    </div>
+    <hr>
+    <div class="container single-card-container ms-md-4">
+      <img src="{% static card %}" class="img-fluid d-block" alt = "{{event.name}}">
+    </div>
+    <hr>
+    <div class="row">
+      <p>{{form.description|as_crispy_field}}</p>
+      <p>{{form.restriction|as_crispy_field}}</p>
+    </div>
+    <hr>
+    <div>
+      <ul class="list-group list-group-horizontal text-center d-flex flex-wrap">
+        <li class="list-group-item d-flex flex-fill justify-content-center">
+          <div class="mx-2">
+            {{form.max|as_crispy_field}}
+          </div>
+        </li>
+        <li class="list-group-item d-flex flex-fill justify-content-center">
+          <div class="mx-2">
+            {{form.cost|as_crispy_field}}
+          </div>
+        </li>
+      </ul>
+    </div>
+    <hr>
+    <input class="btn btn-outline-secondary" type="submit" value="Submit">
+  </form>
+</div>
+{% endblock %}

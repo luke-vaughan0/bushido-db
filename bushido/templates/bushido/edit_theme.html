@@ -1,5 +1,6 @@
 {% extends "bushido/base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block title %}<title>{{theme.name}} - Info</title>{% endblock %}
 {% block metatags %}
 <meta property="og:title" content="{{theme.name}} - BushidoDB">
@@ -8,7 +9,9 @@
 {% endblock %}
 {% block content %}
 <div class="container m-0">
-  <div>
+  <form action="" method="post">
+    {% csrf_token %}
+    <div>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{% url 'bushido:index' %}">Home</a></li>
@@ -18,34 +21,21 @@
       </ol>
     </nav>
   </div>
-  <div class="row">
-    <h2 class="pb-0">{{theme.name}}</h2>
-    {% if theme.cycle != "" %}
-    <p class="fw-light">{{theme.cycle}}</p>
-    {% endif %}
-  </div>
+    <div class="row">
+      <h2>{{form.name|as_crispy_field}}</h2>
+      {{form.cycle|as_crispy_field}}
+    </div>
   <hr>
     <div class="container single-card-container ms-md-4">
       <img src="{% static card %}" class="img-fluid d-block" alt = "{{theme.name}}">
     </div>
   <hr>
     <div class="row">
-      <h4>Description:</h4>
-      <p>{{theme.description|linebreaksbr}}</p>
-      {% if theme.restriction != "" %}<p>{{theme.restriction|linebreaksbr}}</p>{% endif %}
+      <p>{{form.description|as_crispy_field}}</p>
+      <p>{{form.restriction|as_crispy_field}}</p>
     </div>
   <hr>
-    <div class="row">
-<h4>Permitted Models:</h4>
-        <ul class="list-group">
-{% for unit in permitted %}
-<a class="list-group-item list-group-item-action" href="{% url 'bushido:modelDetails' unitid=unit.id%}">{{ unit.name }}</a>
-    {% endfor %}
-        </ul>
-    </div>
-  {% if perms.bushido.change_theme %}
-  <hr>
-  <a class="btn btn-outline-secondary" href="./edit/" role="button">Edit theme</a>
-  {% endif %}
+    <input class="btn btn-outline-secondary" type="submit" value="Submit">
+  </form>
 </div>
 {% endblock %}

@@ -51,5 +51,9 @@
       </li>
     </ul>
   </div>
+  {% if perms.bushido.change_enhancement %}
+  <hr>
+  <a class="btn btn-outline-secondary" href="./edit/" role="button">Edit enhancement</a>
+  {% endif %}
 </div>
 {% endblock %}

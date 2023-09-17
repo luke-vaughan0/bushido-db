@@ -149,6 +149,19 @@ def featDetails(request, featid):
     return render(request, 'bushido/feat_details.html', {'feat': feat})
 
 
+@permission_required("bushido.change_ki_feat")
+def editFeat(request, featid):
+    feat = get_object_or_404(KiFeat, pk=featid)
+    if request.method == "POST":
+        form = EditFeat(request.POST, instance=feat)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('bushido:featDetails', kwargs={'featid': featid}))
+    else:
+        form = EditFeat(instance=feat)
+    return render(request, 'bushido/edit_feat.html', {'feat': feat, "form": form})
+
+
 def unitDetails(request, unitid):
     unit = get_object_or_404(
         Unit.objects.prefetch_related(
@@ -202,16 +215,58 @@ def themeDetails(request, themeid):
     return render(request, 'bushido/theme_details.html', {'theme': theme, 'card': card, 'permitted': permitted})
 
 
+@permission_required("bushido.change_theme")
+def editTheme(request, themeid):
+    theme = get_object_or_404(Theme, pk=themeid)
+    card = get_card(request.user, theme)
+    if request.method == "POST":
+        form = EditTheme(request.POST, instance=theme)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('bushido:themeDetails', kwargs={'themeid': themeid}))
+    else:
+        form = EditTheme(instance=theme)
+    return render(request, 'bushido/edit_theme.html', {'theme': theme, 'card': card, "form": form})
+
+
 def eventDetails(request, eventid):
     event = get_object_or_404(Event, pk=eventid)
     card = get_card(request.user, event)
     return render(request, 'bushido/event_details.html', {'event': event, 'card': card})
 
 
+@permission_required("bushido.change_event")
+def editEvent(request, eventid):
+    event = get_object_or_404(Event, pk=eventid)
+    card = get_card(request.user, event)
+    if request.method == "POST":
+        form = EditEvent(request.POST, instance=event)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('bushido:eventDetails', kwargs={'eventid': eventid}))
+    else:
+        form = EditEvent(instance=event)
+    return render(request, 'bushido/edit_event.html', {'event': event, 'card': card, "form": form})
+
+
 def enhancementDetails(request, enhancementid):
     enhancement = get_object_or_404(Enhancement, pk=enhancementid)
     card = get_card(request.user, enhancement)
     return render(request, 'bushido/enhancement_details.html', {'enhancement': enhancement, 'card': card})
+
+
+@permission_required("bushido.change_enhancement")
+def editEnhancement(request, enhancementid):
+    enhancement = get_object_or_404(Enhancement, pk=enhancementid)
+    card = get_card(request.user, enhancement)
+    if request.method == "POST":
+        form = EditEnhancement(request.POST, instance=enhancement)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('bushido:enhancementDetails', kwargs={'enhancementid': enhancementid}))
+    else:
+        form = EditEnhancement(instance=enhancement)
+    return render(request, 'bushido/edit_enhancement.html', {'enhancement': enhancement, 'card': card, "form": form})
 
 
 def factionPage(request, factionid):

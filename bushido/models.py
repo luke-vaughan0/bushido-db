@@ -107,11 +107,11 @@ class KiFeat(models.Model):
     ]
 
     TypeChoices = [
-        ("Pe", "Personal"),
-        ("Ta", "Target"),
-        ("Pu", "Pulse"),
-        ("Au", "Aura"),
-        ("Sp", "Special"),
+        ("Personal", "Personal"),
+        ("Target", "Target"),
+        ("Pulse", "Pulse"),
+        ("Aura", "Aura"),
+        ("Special", "Special"),
     ]
 
     RestrictionChoices = [
@@ -122,7 +122,7 @@ class KiFeat(models.Model):
     name = models.CharField(max_length=30)
     cost = models.CharField(max_length=6)
     timing = models.CharField(max_length=8, choices=TimingChoices, default="Active")
-    featType = models.CharField(max_length=8, choices=TypeChoices, default="Pe")
+    featType = models.CharField(max_length=8, choices=TypeChoices, default="Personal")
     featRange = models.CharField(max_length=5, default="", blank=True)
     isOpposed = models.BooleanField(default=False)
     noMove = models.BooleanField(default=False)
@@ -203,6 +203,7 @@ class Event(models.Model):
     # faction = models.CharField(max_length=15, default="")
     faction = models.ForeignKey(Faction, on_delete=models.CASCADE)
     description = models.CharField(max_length=2000, default="")
+    restriction = models.CharField(max_length=300, blank=True)
 
 
 class Theme(models.Model):
@@ -265,6 +266,7 @@ class Enhancement(models.Model):
     faction = models.ForeignKey(Faction, on_delete=models.CASCADE)
     isEquipment = models.BooleanField(default=False)
     description = models.CharField(max_length=2000, default="")
+    restriction = models.CharField(max_length=300, blank=True)
 
     class Meta:
         ordering = ["faction", "name"]
