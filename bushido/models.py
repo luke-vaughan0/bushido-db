@@ -52,7 +52,7 @@ class Faction(OrderedModel):
         return self.name
     shortName = models.CharField(max_length=20)
     name = models.CharField(max_length=50)
-    description = models.CharField(max_length=3000)
+    description = models.TextField()
 
 
 class Unit(models.Model):
