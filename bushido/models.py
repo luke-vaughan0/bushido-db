@@ -344,3 +344,20 @@ class WeaponSpecial(models.Model):
     weapon = models.ForeignKey(Weapon, related_name="weaponspecials", on_delete=models.CASCADE)
     special = models.ForeignKey(Special, on_delete=models.CASCADE)
     cost = models.CharField(max_length=3, default="0")
+
+
+class State(models.Model):
+    def __str__(self):
+        return self.name
+
+    name = models.CharField(max_length=50)
+    marker = models.CharField(max_length=50)
+    description = models.CharField(max_length=5000)
+
+
+class Term(models.Model):
+    def __str__(self):
+        return self.name
+
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=5000)

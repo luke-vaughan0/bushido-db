@@ -1,0 +1,23 @@
+{% extends "bushido/base.html" %}
+{% block title %}<title>Special Abilities</title>{% endblock %}
+{% block content %}
+<div class="container m-0">
+    <h2>Terms and Concepts</h2>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for term in term_list %}
+                <tr id="{{ term.name }}">
+                    <td><span>{{ term.name }}</span></td>
+                    <td>{{ term.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

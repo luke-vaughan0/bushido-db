@@ -3,7 +3,7 @@ from django.forms import TextInput, Textarea
 from django.db import models
 from simple_history.admin import SimpleHistoryAdmin
 
-from .models import Unit, KiFeat, Trait, UnitTrait, Event, Theme, UnitType, List, ListUnit, Special, Weapon, WeaponTrait, WeaponSpecial, Enhancement, UserProfile, Faction
+from bushido.models import *
 
 
 class ThemeAdmin(admin.ModelAdmin):
@@ -32,3 +32,5 @@ admin.site.register(WeaponTrait)
 admin.site.register(WeaponSpecial)
 admin.site.register(Enhancement)
 admin.site.register(UserProfile)
+admin.site.register(State, ThemeAdmin)
+admin.site.register(Term, ThemeAdmin)
