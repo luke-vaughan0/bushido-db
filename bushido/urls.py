@@ -1,6 +1,6 @@
 from django.urls import include, path
 from . import views
-from bushido.views import BushidoListView, BushidoUnitListView, FeatListView, TraitListView, FactionListView, SpecialListView
+from bushido.views import *
 from django.contrib.auth import views as auth_views
 from rest_framework import routers, serializers, viewsets
 
@@ -25,6 +25,8 @@ urlpatterns = [
     path('search/', views.search, name='search'),
     path('info/traits/', TraitListView.as_view(), name='allTraits'),
     path('info/specials/', SpecialListView.as_view(), name='allSpecials'),
+    path('info/states/', StateListView.as_view(), name='allStates'),
+    path('info/terms/', TermListView.as_view(), name='allTerms'),
 
     path('info/factions/', FactionListView.as_view(), name='allFactions'),
     path('info/factions/<int:factionid>/', views.factionPage, name='factionDetails'),

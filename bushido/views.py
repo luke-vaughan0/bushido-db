@@ -354,7 +354,17 @@ class FeatListView(ListView):
 
 class SpecialListView(ListView):
     model = Special
-    template_name = "bushido/special_list.html"
+    template_name = "bushido/list_views/special_list.html"
+
+
+class TermListView(ListView):
+    model = Term
+    template_name = "bushido/list_views/term_list.html"
+
+
+class StateListView(ListView):
+    model = State
+    template_name = "bushido/list_views/state_list.html"
 
 
 class TraitListView(ListView):
