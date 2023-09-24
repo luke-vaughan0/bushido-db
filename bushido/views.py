@@ -306,9 +306,18 @@ def createList(request):
 
 def viewList(request, listid):
     unitList = get_object_or_404(List, pk=listid)
-    units = ListUnit.objects.filter(list=unitList)
-    permitted = eval(unitList.theme.validation)
-    return render(request, 'bushido/view_list.html', {'list': unitList, "unit_list": units, "permitted": permitted})
+    cost = 0
+    for unit in unitList.listunit_set.all():
+        try:
+            cost += int(unit.unit.cost)
+        except ValueError:
+            print(f"error in {unit.name}")
+        if unit.equipment:
+            cost += int(unit.equipment.cost)
+        for enhancement in unit.enhancements.all():
+            cost += int(enhancement.cost)
+
+    return render(request, 'bushido/view_list.html', {'list': unitList, "cost": cost})
 
 
 class BushidoUnitListView(ListView):
