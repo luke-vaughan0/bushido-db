@@ -1,9 +1,9 @@
 from django.db import models
-from django.db.models import OuterRef, Subquery, Case, When, Value
+from django.db.models import OuterRef, Subquery, Case, When, Value, Q
 from django.conf import settings
 from simple_history.models import HistoricalRecords
 from ordered_model.models import OrderedModel
-from bushido.utils import queryset_from_string
+from bushido.utils import queryset_from_string, q_object_from_string, get_properties
 import shortuuid
 import re
 
@@ -216,6 +216,19 @@ class Theme(models.Model):
     validation = models.CharField(max_length=500, blank=True)
     description = models.CharField(max_length=1000, default="No description")
     restriction = models.CharField(max_length=300, blank=True)
+
+    @property
+    def permitted_units(self):
+        permitted = Unit.objects.all()
+        properties = get_properties(self)
+        for filter_string in properties["FILTER"]:
+            permitted = permitted.filter(q_object_from_string(filter_string))
+        permitted |= Unit.objects.filter(properties__contains="ANYTHEME " + self.faction.shortName)
+        # TODO models that can go in any theme that allows x model (eg niseru)
+        for filter_string in properties["EXCLUDE"]:
+            permitted = permitted.exclude(q_object_from_string(filter_string))
+        permitted = permitted.exclude(Q(properties__contains="ONLYTHEME") & ~Q(properties__contains="ONLYTHEME " + self.name))
+        return permitted.distinct()
 
     def save(self, *args, **kwargs):
         if len(self.validation) == 0 and len(self.restriction) != 0:

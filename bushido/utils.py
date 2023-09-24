@@ -2,6 +2,7 @@ from django.db.models import Q
 import re
 import ast
 from django.contrib.staticfiles import finders
+import collections
 
 
 def nest_from_brackets(s):
@@ -97,6 +98,15 @@ def evaluate_expression(expression):
     return evaluated_expr[0]
 
 
+def q_object_from_string(string):
+    result = nest_from_brackets(string)
+    result = recursive_split(result)
+    result = recursive_dict(result)
+    result = create_q(result)
+    result = evaluate_expression(result)
+    return result
+
+
 def queryset_from_string(query_string):
     from bushido.models import Unit
     queryset = Unit.objects.all()
@@ -104,21 +114,27 @@ def queryset_from_string(query_string):
     for part in parts:
         part = part.strip()
         if not part.startswith("EXCLUDE"):
-            result = nest_from_brackets(part)
-            result = recursive_split(result)
-            result = recursive_dict(result)
-            result = create_q(result)
-            result = evaluate_expression(result)
-            queryset = queryset.filter(result)
+            queryset = queryset.filter(q_object_from_string(part))
         else:
             part = part.replace("EXCLUDE", "", 1).strip()
-            result = nest_from_brackets(part)
-            result = recursive_split(result)
-            result = recursive_dict(result)
-            result = create_q(result)
-            result = evaluate_expression(result)
-            queryset = queryset.exclude(result)
+            queryset = queryset.exclude(q_object_from_string(part))
     return queryset
+
+
+def get_properties(model):
+    if hasattr(model, "properties"):
+        results = model.properties.split(";")
+    elif hasattr(model, "validation"):
+        results = model.validation.split(";")
+    else:
+        raise AttributeError
+    properties = collections.defaultdict(list)
+    for item in results:
+        match = re.match(r"\s*([A-Z]*) ?(.*)?", item)
+        if not match.group(1):  # TODO remove this and add filter to validation
+            properties["FILTER"].append(match.group(2))
+        properties[match.group(1)].append(match.group(2))
+    return properties
 
 
 def convertToNew(theme):
