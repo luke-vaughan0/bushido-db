@@ -303,6 +303,18 @@ class List(models.Model):
     theme = models.ForeignKey(Theme, on_delete=models.CASCADE, default=0)
     faction = models.ForeignKey(Faction, on_delete=models.CASCADE)
 
+    def is_list_valid(self):
+        permitted = self.theme.permitted_units  # TODO ronin themes
+        for listunit in self.listunit_set.all():
+            properties = get_properties(listunit.unit)
+            if listunit.unit not in permitted:
+                return False
+            if "Insignificant" in listunit.unit.traits.values_list("name", flat=True) or "Animal" in listunit.unit.types.values_list("type", flat=True):
+                if "ALLOWENHANCEMENTS" not in properties:
+                    if listunit.equipment or len(listunit.enhancements.all()) != 0:
+                        return False
+        return True
+
 
 class ListUnit(models.Model):
     def __str__(self):
