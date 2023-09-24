@@ -29,7 +29,7 @@ urlpatterns = [
     path('info/terms/', TermListView.as_view(), name='allTerms'),
 
     path('info/factions/', FactionListView.as_view(), name='allFactions'),
-    path('info/factions/<int:factionid>/', views.factionPage, name='factionDetails'),
+    path('info/factions/<int:factionid>/', views.faction_details, name='factionDetails'),
 
     path('info/feats/', FeatListView.as_view(), name='allFeats'),
     path('info/feats/<int:featid>/', views.featDetails, name='featDetails'),

@@ -146,7 +146,7 @@ def search(request):
 
 def featDetails(request, featid):
     feat = get_object_or_404(KiFeat, pk=featid)
-    return render(request, 'bushido/feat_details.html', {'feat': feat})
+    return render(request, 'bushido/detail_views/feat_details.html', {'feat': feat})
 
 
 @permission_required("bushido.change_ki_feat")
@@ -159,7 +159,7 @@ def editFeat(request, featid):
             return redirect(reverse('bushido:featDetails', kwargs={'featid': featid}))
     else:
         form = EditFeat(instance=feat)
-    return render(request, 'bushido/edit_feat.html', {'feat': feat, "form": form})
+    return render(request, 'bushido/edit_views/edit_feat.html', {'feat': feat, "form": form})
 
 
 def unitDetails(request, unitid):
@@ -167,7 +167,6 @@ def unitDetails(request, unitid):
         Unit.objects.prefetch_related(
             Prefetch('unittrait_set', queryset=UnitTrait.objects.select_related('trait')),
             Prefetch('weapons', queryset=Weapon.objects.prefetch_related('weaponspecials__special', 'weapontraits__trait')),
-
         ),
         pk=unitid
     )
@@ -175,7 +174,7 @@ def unitDetails(request, unitid):
     cardFront = get_card(request.user, unit, " Front")
     cardBack = get_card(request.user, unit, " Reverse")
 
-    return render(request, 'bushido/unit_details.html',
+    return render(request, 'bushido/detail_views/unit_details.html',
                   {'unit': unit, 'cardUnits': cardUnits, 'cardFront': cardFront, 'cardBack': cardBack})
 
 
@@ -202,17 +201,15 @@ def editUnit(request, unitid):
         typeForm = TypeFormSet(instance=unit, prefix="types")
         traitForm = TraitFormSet(instance=unit, prefix="traits")
         weapon_formset = WeaponFormSet(instance=unit, queryset=Weapon.objects.filter(unit=unit), prefix="weapons")
-    return render(request, 'bushido/edit_unit.html',
+    return render(request, 'bushido/edit_views/edit_unit.html',
                   {'unit': unit, 'cardFront': cardFront, 'cardBack': cardBack,
                    "form": unitForm, 'weapon_formset': weapon_formset, 'trait_form': traitForm, 'type_form': typeForm})
 
 
 def themeDetails(request, themeid):
     theme = get_object_or_404(Theme, pk=themeid)
-    permitted = queryset_from_string(theme.validation).exclude(Q(properties__contains="ONLYTHEME") & ~Q(properties__contains="ONLYTHEME " + theme.name)).distinct()
-    permitted |= Unit.objects.filter(properties__contains="ANYTHEME " + theme.faction.shortName).distinct()
     card = get_card(request.user, theme)
-    return render(request, 'bushido/theme_details.html', {'theme': theme, 'card': card, 'permitted': permitted})
+    return render(request, 'bushido/detail_views/theme_details.html', {'theme': theme, 'card': card})
 
 
 @permission_required("bushido.change_theme")
@@ -226,13 +223,13 @@ def editTheme(request, themeid):
             return redirect(reverse('bushido:themeDetails', kwargs={'themeid': themeid}))
     else:
         form = EditTheme(instance=theme)
-    return render(request, 'bushido/edit_theme.html', {'theme': theme, 'card': card, "form": form})
+    return render(request, 'bushido/edit_views/edit_theme.html', {'theme': theme, 'card': card, "form": form})
 
 
 def eventDetails(request, eventid):
     event = get_object_or_404(Event, pk=eventid)
     card = get_card(request.user, event)
-    return render(request, 'bushido/event_details.html', {'event': event, 'card': card})
+    return render(request, 'bushido/detail_views/event_details.html', {'event': event, 'card': card})
 
 
 @permission_required("bushido.change_event")
@@ -246,13 +243,13 @@ def editEvent(request, eventid):
             return redirect(reverse('bushido:eventDetails', kwargs={'eventid': eventid}))
     else:
         form = EditEvent(instance=event)
-    return render(request, 'bushido/edit_event.html', {'event': event, 'card': card, "form": form})
+    return render(request, 'bushido/edit_views/edit_event.html', {'event': event, 'card': card, "form": form})
 
 
 def enhancementDetails(request, enhancementid):
     enhancement = get_object_or_404(Enhancement, pk=enhancementid)
     card = get_card(request.user, enhancement)
-    return render(request, 'bushido/enhancement_details.html', {'enhancement': enhancement, 'card': card})
+    return render(request, 'bushido/detail_views/enhancement_details.html', {'enhancement': enhancement, 'card': card})
 
 
 @permission_required("bushido.change_enhancement")
@@ -266,12 +263,12 @@ def editEnhancement(request, enhancementid):
             return redirect(reverse('bushido:enhancementDetails', kwargs={'enhancementid': enhancementid}))
     else:
         form = EditEnhancement(instance=enhancement)
-    return render(request, 'bushido/edit_enhancement.html', {'enhancement': enhancement, 'card': card, "form": form})
+    return render(request, 'bushido/edit_views/edit_enhancement.html', {'enhancement': enhancement, 'card': card, "form": form})
 
 
-def factionPage(request, factionid):
+def faction_details(request, factionid):
     faction = get_object_or_404(Faction, pk=factionid)
-    return render(request, 'bushido/faction.html', {'faction': faction})
+    return render(request, 'bushido/detail_views/faction_details.html', {'faction': faction})
 
 
 def userProfile(request):
@@ -336,7 +333,7 @@ class BushidoUnitListView(ListView):
 
 class BushidoListView(ListView):
     model = Unit
-    template_name = "bushido/unit_list.html"
+    template_name = "bushido/list_views/unit_list.html"
 
     def get_queryset(self):
         return Unit.objects.get_unique_card_names().prefetch_related("faction")
@@ -344,12 +341,12 @@ class BushidoListView(ListView):
 
 class FactionListView(ListView):
     model = Faction
-    template_name = "bushido/faction_list.html"
+    template_name = "bushido/list_views/faction_list.html"
 
 
 class FeatListView(ListView):
     model = KiFeat
-    template_name = "bushido/kifeat_list.html"
+    template_name = "bushido/list_views/kifeat_list.html"
 
 
 class SpecialListView(ListView):
@@ -369,4 +366,4 @@ class StateListView(ListView):
 
 class TraitListView(ListView):
     model = Trait
-    template_name = "bushido/trait_list.html"
+    template_name = "bushido/list_views/trait_list.html"
