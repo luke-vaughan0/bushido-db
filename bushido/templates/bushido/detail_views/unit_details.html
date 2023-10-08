@@ -25,7 +25,7 @@
     <p class="fw-light">{{unit.faction.name}}</p>
     <ul class="list-group list-group-horizontal">
       {% for type in unit.types.all %}
-      {% if type.type not in unit.name %}
+      {% if type.type not in unit.name and type.type not in unit.cardName %}
       <li class="list-group-item py-1">{{ type.type }}</li>
       {% endif %}
       {% endfor %}
