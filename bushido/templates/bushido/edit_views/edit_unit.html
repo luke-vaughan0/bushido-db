@@ -10,8 +10,33 @@
     <div>
       {{ form.name|as_crispy_field }}
       <p class="fw-light">{{unit.faction.name}}</p>
-      <ul class="list-group list-group-horizontal">
-        {{ type_form|crispy }}
+      <h6>Types</h6>
+      <ul class="list-group list-group-horizontal formset-container">
+        {{ type_form.management_form }}
+        {{ type_form.non_form_errors }}
+        {% for hidden_field in type_form.hidden_fields %}
+        {{ hidden_field.errors }}
+          {{hidden_field}}
+        {% endfor %}
+        {% for form in type_form %}
+        <div class="formset-form">
+          {{ form.non_form_errors }}
+          {% for hidden_field in form.hidden_fields %}
+            {{ hidden_field.errors }}
+            {{hidden_field}}
+        {% endfor %}
+          {{ form.type|as_crispy_field }}
+          <div class="d-none">
+            {{ form.DELETE|as_crispy_field }}
+          </div>
+        </div>
+        {% endfor %}
+        <div class="formset-form empty-form d-none">
+          {{ type_form.empty_form.type|as_crispy_field }}
+          <div class="d-none">
+            {{ type_form.empty_form.DELETE|as_crispy_field }}
+          </div>
+        </div>
       </ul>
     </div>
     <hr>
@@ -56,8 +81,8 @@
               <span class="input-group-text">mm</span>
             </div>
           </td>
-        </tbody>
         </tr>
+        </tbody>
       </table>
     </div>
     <div>
@@ -72,64 +97,172 @@
     {{ hidden_field.errors }}
       {{hidden_field}}
     {% endfor %}
-    <div class="container">
-      <div class="row">
+    <div id="weapon-forms" class="container formset-container">
     {% for form in weapon_formset %}
-        <div class="col-sm-4">
-          {{ form.non_form_errors }}
-          {% for hidden_field in form.hidden_fields %}
+      <div class="row my-4 p-2 border formset-form">
+        <h5>Weapon</h5>
+        {{ form.non_form_errors }}
+        {% for hidden_field in form.hidden_fields %}
           {{ hidden_field.errors }}
-      {{hidden_field}}
-    {% endfor %}
-          <div class="card">
-            <div class="card-body weapon">
-              {{form.DELETE|as_crispy_field}}
-              <h5 class="card-title">{{form.name|as_crispy_field}}</h5>
-              <h6 class="card-subtitle mb-2 text-muted">{{form.strength|as_crispy_field}}{{form.isRanged|as_crispy_field }}</h6>
-              <div class="range-bands">
-                <p>Range Bands</p>
-                {{form.shortRange}}/{{form.mediumRange}}/{{form.longRange}}
-              </div>
-              <div>
-                {{ form.traits.management_form }}
-                {% for traitform in form.traits %}
-                <div class="border mt-2 p-1">
-                {{ traitform.non_form_errors }}
-                {% for hidden_field in traitform.hidden_fields %}
-                {{ hidden_field.errors }}
-      {{hidden_field}}
-    {% endfor %}
-                {{ traitform|crispy }}
-                  </div>
-                {% endfor %}
-              </div>
-              <div>
-                {{ form.specials.management_form }}
-                {% for specialform in form.specials %}
-                <div class="border mt-2 p-1">
-                {{ specialform.non_form_errors }}
-                {% for hidden_field in specialform.hidden_fields %}
-                {{ hidden_field.errors }}
-      {{hidden_field}}
-    {% endfor %}
-                {{ specialform|crispy }}
-                </div>
-                {% endfor %}
-              </div>
+          {{hidden_field}}
+        {% endfor %}
+        {{form.DELETE|as_crispy_field}}
+        <div class="row">
+          <div class="col-lg-6">
+            {{form.name|as_crispy_field}}
+          </div>
+          <div class="col-lg-2 col-4">
+            {{form.strength|as_crispy_field}}
+          </div>
+          <div class="col-lg-2 col-4">
+            {{form.isRanged|as_crispy_field }}
+          </div>
+        </div>
+        <div class="row range-bands d-none">
+          <div class="col-lg-2 col-4">
+            {{form.shortRange|as_crispy_field}}
+          </div>
+          <div class="col-lg-2 col-4">
+            {{form.mediumRange|as_crispy_field}}
+          </div>
+          <div class="col-lg-2 col-4">
+            {{form.longRange|as_crispy_field}}
+          </div>
+        </div>
+        <div class="formset-container pt-3 border-bottom border-top">
+          <h6>Weapon Traits</h6>
+          {{ form.traits.management_form }}
+          {% for trait_form in form.traits %}
+          <div class="row formset-form">
+            {{ trait_form.non_form_errors }}
+            {% for hidden_field in trait_form.hidden_fields %}
+              {{ hidden_field.errors }}
+              {{ hidden_field }}
+            {% endfor %}
+            <div class="col-lg-4 col-sm-12">
+              {{ trait_form.trait|as_crispy_field }}
+            </div>
+            <div class="col-lg-2 col-6">
+              {{ trait_form.X|as_crispy_field }}
+            </div>
+            <div class="col-lg-2 col-6">
+              {{ trait_form.Y|as_crispy_field }}
+            </div>
+            <div class="col-lg-4 col-sm-12">
+              {{ trait_form.descriptor|as_crispy_field }}
+            </div>
+            <div class="d-none">
+              {{ trait_form.DELETE|as_crispy_field}}
+            </div>
+          </div>
+          {% endfor %}
+          <div class="row formset-form d-none empty-form">
+            <div class="col-lg-4 col-sm-12">
+              {{ form.traits.empty_form.trait|as_crispy_field }}
+            </div>
+            <div class="col-lg-2 col-6">
+              {{ form.traits.empty_form.X|as_crispy_field }}
+            </div>
+            <div class="col-lg-2 col-6">
+              {{ form.traits.empty_form.Y|as_crispy_field }}
+            </div>
+            <div class="col-lg-4 col-sm-12">
+              {{ form.traits.empty_form.descriptor|as_crispy_field }}
+            </div>
+            <div class="d-none">
+              {{ form.traits.empty_form.DELETE|as_crispy_field}}
             </div>
           </div>
         </div>
-        {% endfor %}
+        <div class="formset-container mt-3">
+          <h6>Special Abilities</h6>
+          {{ form.specials.management_form }}
+          {% for special_form in form.specials %}
+          <div class="row formset-form">
+          {{ special_form.non_form_errors }}
+          {% for hidden_field in special_form.hidden_fields %}
+            {{ hidden_field.errors }}
+            {{hidden_field}}
+          {% endfor %}
+          <div class="col-8">
+            {{ special_form.special|as_crispy_field }}
+          </div>
+          <div class="col-4">
+            {{ special_form.cost|as_crispy_field }}
+          </div>
+          <div class="d-none">
+            {{ special_form.DELETE|as_crispy_field}}
+          </div>
+          </div>
+          {% endfor %}
+          <div class="row formset-form d-none empty-form">
+          <div class="col-8">
+            {{ form.specials.empty_form.special|as_crispy_field }}
+          </div>
+          <div class="col-4">
+            {{ form.specials.empty_form.cost|as_crispy_field }}
+          </div>
+          <div class="d-none">
+            {{ form.specials.empty_form.DELETE|as_crispy_field}}
+          </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      <div class="row my-4 p-2 border formset-form d-none empty-form">
+        <!-- TODO: figure out weapon empty form (or have extra ones show) -->
       </div>
     </div>
     <hr>
-    <div>
+    <div id="trait-forms" class="formset-container">
       <h4>Traits:</h4>
-      {{ trait_form|crispy }}
+      {{ trait_form.management_form }}
+      {% for form in trait_form %}
+      <div class="row formset-form">
+        {{ form.non_form_errors }}
+        {% for hidden_field in form.hidden_fields %}
+          {{ hidden_field.errors }}
+          {{hidden_field}}
+        {% endfor %}
+        <div class="col-lg-4 col-sm-12">
+          {{ form.trait|as_crispy_field }}
+        </div>
+        <div class="col-lg-2 col-6">
+          {{ form.X|as_crispy_field }}
+        </div>
+        <div class="col-lg-2 col-6">
+          {{ form.Y|as_crispy_field }}
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          {{ form.descriptor|as_crispy_field }}
+        </div>
+        <div class="d-none">
+          {{ form.DELETE|as_crispy_field}}
+        </div>
+        <hr>
+      </div>
+      {% endfor %}
+      <div id="empty-trait-form" class="row d-none empty-form formset-form">
+        <div class="col-lg-4 col-12">
+          {{ trait_form.empty_form.trait|as_crispy_field }}
+        </div>
+        <div class="col-lg-2 col-6">
+          {{ trait_form.empty_form.X|as_crispy_field }}
+        </div>
+        <div class="col-lg-2 col-6">
+          {{ trait_form.empty_form.Y|as_crispy_field }}
+        </div>
+        <div class="col-lg-4 col-12">
+          {{ trait_form.empty_form.descriptor|as_crispy_field }}
+        </div>
+        <div class="d-none">
+          {{ trait_form.empty_form.DELETE|as_crispy_field}}
+        </div>
+        <hr>
+      </div>
     </div>
-    <hr>
     <h4>Feats:</h4>
-    <div class="container">
+    <div class="container pt-1">
       <div class="card">
         <div class="card-body">
           <div class="scrollable-list">
@@ -140,7 +273,7 @@
         </div>
       </div>
     </div>
-    <div>
+    <div class="pt-3">
       <h4>Unique Effects:</h4>
       <p>{{ form.uniqueEffects|as_crispy_field }}</p>
     </div>

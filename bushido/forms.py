@@ -44,12 +44,28 @@ class EditUnitFeats(forms.ModelForm):
 
 
 class UnitTraitForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
+        self.fields['X'].widget.attrs['placeholder'] = 'X value'
+        self.fields['Y'].widget.attrs['placeholder'] = 'Y value'
+        self.fields['descriptor'].widget.attrs['placeholder'] = 'Descriptor'
+        self.fields['trait'].widget.attrs['class'] = 'formset-add'
+
     class Meta:
         model = UnitTrait
         fields = ['trait', 'X', 'Y', 'descriptor']
 
 
 class UnitTypeForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
+        self.fields['type'].widget.attrs['class'] = 'formset-add'
+
     class Meta:
         model = UnitType
         fields = ['type']
@@ -103,12 +119,28 @@ class EditEnhancement(forms.ModelForm):
 
 
 class WeaponTraitForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
+        self.fields['X'].widget.attrs['placeholder'] = 'X value'
+        self.fields['Y'].widget.attrs['placeholder'] = 'Y value'
+        self.fields['descriptor'].widget.attrs['placeholder'] = 'Descriptor'
+        self.fields['trait'].widget.attrs['class'] = 'formset-add'
+
     class Meta:
         model = WeaponTrait
         fields = ['trait', 'X', 'Y', 'descriptor']
 
 
 class WeaponSpecialForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
+        self.fields['cost'].widget.attrs['placeholder'] = 'Cost'
+        self.fields['special'].widget.attrs['class'] = 'formset-add'
+
     class Meta:
         model = WeaponSpecial
         fields = ['special', 'cost']
@@ -119,12 +151,19 @@ WeaponSpecialFormSet = inlineformset_factory(Weapon, WeaponSpecial, form=WeaponS
 
 
 class WeaponForm(BaseInlineFormSet):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
+
     class Meta:
         model = Weapon
         fields = ['name', 'strength', 'isRanged', 'shortRange', 'mediumRange', 'longRange']
 
     def add_fields(self, form, index):
         super().add_fields(form, index)
+        form.fields['name'].widget.attrs['class'] = 'formset-add'
+        form.fields['isRanged'].label = "Ranged"
 
         # Save the formset for a Book's Images in the nested property.
         form.traits = WeaponTraitFormSet(

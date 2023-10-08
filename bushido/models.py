@@ -165,17 +165,28 @@ class UnitTrait(models.Model):
 
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
     trait = models.ForeignKey(Trait, on_delete=models.CASCADE)
-    X = models.CharField(max_length=3, default="0", blank=True)
-    Y = models.CharField(max_length=3, default="0", blank=True)
-    descriptor = models.CharField(max_length=20, default="", blank=True)
+    X = models.CharField(max_length=3, blank=True)
+    Y = models.CharField(max_length=3, blank=True)
+    descriptor = models.CharField(max_length=50, blank=True)
 
     @property
     def formatted(self):
-        return self.trait.name + self.trait.full.split(self.trait.name)[1]\
+        extra = self.trait.full.split(self.trait.name)[1]
+        text = self.trait.name + extra\
             .replace("X", self.X)\
             .replace("Y", self.Y)\
             .replace("Descriptor", self.descriptor)\
             .replace("Bonus", self.descriptor)
+        if "Descriptor" not in extra and "Bonus" not in extra and self.descriptor != "":
+            text += f" [{self.descriptor}]"
+        return text
+
+    def save(self, *args, **kwargs):
+        if "X" in self.trait.full and self.X == "":
+            self.X = "1"
+        if "Y" in self.trait.full and self.Y == "":
+            self.Y = "1"
+        super().save(*args, **kwargs)
 
     class Meta:
         ordering = ["trait__name"]
@@ -349,17 +360,28 @@ class WeaponTrait(models.Model):
 
     weapon = models.ForeignKey(Weapon, related_name="weapontraits", on_delete=models.CASCADE)
     trait = models.ForeignKey(Trait, on_delete=models.CASCADE)
-    X = models.CharField(max_length=3, default="0", blank=True)
-    Y = models.CharField(max_length=3, default="0", blank=True)
-    descriptor = models.CharField(max_length=20, default="", blank=True)
+    X = models.CharField(max_length=3, blank=True)
+    Y = models.CharField(max_length=3, blank=True)
+    descriptor = models.CharField(max_length=50, blank=True)
 
     @property
     def formatted(self):
-        return self.trait.name + self.trait.full.split(self.trait.name)[1] \
+        extra = self.trait.full.split(self.trait.name)[1]
+        text = self.trait.name + extra \
             .replace("X", self.X) \
             .replace("Y", self.Y) \
             .replace("Descriptor", self.descriptor) \
             .replace("Bonus", self.descriptor)
+        if "Descriptor" not in extra and "Bonus" not in extra and self.descriptor != "":
+            text += f" [{self.descriptor}]"
+        return text
+
+    def save(self, *args, **kwargs):
+        if "X" in self.trait.full and self.X == "":
+            self.X = "1"
+        if "Y" in self.trait.full and self.Y == "":
+            self.Y = "1"
+        super().save(*args, **kwargs)
 
 
 class WeaponSpecial(models.Model):
