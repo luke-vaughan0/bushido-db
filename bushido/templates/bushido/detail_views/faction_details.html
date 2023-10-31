@@ -1,6 +1,10 @@
 {% extends "bushido/base.html" %}
 {% load static %}
 {% block title %}<title>{{faction.name}} - Info</title>{% endblock %}
+{% block metatags %}
+    <meta property="og:title" content="{{faction.name}} - Faction">
+    <meta property="og:description" content="View information about {{faction.name}}, including models, themes and more">
+{% endblock %}
 {% block content %}
 <div class="container m-0">
     <div>

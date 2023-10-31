@@ -3,11 +3,10 @@
 {% load bushidofilters %}
 {% block title %}<title>{{unit.name}} - Info</title>{% endblock %}
 {% block metatags %}
-    <meta property="og:title" content="{{unit.cardName}} - BushidoDB">
-    <meta property="og:description" content="{{unit.faction.name}}">
+    <meta property="og:title" content="{{unit.cardName}} - {{unit.faction.name}}">
     <meta property="og:image" content="{% static cardFront %}">
     <meta name="twitter:card" content="summary_large_image">
-    {% endblock %}
+{% endblock %}
 {% block content %}
 <div class="container m-0">
   <div>
