@@ -23,6 +23,8 @@ urlpatterns = [
     path('list/<str:listid>/', views.viewList),
     path('list/', views.createList),
     path('search/', views.search, name='search'),
+    path('wave/<int:wave_number>/', views.wave_list, name='wave_list'),
+    path('wave/latest/', views.wave_list, name='latest_wave'),
     path('info/traits/', TraitListView.as_view(), name='allTraits'),
     path('info/specials/', SpecialListView.as_view(), name='allSpecials'),
     path('info/states/', StateListView.as_view(), name='allStates'),

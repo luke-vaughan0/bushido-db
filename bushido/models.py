@@ -84,6 +84,8 @@ class Unit(models.Model):
     kiFeats = models.ManyToManyField('KiFeat', blank=True)
     traits = models.ManyToManyField('Trait', through='UnitTrait', blank=True)
 
+    wave = models.CharField(max_length=3, default="0")
+
     # internal stuff
     properties = models.CharField(max_length=1000, blank=True)
 

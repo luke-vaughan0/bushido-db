@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.views.generic import ListView
 from bushido.models import Unit, KiFeat, UnitTrait, Trait, Theme, Event, List, ListUnit, Weapon, UserProfile,\
     WeaponTrait, WeaponSpecial, Faction, Special, Enhancement
-from django.db.models import Q, Prefetch
+from django.db.models import Q, Prefetch, Max
 from django.db import models
 from django.contrib import auth, messages
 from .forms import *
@@ -142,6 +142,14 @@ def search(request):
             return redirect('/bushido/info/{}s/{}'.format(
                 classNames.get(model.__class__.__name__, model.__class__.__name__).lower(), model.pk))
     return render(request, 'bushido/search.html', {"search_results": result})
+
+
+def wave_list(request, wave_number=None):
+    if wave_number is None:
+        wave_number = str(Unit.objects.aggregate(Max('wave')).get('wave__max'))
+    print(wave_number)
+    wave_units = Unit.objects.get_unique_card_names().filter(wave=wave_number).prefetch_related("faction")
+    return render(request, 'bushido/list_views/unit_wave.html', {'wave_number': wave_number, "wave_units": wave_units})
 
 
 def featDetails(request, featid):
