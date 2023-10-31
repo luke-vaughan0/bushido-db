@@ -1,0 +1,20 @@
+{% extends "bushido/base.html" %}
+{% block title %}<title>Wave {{ wave_number }}</title>{% endblock %}
+{% block metatags %}
+    <meta property="og:title" content="Wave {{ wave_number }}">
+    <meta property="og:description" content="View the list of models released in wave {{ wave_number }}">
+{% endblock %}
+{% block content %}
+<div class="container m-0">
+  <h1>Wave {{ wave_number }}</h1>
+  <div>
+    <ul class="list-group">
+      {% for unit in wave_units %}
+            <a class="list-group-item list-group-item-action" href="{% url 'bushido:modelDetails' unitid=unit.id %}">
+                {{unit.cardName}} - {{unit.faction.name}}
+            </a>
+        {% endfor %}
+    <ul>
+  </div>
+</div>
+{% endblock %}
