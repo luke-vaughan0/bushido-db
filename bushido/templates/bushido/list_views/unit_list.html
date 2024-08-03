@@ -3,42 +3,45 @@
 {% load bushidofilters %}
 {% block content %}
 <div class="container-fluid pe-1">
-    <div class="row">
-        <h2>All Models</h2>
+  <div class="row">
+    <h2>All Models</h2>
+  </div>
+  {% if perms.bushido.add_unit %}
+    <a class="btn btn-outline-secondary" href="{% url 'bushido:add_model' %}" role="button">Add New</a>
+  {% endif %}
+  <div class="row">
+    <div class="col-lg-9">
+      <table id="modelTable" class="table table-striped table-hover data-table">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Melee</th>
+          <th>Ranged</th>
+          <th>Ki</th>
+          <th>Move</th>
+          <th>Wounds</th>
+          <th>Cost</th>
+          <th>Faction</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for unit in unit_list %}
+        <tr>
+          <td><a href="{% url 'bushido:modelDetails' unitid=unit.id%}">{{ unit.name }}</a></td>
+          <td>{{unit.meleePool}} {{unit.meleeBoost|addBrackets}}</td>
+          <td>{{unit.rangedPool}} {{unit.rangedBoost|addBrackets}}</td>
+          <td>{{unit.kiStat}}/{{unit.kiMax}} {{unit.kiBoost|addBrackets}}</td>
+          <td>{{unit.movePool}} {{unit.moveBoost|addBrackets}}</td>
+          <td>{{unit.wounds}}</td>
+          <td>{{unit.cost}}</td>
+          <td>{{unit.faction.name}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+      </table>
     </div>
-    <div class="row">
-        <div class="col-lg-9">
-            <table id="modelTable" class="table table-striped table-hover data-table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Melee</th>
-                        <th>Ranged</th>
-                        <th>Ki</th>
-                        <th>Move</th>
-                        <th>Wounds</th>
-                        <th>Cost</th>
-                        <th>Faction</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for unit in unit_list %}
-                    <tr>
-                        <td><a href="{% url 'bushido:modelDetails' unitid=unit.id%}">{{ unit.name }}</a></td>
-                        <td>{{unit.meleePool}} {{unit.meleeBoost|addBrackets}}</td>
-                        <td>{{unit.rangedPool}} {{unit.rangedBoost|addBrackets}}</td>
-                        <td>{{unit.kiStat}}/{{unit.kiMax}} {{unit.kiBoost|addBrackets}}</td>
-                        <td>{{unit.movePool}} {{unit.moveBoost|addBrackets}}</td>
-                        <td>{{unit.wounds}}</td>
-                        <td>{{unit.cost}}</td>
-                        <td>{{unit.faction.name}}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <div class="col-lg-3">
-            <div class="search-panes" id="searchPanesContainer">
+    <div class="col-lg-3">
+      <div class="search-panes" id="searchPanesContainer">
 
             </div>
         </div>

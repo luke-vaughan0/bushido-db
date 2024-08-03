@@ -34,6 +34,7 @@ urlpatterns = [
     path('info/factions/<int:factionid>/', views.faction_details, name='factionDetails'),
 
     path('info/feats/', FeatListView.as_view(), name='allFeats'),
+    path('info/feats/add/', views.add_feat, name='add_feat'),
     path('info/feats/<int:featid>/', views.featDetails, name='featDetails'),
     path('info/feats/<int:featid>/edit/', views.editFeat, name='editFeat'),
 
@@ -41,6 +42,7 @@ urlpatterns = [
     path('info/themes/<int:themeid>/edit/', views.editTheme, name='editTheme'),
 
     path('info/models/', BushidoListView.as_view(), name='allModels'),
+    path('info/models/add/', views.add_unit, name='add_model'),
     path('info/models/<int:unitid>/', views.unitDetails, name='modelDetails'),
     path('info/models/<int:unitid>/edit/', views.editUnit, name='editModel'),
 
