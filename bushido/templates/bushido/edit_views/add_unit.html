@@ -1,0 +1,12 @@
+{% extends "bushido/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}<title>New Model</title>{% endblock %}
+{% block content %}
+<div class="container m-0">
+  <form method="post" action="">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input class="btn btn-outline-secondary" type="submit" value="Submit">
+  </form>
+</div>
+{% endblock %}

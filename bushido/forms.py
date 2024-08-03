@@ -43,6 +43,12 @@ class EditUnitFeats(forms.ModelForm):
         fields = ["kiFeats"]
 
 
+class AddUnit(forms.ModelForm):
+    class Meta:
+        model = Unit
+        fields = ["name", "faction"]
+
+
 class UnitTraitForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):

@@ -170,6 +170,18 @@ def editFeat(request, featid):
     return render(request, 'bushido/edit_views/edit_feat.html', {'feat': feat, "form": form})
 
 
+@permission_required("bushido.add_ki_feat")
+def add_feat(request):
+    if request.method == "POST":
+        form = EditFeat(request.POST)
+        if form.is_valid():
+            feat = form.save()
+            return redirect(reverse('bushido:featDetails', kwargs={'featid': feat.id}))
+    else:
+        form = EditFeat()
+    return render(request, 'bushido/edit_views/edit_feat.html', {"form": form})
+
+
 def unitDetails(request, unitid):
     unit = get_object_or_404(
         Unit.objects.prefetch_related(
@@ -212,6 +224,18 @@ def editUnit(request, unitid):
     return render(request, 'bushido/edit_views/edit_unit.html',
                   {'unit': unit, 'cardFront': cardFront, 'cardBack': cardBack,
                    "form": unitForm, 'weapon_formset': weapon_formset, 'trait_form': traitForm, 'type_form': typeForm})
+
+
+@permission_required("bushido.add_unit")
+def add_unit(request):
+    if request.method == "POST":
+        form = AddUnit(request.POST)
+        if form.is_valid():
+            unit = form.save()
+            return redirect(reverse('bushido:editModel', kwargs={'unitid': unit.id}))
+    else:
+        form = AddUnit()
+    return render(request, 'bushido/edit_views/add_unit.html', {"form": form})
 
 
 def themeDetails(request, themeid):
