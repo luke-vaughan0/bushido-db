@@ -410,3 +410,60 @@ class Term(models.Model):
 
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=5000)
+
+
+class Action(models.Model):
+    def __str__(self):
+        return self.name
+
+    ActionTypeChoices = [
+        ("Simple", "Simple"),
+        ("Complex", "Complex"),
+    ]
+
+    name = models.CharField(max_length=30)
+    action_type = models.CharField(max_length=15, choices=ActionTypeChoices, default="Simple")
+    description = models.CharField(max_length=1000)
+    standard_action = models.BooleanField(default=True)
+    no_move = models.BooleanField(default=False)
+    no_btb = models.BooleanField(default=False)
+
+
+class Terrain(models.Model):
+    def __str__(self):
+        return self.name
+
+    PassageChoices = [
+        ("Normal", "Normal"),
+        ("Difficult", "Difficult"),
+        ("Impassable", "Impassable"),
+        ("Ideal", "Ideal"),
+    ]
+    VisibilityChoices = [
+        ("Clear", "Clear"),
+        ("Obscuring", "Obscuring"),
+        ("Blocking", "Blocking"),
+        ("Enhancing", "Enhancing"),
+    ]
+    SizeChoices = [
+        ("Zero", "Zero"),
+        ("Tiny", "Tiny"),
+        ("Small", "Small"),
+        ("Medium", "Medium"),
+        ("Large", "Large"),
+        ("Huge", "Huge"),
+    ]
+
+    name = models.CharField(max_length=50)
+    cycle = models.CharField(max_length=30, choices=CycleChoices, blank=True)
+    cost = models.CharField(max_length=20)
+    max = models.CharField(max_length=20, default="1", blank=True)
+    faction = models.ForeignKey(Faction, on_delete=models.CASCADE)
+    description = models.CharField(max_length=2000)
+    restriction = models.CharField(max_length=300, blank=True)
+    destructible = models.BooleanField(default=False)
+    passage = models.CharField(max_length=15, choices=PassageChoices)
+    visibility = models.CharField(max_length=15, choices=VisibilityChoices)
+    size = models.CharField(max_length=10, choices=SizeChoices)
+    properties = models.CharField(max_length=1000, blank=True)
+    base_size = models.CharField(max_length=50, blank=True)
