@@ -1,0 +1,40 @@
+{% extends "bushido/base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}<title>New Ruling</title>{% endblock %}
+{% block content %}
+<div class="container m-0">
+  <form method="post" action="">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <label class="form-label">Tags</label>
+    <ul id="tags" class="list-group formset-container">
+        {{ tag_form.management_form }}
+        {{ tag_form.non_form_errors }}
+        {% for hidden_field in tag_form.hidden_fields %}
+        {{ hidden_field.errors }}
+          {{hidden_field}}
+        {% endfor %}
+        {% for form in tag_form %}
+        <div class="formset-form">
+          {{ form.non_form_errors }}
+          {% for hidden_field in form.hidden_fields %}
+            {{ hidden_field.errors }}
+            {{hidden_field}}
+        {% endfor %}
+          {{ form.tag|as_crispy_field }}
+          <div class="d-none">
+            {{ form.DELETE|as_crispy_field }}
+          </div>
+        </div>
+        {% endfor %}
+        <div class="formset-form empty-form d-none">
+          {{ tag_form.empty_form.tag|as_crispy_field }}
+          <div class="d-none">
+            {{ tag_form.empty_form.DELETE|as_crispy_field }}
+          </div>
+        </div>
+      </ul>
+    <input class="btn btn-outline-secondary" type="submit" value="Submit">
+  </form>
+</div>
+{% endblock %}

@@ -54,6 +54,10 @@ class Faction(OrderedModel):
     name = models.CharField(max_length=50)
     description = models.TextField()
 
+    @property
+    def all_units(self):
+        return self.unit_set.all() | self.ronin_units.all()
+
 
 class Unit(models.Model):
 
@@ -92,7 +96,13 @@ class Unit(models.Model):
     objects = UnitManager()
     history = HistoricalRecords()
 
+    @property
+    def rulings(self):
+        tags = [self.name]
+        return Ruling.objects.filter(tags__tag__in=tags)
+
     class Meta:
+        unique_together = ["faction", "name"]
         ordering = ["faction", "name"]
 
 
@@ -121,7 +131,7 @@ class KiFeat(models.Model):
         ("OPG", "Once per Game"),
     ]
 
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=50)
     cost = models.CharField(max_length=6)
     timing = models.CharField(max_length=8, choices=TimingChoices, default="Active")
     featType = models.CharField(max_length=8, choices=TypeChoices, default="Personal")
@@ -467,3 +477,22 @@ class Terrain(models.Model):
     size = models.CharField(max_length=10, choices=SizeChoices)
     properties = models.CharField(max_length=1000, blank=True)
     base_size = models.CharField(max_length=50, blank=True)
+
+
+class Ruling(models.Model):
+    def __str__(self):
+        return self.ruling if len(self.ruling) < 50 else self.ruling[:47] + "..."
+
+    ruling = models.CharField(max_length=500)
+    date = models.DateField(default=datetime.date.today)
+
+
+class RulingTag(models.Model):
+    def __str__(self):
+        return self.tag + " - " + self.ruling.ruling[:12]
+
+    ruling = models.ForeignKey(Ruling, related_name="tags", on_delete=models.CASCADE)
+    tag = models.CharField(max_length=100)
+
+    class Meta:
+        ordering = ["tag"]

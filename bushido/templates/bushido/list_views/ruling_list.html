@@ -1,0 +1,25 @@
+{% extends "bushido/base.html" %}
+{% block title %}<title>Rulings</title>{% endblock %}
+{% block content %}
+<div class="container m-0">
+    <h2>Rulings</h2>
+  {% if perms.bushido.add_ruling %}
+    <a class="btn btn-outline-secondary mb-2" href="{% url 'bushido:add_ruling' %}" role="button">Add New</a>
+  {% endif %}
+    <div class="list-group">
+      {% for ruling in ruling_list %}
+      <div class="list-group-item w-auto py-md-2">
+        <p>{{ ruling.ruling }}</p>
+        <div class="d-flex">
+          <small class="me-auto">
+            {% for tag in ruling.tags.all %}
+              {{ tag.tag }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+          </small>
+          <small>{{ ruling.date }}</small>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+</div>
+{% endblock %}

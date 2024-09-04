@@ -1,13 +1,17 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from bushido.models import Unit, List, UserProfile, KiFeat, Weapon, WeaponTrait, WeaponSpecial, UnitTrait, UnitType, Faction, Theme, Event, Enhancement
+from bushido.models import Unit, List, UserProfile, KiFeat, Weapon, WeaponTrait, WeaponSpecial, UnitTrait, UnitType, Faction, Theme, Event, Enhancement, Ruling, RulingTag
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field
 from django.forms.widgets import CheckboxSelectMultiple
 from django.forms import inlineformset_factory
 from django.forms.models import BaseInlineFormSet
+
+
+class TextForm(forms.Form):
+    text = forms.CharField(label="Text", widget=forms.Textarea)
 
 
 class RegisterForm(UserCreationForm):
@@ -47,6 +51,29 @@ class AddUnit(forms.ModelForm):
     class Meta:
         model = Unit
         fields = ["name", "faction"]
+
+
+class AddRuling(forms.ModelForm):
+    ruling = forms.CharField(label="Ruling", widget=forms.Textarea, required=True)
+
+    class Meta:
+        model = Ruling
+        fields = ["ruling", "date"]
+
+
+class RulingTagForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
+        self.fields['tag'].widget.attrs['class'] = 'formset-add'
+
+    class Meta:
+        model = RulingTag
+        fields = ['tag']
+
+
+RulingTagFormSet = inlineformset_factory(Ruling, RulingTag, form=RulingTagForm, extra=1)
 
 
 class UnitTraitForm(forms.ModelForm):

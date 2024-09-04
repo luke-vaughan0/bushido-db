@@ -238,6 +238,21 @@ def add_unit(request):
     return render(request, 'bushido/edit_views/add_unit.html', {"form": form})
 
 
+@permission_required("bushido.add_ruling")
+def add_ruling(request):
+    if request.method == "POST":
+        ruling_form = AddRuling(request.POST)
+        tag_form = RulingTagFormSet(request.POST, instance=ruling_form.instance, prefix="tags")
+        if ruling_form.is_valid() and tag_form.is_valid():
+            ruling = ruling_form.save()
+            tag_form.save()
+            return redirect(reverse('bushido:allRulings'))
+    else:
+        ruling_form = AddRuling()
+        tag_form = RulingTagFormSet(prefix="tags")
+    return render(request, 'bushido/edit_views/add_ruling.html', {"form": ruling_form, "tag_form": tag_form})
+
+
 def themeDetails(request, themeid):
     theme = get_object_or_404(Theme, pk=themeid)
     card = get_card(request.user, theme)
@@ -383,6 +398,11 @@ class BushidoListView(ListView):
 class FactionListView(ListView):
     model = Faction
     template_name = "bushido/list_views/faction_list.html"
+
+
+class RulingListView(ListView):
+    model = Ruling
+    template_name = "bushido/list_views/ruling_list.html"
 
 
 class FeatListView(ListView):
