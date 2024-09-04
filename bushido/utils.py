@@ -199,7 +199,7 @@ def testTheme(theme):
         print(set(actual).difference((set(new))))
 
 
-def get_card(user, item, extra=""):
+def get_card(user=None, item=None, extra=""):
     name = item.cardName if hasattr(item, "cardName") else item.name
     class_names = {
         "Unit": "Model",
@@ -209,7 +209,7 @@ def get_card(user, item, extra=""):
     card = 'bushido/' + item.faction.shortName + "/" + item_type + "/" + name + extra + (".jpg" if not re.match(r".*\.(jpg|png)", extra) else "")
     if not finders.find(card.replace("bushido/", "bushido/unofficial/").replace(".jpg", ".png")):
         return card
-    if user.is_authenticated:
+    if user and user.is_authenticated:
         if not user.userprofile.use_unofficial_cards:
             return card
     return card.replace("bushido/", "bushido/unofficial/").replace(".jpg", ".png")
