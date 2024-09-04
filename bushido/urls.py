@@ -30,6 +30,9 @@ urlpatterns = [
     path('info/states/', StateListView.as_view(), name='allStates'),
     path('info/terms/', TermListView.as_view(), name='allTerms'),
 
+    path('info/rulings/', RulingListView.as_view(), name='allRulings'),
+    path('info/rulings/add/', views.add_ruling, name='add_ruling'),
+
     path('info/factions/', FactionListView.as_view(), name='allFactions'),
     path('info/factions/<int:factionid>/', views.faction_details, name='factionDetails'),
 
