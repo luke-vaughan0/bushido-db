@@ -1,0 +1,62 @@
+{% extends "bushido/base.html" %}
+{% block title %}<title>{{trait.name}} - Info</title>{% endblock %}
+{% block metatags %}
+<meta property="og:title" content="{{trait.name}} - BushidoDB">
+<meta property="og:description" content="{{trait.description}}">
+{% endblock %}
+{% block content %}
+<div class="container m-0">
+  <div>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'bushido:index' %}">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'bushido:allTraits' %}">Traits</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Trait</a></li>
+      </ol>
+    </nav>
+  </div>
+  <h2 class="pb-0">{{trait.name}}</h2>
+  <p class="fw-light">{{trait.full}}</p>
+  <p>{{trait.description|linebreaksbr}}</p>
+  <hr>
+  <div>
+    <h4>Models with trait:</h4>
+    <ul class="list-group">
+      {% for unit in units %}
+      <a class="list-group-item list-group-item-action" href="{% url 'bushido:modelDetails' unitid=unit.id%}">{{ unit.name }}</a>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="pt-3">
+    <h4>Feats with trait:</h4>
+    <ul class="list-group">
+      {% for feat in feats %}
+      <a class="list-group-item list-group-item-action" href="{% url 'bushido:featDetails' featid=feat.id%}">{{ feat.name }}</a>
+      {% endfor %}
+    </ul>
+  </div>
+  <hr>
+  <div>
+    <h4>Rulings:</h4>
+    <div class="list-group">
+      {% for ruling in trait.rulings %}
+      <div class="list-group-item w-auto py-md-2">
+        <p>{{ ruling.ruling }}</p>
+        <div class="d-flex">
+          <small class="me-auto">
+            {% for tag in ruling.tags.all %}
+              {{ tag.tag }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+          </small>
+          <small>{{ ruling.date }}</small>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% if perms.bushido.change_trait %}
+  <hr>
+  <a class="btn btn-outline-secondary" href="./edit/" role="button">Edit trait</a>
+  {% endif %}
+</div>
+{% endblock %}
