@@ -99,7 +99,7 @@ class Unit(models.Model):
 
     @property
     def rulings(self):
-        tags = [self.name]
+        tags = [self.name, self.faction.name] + list(self.kiFeats.values_list("name", flat=True)) + list(self.types.values_list("type", flat=True))
         return Ruling.objects.filter(tags__tag__in=tags)
 
     class Meta:
