@@ -112,14 +112,20 @@ def register(request):
 
 def search(request):
     search_query = request.GET["search"]
-    search_models = [Unit, KiFeat, Trait, Theme, Special, Faction, Event, Enhancement]
+    search_models = [Unit, KiFeat, Trait, Theme, Special, Faction, Event, Enhancement, State]
     search_results = []
+    extra_queries = [
+        [Unit, Q(types__type__icontains=search_query)]
+    ]
     for model in search_models:
         fields = [x for x in model._meta.fields if isinstance(x, models.CharField)]
-        search_queries = [Q(**{x.name + "__icontains" : search_query}) for x in fields]
+        search_queries = [Q(**{x.name + "__icontains": search_query}) for x in fields]
         q_object = Q()
         for query in search_queries:
             q_object = q_object | query
+        for extra_query in extra_queries:
+            if extra_query[0] == model:
+                q_object = q_object | extra_query[1]
 
         results = model.objects.filter(q_object)
         if hasattr(model, "faction"):
