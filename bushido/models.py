@@ -161,6 +161,11 @@ class Trait(models.Model):
     full = models.CharField(max_length=40)
     description = models.CharField(max_length=1300)
 
+    @property
+    def rulings(self):
+        tags = [self.name]
+        return Ruling.objects.filter(tags__tag__in=tags)
+
     class Meta:
         ordering = ["name"]
 

@@ -244,6 +244,13 @@ def add_unit(request):
     return render(request, 'bushido/edit_views/add_unit.html', {"form": form})
 
 
+def trait_details(request, traitid):
+    trait = get_object_or_404(Trait, pk=traitid)
+    units = Unit.objects.filter(Q(traits=trait) | Q(weapons__traits=trait)).distinct()
+    feats = KiFeat.objects.filter(description__icontains=trait.name)
+    return render(request, 'bushido/detail_views/trait_details.html', {'trait': trait, 'units': units, 'feats': feats})
+
+
 @permission_required("bushido.add_ruling")
 def add_ruling(request):
     if request.method == "POST":
