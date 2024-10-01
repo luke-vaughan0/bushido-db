@@ -130,9 +130,8 @@ def search(request):
         results = model.objects.filter(q_object)
         if hasattr(model, "faction"):
             results = results.select_related("faction")
-        search_results.append(results)
-    fullResult = [x for x in search_results if x]
-    result = [item for model in fullResult for item in model]
+        search_results.extend(results)
+    result = list({result.pk: result for result in search_results}.values())
     rankedResults = []
     for item in result:
         rankedResults.append([item, jellyfish.jaro_winkler_similarity(item.name.lower(), search_query.lower())])
