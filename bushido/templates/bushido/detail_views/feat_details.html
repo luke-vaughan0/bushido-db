@@ -38,12 +38,33 @@
   </table>
   <p>{{feat.description|linebreaksbr}}</p>
   <hr>
-  <h4>Models with feat:</h4>
-  <ul class="list-group">
-    {% for unit in feat.unit_set.all %}
-    <a class="list-group-item list-group-item-action" href="{% url 'bushido:modelDetails' unitid=unit.id%}">{{ unit.name }}</a>
-    {% endfor %}
-  </ul>
+  <div>
+    <h4>Models with feat:</h4>
+    <ul class="list-group">
+      {% for unit in feat.unit_set.all %}
+      <a class="list-group-item list-group-item-action" href="{% url 'bushido:modelDetails' unitid=unit.id%}">{{ unit.name }}</a>
+      {% endfor %}
+    </ul>
+  </div>
+  <hr>
+  <div>
+    <h4>Rulings:</h4>
+    <div class="list-group">
+      {% for ruling in feat.rulings %}
+      <div class="list-group-item w-auto py-md-2">
+        <p>{{ ruling.ruling }}</p>
+        <div class="d-flex">
+          <small class="me-auto">
+            {% for tag in ruling.tags.all %}
+              {{ tag.tag }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+          </small>
+          <small>{{ ruling.date }}</small>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
   {% if perms.bushido.change_ki_feat %}
   <hr>
   <a class="btn btn-outline-secondary" href="./edit/" role="button">Edit feat</a>

@@ -143,6 +143,11 @@ class KiFeat(models.Model):
     limit = models.CharField(max_length=8, choices=RestrictionChoices, default="", blank=True)
     description = models.CharField(max_length=600)
 
+    @property
+    def rulings(self):
+        tags = [self.name]
+        return Ruling.objects.filter(tags__tag__in=tags)
+
     class Meta:
         ordering = ["name"]
 
