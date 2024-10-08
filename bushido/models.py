@@ -497,6 +497,9 @@ class Ruling(models.Model):
     ruling = models.CharField(max_length=500)
     date = models.DateField(default=datetime.date.today)
 
+    class Meta:
+        ordering = ["-date"]
+
 
 class RulingTag(models.Model):
     def __str__(self):
