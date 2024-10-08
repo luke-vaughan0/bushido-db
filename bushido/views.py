@@ -412,6 +412,11 @@ class FactionListView(ListView):
     template_name = "bushido/list_views/faction_list.html"
 
 
+class ActionListView(ListView):
+    model = Action
+    template_name = "bushido/list_views/action_list.html"
+
+
 class RulingListView(ListView):
     model = Ruling
     template_name = "bushido/list_views/ruling_list.html"
