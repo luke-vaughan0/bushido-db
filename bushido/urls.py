@@ -31,6 +31,8 @@ urlpatterns = [
     path('info/states/', StateListView.as_view(), name='allStates'),
     path('info/terms/', TermListView.as_view(), name='allTerms'),
 
+    path('info/actions/', ActionListView.as_view(), name='allActions'),
+
     path('info/rulings/', RulingListView.as_view(), name='allRulings'),
     path('info/rulings/add/', views.add_ruling, name='add_ruling'),
 
