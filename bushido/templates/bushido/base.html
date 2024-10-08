@@ -76,13 +76,15 @@
         <div class="col-sm-2 my-0 my-md-4 border-end navbar-expand-sm collapse sidebar d-sm-block" id="main-sidebar">
         {% block sidebar %}
           <ul class="nav flex-column">
-            <li class="nav-item"><a class="nav-link" href="{% url 'bushido:index' %}">Home</a></li>
+            <!--li class="nav-item"><a class="nav-link" href="{% url 'bushido:index' %}">Home</a></li-->
             <li class="nav-item"><a class="nav-link" href="{% url 'bushido:allFactions' %}">Factions</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'bushido:allModels' %}">Models</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'bushido:allFeats' %}">Ki Feats</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'bushido:allTraits' %}">Traits</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'bushido:allSpecials' %}">Special Abilities</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'bushido:allStates' %}">States</a></li>
+            <hr>
+            <li class="nav-item"><a class="nav-link" href="{% url 'bushido:allRulings' %}">Rulings</a></li>
           </ul>
        {% endblock %}
         </div>
