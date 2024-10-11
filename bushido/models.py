@@ -315,6 +315,11 @@ class Enhancement(models.Model):
     description = models.CharField(max_length=2000, default="")
     restriction = models.CharField(max_length=300, blank=True)
 
+    @property
+    def rulings(self):
+        tags = [self.name]
+        return Ruling.objects.filter(tags__tag__in=tags)
+
     class Meta:
         ordering = ["faction", "name"]
 
@@ -444,7 +449,7 @@ class Action(models.Model):
 
     name = models.CharField(max_length=30)
     action_type = models.CharField(max_length=15, choices=ActionTypeChoices, default="Simple")
-    description = models.CharField(max_length=1000)
+    description = models.CharField(max_length=5000)
     standard_action = models.BooleanField(default=True)
     no_move = models.BooleanField(default=False)
     no_btb = models.BooleanField(default=False)

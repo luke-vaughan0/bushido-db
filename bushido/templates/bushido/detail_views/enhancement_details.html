@@ -54,6 +54,25 @@
       </li>
     </ul>
   </div>
+  <hr>
+  <div>
+    <h4>Rulings:</h4>
+    <div class="list-group">
+      {% for ruling in enhancement.rulings %}
+      <div class="list-group-item w-auto py-md-2">
+        <p>{{ ruling.ruling }}</p>
+        <div class="d-flex">
+          <small class="me-auto">
+            {% for tag in ruling.tags.all %}
+              {{ tag.tag }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+          </small>
+          <small>{{ ruling.date }}</small>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
   {% if perms.bushido.change_enhancement %}
   <hr>
   <a class="btn btn-outline-secondary" href="./edit/" role="button">Edit enhancement</a>
