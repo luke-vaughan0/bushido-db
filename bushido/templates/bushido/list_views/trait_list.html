@@ -13,7 +13,7 @@
         <tbody>
             {% for trait in trait_list %}
                 <tr id="{{ trait.name }}">
-                    <td><span>{{ trait.name }}</span></td>
+                    <td><span><a href="{% url 'bushido:traitDetails' traitid=trait.id%}">{{ trait.name }}</a></span></td>
                     <td>{{ trait.description }}</td>
                 </tr>
         {% endfor %}
