@@ -421,6 +421,9 @@ class RulingListView(ListView):
     model = Ruling
     template_name = "bushido/list_views/ruling_list.html"
 
+    def get_queryset(self):
+        return Ruling.objects.prefetch_related("tags")
+
 
 class FeatListView(ListView):
     model = KiFeat
