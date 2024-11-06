@@ -1,6 +1,7 @@
 from bushido.models import *
 from rest_framework import serializers
 from drf_dynamic_fields import DynamicFieldsMixin
+from urllib import parse
 
 
 class ReadOnlyModelSerializer(serializers.ModelSerializer):
@@ -70,10 +71,18 @@ class UnitSerializer(DynamicFieldsMixin, ReadOnlyModelSerializer):
     types = serializers.SlugRelatedField(many=True, read_only=True, slug_field="type")
     faction = serializers.ReadOnlyField(source='faction.name')
     weapons = WeaponSerializer(source="weapons.all", many=True)
+    card_front = serializers.SerializerMethodField()
+    card_reverse = serializers.SerializerMethodField()
 
     class Meta:
         model = Unit
         exclude = ['properties']
+
+    def get_card_front(self, obj):
+        return f"https://bushidodb.ddns.net/static/bushido/{obj.faction.shortName}/models/{parse.quote(obj.name)}%20Front.jpg"
+
+    def get_card_reverse(self, obj):
+        return f"https://bushidodb.ddns.net/static/bushido/{obj.faction.shortName}/models/{parse.quote(obj.name)}%20Reverse.jpg"
 
 
 class TraitSerializer(ReadOnlyModelSerializer):
