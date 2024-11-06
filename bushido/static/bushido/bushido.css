@@ -12307,6 +12307,11 @@ tr:target td:first-child span {
   color: black;
 }
 
+.highlighter:target span.highlight {
+  background-color: #e9d2fd;
+  color: black;
+}
+
 .scrollable-list {
   max-height: 200px;
   /* Adjust the height as needed */

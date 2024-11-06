@@ -35,6 +35,7 @@ urlpatterns = [
 
     path('info/rulings/', RulingListView.as_view(), name='allRulings'),
     path('info/rulings/add/', views.add_ruling, name='add_ruling'),
+    path('info/rulings/<int:rulingid>/edit/', views.edit_ruling, name='edit_ruling'),
 
     path('info/factions/', FactionListView.as_view(), name='allFactions'),
     path('info/factions/<int:factionid>/', views.faction_details, name='factionDetails'),

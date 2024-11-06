@@ -265,6 +265,22 @@ def add_ruling(request):
     return render(request, 'bushido/edit_views/add_ruling.html', {"form": ruling_form, "tag_form": tag_form})
 
 
+@permission_required("bushido.change_ruling")
+def edit_ruling(request, rulingid):
+    ruling = get_object_or_404(Ruling, pk=rulingid)
+    if request.method == "POST":
+        ruling_form = AddRuling(request.POST, instance=ruling)
+        tag_form = RulingTagFormSet(request.POST, instance=ruling, prefix="tags")
+        if ruling_form.is_valid() and tag_form.is_valid():
+            ruling_form.save()
+            tag_form.save()
+            return redirect(reverse('bushido:allRulings'))
+    else:
+        ruling_form = AddRuling(instance=ruling)
+        tag_form = RulingTagFormSet(instance=ruling, prefix="tags")
+    return render(request, 'bushido/edit_views/add_ruling.html', {"form": ruling_form, "tag_form": tag_form})
+
+
 def themeDetails(request, themeid):
     theme = get_object_or_404(Theme, pk=themeid)
     card = get_card(request.user, theme)

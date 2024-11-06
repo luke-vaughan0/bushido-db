@@ -4,19 +4,31 @@
 <div class="container m-0">
     <h2>Rulings</h2>
   {% if perms.bushido.add_ruling %}
-    <a class="btn btn-outline-secondary mb-2" href="{% url 'bushido:add_ruling' %}" role="button">Add New</a>
+    <a class="btn btn-outline-secondary mb-3" href="{% url 'bushido:add_ruling' %}" role="button">Add New</a>
   {% endif %}
     <div class="list-group">
       {% for ruling in ruling_list %}
       <div class="list-group-item w-auto py-md-2">
-        <p>{{ ruling.ruling }}</p>
+        <div class="container-fluid p-0">
+          <div class="row pe-2">
+            <div class="pe-0 {% if perms.bushido.change_ruling %}col-12 col-md-10 col-lg-11{% endif %}">
+              <p id="{{ruling.pk}}" class="highlighter"><span class="highlight">{{ ruling.ruling }}</span></p>
+            </div>
+            {% if perms.bushido.change_ruling %}
+            <div class="col-12 col-md-2 col-lg-1 pe-0">
+              <a class="btn btn-outline-secondary float-md-end" href="./{{ruling.pk}}/edit/" role="button">Edit</a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
         <div class="d-flex">
           <small class="me-auto">
             {% for tag in ruling.tags.all %}
               {{ tag.tag }}{% if not forloop.last %}, {% endif %}
             {% endfor %}
           </small>
-          <small>{{ ruling.date }}</small>
+          <small><a href="" class="copy-link text-reset" data-copy-link="{% url 'bushido:allRulings' %}#{{ruling.pk}}"
+        data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="manual" data-bs-title="Copied link!">{{ ruling.date }}</a></small>
         </div>
       </div>
       {% endfor %}
