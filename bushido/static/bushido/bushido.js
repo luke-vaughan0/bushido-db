@@ -37,6 +37,13 @@ $("#DiscordShare").on("click", function() {
     setTimeout(function() {$('#DiscordShare').tooltip('hide')}, 2000);
 });
 
+$(".copy-link").on("click", function(e) {
+    e.preventDefault();
+    navigator.clipboard.writeText(window.location.hostname + $(this).data("copy-link"));
+    $(this).tooltip('show');
+    setTimeout(function() {$(this).tooltip('hide')}.bind(this), 2000);
+});
+
 $(".formset-container").on("change", ".formset-add", function() {
     var current_id = parseInt(this.id.split("-")[1]);
     var name_prefix = this.name.split("-")[0];
