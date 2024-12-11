@@ -110,6 +110,17 @@ def register(request):
     return render(request, 'registration/register.html', {"registerForm": form})
 
 
+SEARCH_TAGS = {
+    "kifeat": ("kiFeats__name", [Unit]),
+    "trait": ("traits__name", [Unit]),
+    "traitx": ("unittrait__X", [Unit]),
+    "traity": ("unittrait__Y", [Unit]),
+    "traitd": ("unittrait__descriptor", [Unit]),
+    "hasranged": ("weapons__isRanged", [Unit]),
+    "faction": ("faction__shortName", [Unit, Event, Theme, Enhancement, Terrain]),
+}
+
+
 def search(request):
     search_query = request.GET["search"]
     search_models = [Unit, KiFeat, Trait, Theme, Special, Faction, Event, Enhancement, State]
@@ -117,16 +128,39 @@ def search(request):
     extra_queries = [
         [Unit, Q(types__type__icontains=search_query)]
     ]
+    filter_pattern = r"(\b\w*):(\w+|\".*\")"
+    for match in re.finditer(filter_pattern, search_query):
+        extra_queries.append([match.group(1), match.group(2).replace('"', "")])
+    search_query = re.sub(filter_pattern, "", search_query).strip()
     for model in search_models:
-        fields = [x for x in model._meta.fields if isinstance(x, models.CharField)]
-        search_queries = [Q(**{x.name + "__icontains": search_query}) for x in fields]
+        should_add = True
         q_object = Q()
-        for query in search_queries:
-            q_object = q_object | query
+        if search_query:
+            fields = [x for x in model._meta.fields if isinstance(x, models.CharField)]
+            search_queries = [Q(**{x.name + "__icontains": search_query}) for x in fields]
+            for query in search_queries:
+                q_object = q_object | query
         for extra_query in extra_queries:
-            if extra_query[0] == model:
+            if extra_query[0] == model and search_query:
                 q_object = q_object | extra_query[1]
-
+            elif type(extra_query[0]) == str:
+                try:
+                    thing = SEARCH_TAGS[extra_query[0]]
+                    if model in thing[1]:
+                        if extra_query[0] == "hasranged":
+                            print("hello")
+                            q_object = q_object & Q(**{thing[0]: True if extra_query[1].lower() in ["true", "yes"] else False})
+                        else:
+                            q_object = q_object & Q(**{f"{thing[0]}__icontains": extra_query[1]})
+                        continue
+                except KeyError:
+                    if hasattr(model, extra_query[0]):
+                        q_object = q_object & Q(**{f"{extra_query[0]}__icontains": extra_query[1]})
+                        continue
+                should_add = False
+                break
+        if not should_add:
+            continue
         results = model.objects.filter(q_object)
         if hasattr(model, "faction"):
             results = results.select_related("faction")
@@ -144,7 +178,7 @@ def search(request):
                 "Unit": "Model",
                 "KiFeat": "Feat"
             }
-            return redirect('/bushido/info/{}s/{}'.format(
+            return redirect('/bushido/info/{}s/{}/'.format(
                 classNames.get(model.__class__.__name__, model.__class__.__name__).lower(), model.pk))
     return render(request, 'bushido/search.html', {"search_results": result})
 
