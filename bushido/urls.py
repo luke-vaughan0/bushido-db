@@ -3,6 +3,7 @@ from . import views
 from bushido.views import *
 from django.contrib.auth import views as auth_views
 from rest_framework import routers, serializers, viewsets
+from django.views.generic import TemplateView
 
 app_name = 'bushido'
 
@@ -58,6 +59,8 @@ urlpatterns = [
 
     path('info/enhancements/<int:enhancementid>/', views.enhancementDetails, name='enhancementDetails'),
     path('info/enhancements/<int:enhancementid>/edit/', views.editEnhancement, name='editEnhancement'),
+
+    path('info/rules/melee-exchanges/', TemplateView.as_view(template_name="bushido/rules_views/melee_exchanges_rules.html"), name='melee_exchanges_rules'),
 
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/register/', views.register, name='register'),
