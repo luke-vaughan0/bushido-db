@@ -1,0 +1,19 @@
+{% extends "bushido/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}<title>Import Warband</title>{% endblock %}
+{% block metatags %}
+    <meta property="og:title" content="Import Warband">
+    <meta property="og:site_name" content="BushidoDB">
+    <meta property="og:description" content="Import">
+{% endblock %}
+{% block content %}
+<div class="container m-0">
+    <h1>Import Warband</h1>
+    <form method="post" action="{% url 'bushido:import_warband' %}">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input class="btn btn-outline-secondary" type="submit" value="Submit">
+  </form>
+</div>
+{% endblock %}s

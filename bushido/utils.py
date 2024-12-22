@@ -213,3 +213,116 @@ def get_card(user=None, item=None, extra=""):
         if not user.userprofile.use_unofficial_cards:
             return card
     return card.replace("bushido/", "bushido/unofficial/").replace(".jpg", ".png")
+
+
+def text_to_list(text):
+    from bushido.models import Unit, Event, Enhancement, List, ListUnit, Theme, ListEvent
+    unit_list = List()
+    unit_list.save()
+    themes = [theme.lower() for theme in Theme.objects.values_list("name", flat=True)]
+    factions = []
+    for line in text.split("\n"):
+        line = line.strip()
+        if not line:
+            continue
+        parts = line.split(":", 1)
+        # remove rice, brackets and digits, non letters before the first letter, and A-F when it's not in a word
+        pattern = r"\[\d+ Rice]|[\[\]()\d]|^[^a-zA-Z]+| [A-F](?![a-zA-Z])"
+        name = re.sub(pattern, "", parts[0]).strip()
+        print(name)
+
+        if not unit_list.theme:
+            if name.lower() in themes:
+                unit_list.theme = Theme.objects.get(name=name)
+                unit_list.faction = unit_list.theme.faction
+
+        # units
+        units = Unit.objects.filter(Q(name__iexact=name) | Q(cardName__iexact=name))
+        if len(units) == 0:
+            pass
+        elif len(units) == 1:
+            unit = units[0]
+            factions.append(unit.faction)
+            enhancements = []
+            equipment = []
+            if len(parts) > 1:
+                for part in parts[1].split(","):
+                    enhancement = Enhancement.objects.filter(name__iexact=part.strip())
+                    if len(enhancement) == 1:
+                        enhancement = enhancement[0]
+                    elif len(enhancement) == 0:
+                        continue
+                    else:
+                        enhancement = [x for x in enhancement if x.faction == unit.faction]
+                        if len(enhancement) != 1:
+                            continue
+                        enhancement = enhancement[0]
+                    if enhancement.isEquipment:
+                        equipment.append(enhancement)
+                    else:
+                        enhancements.append(enhancement)
+            list_unit = ListUnit(list=unit_list, unit=unit, equipment=equipment[0] if equipment else None)
+            list_unit.save()
+            list_unit.enhancements.set(enhancements)
+            continue
+        else:
+            for part in parts[1].split(","):
+                units = Unit.objects.filter(name__iexact=part.strip())
+                for unit in units:
+                    factions.append(unit.faction)
+                    list_unit = ListUnit(list=unit_list, unit=unit)
+                    list_unit.save()
+            continue
+
+        # events
+        events = Event.objects.filter(name__iexact=name)
+        if len(events) > 1:
+            events = [x for x in events if x.faction == unit_list.faction]
+        if len(events) != 0:
+            list_event = ListEvent(list=unit_list, event=events[0])
+            list_event.save()
+
+    # guessing faction
+    if not unit_list.faction and len(factions) != 0:
+        guessed_faction = collections.Counter(factions).most_common(2)
+        if guessed_faction[0][0].shortName != "ronin":
+            guessed_faction = guessed_faction[0][0].id
+        elif len(guessed_faction) > 1:
+            guessed_faction = guessed_faction[1][0].id
+        else:
+            guessed_faction = collections.Counter(unit_list.units.values_list("ronin_factions", flat=True)).most_common(1)[0][0]
+        unit_list.faction_id = guessed_faction
+    unit_list.save()
+    print(unit_list.__dict__)
+    print(unit_list.is_list_valid())
+    return unit_list
+
+
+def mock_test():
+    from django_mock_queries.mocks import mocked_relations
+    from django_mock_queries.query import MockModel, MockSet
+    from bushido.models import Unit, UnitType
+    # Create mock libraries
+    edo = Unit.objects.get(name="Edogawa")
+    print(edo.types.all())
+    #initial_types = edo.types.all()
+
+    #unit_set = MockSet(edo)
+    #type_set = MockSet(*initial_types)
+    #print(list(unit_set))
+    #print(list(type_set))
+
+    with mocked_relations(UnitType):
+        print("get here?")
+        #print(list(Unit.objects.all()))
+        extra_type = UnitType.objects.create(unit=edo, type="Testing")
+        print(list(UnitType.objects.all()))
+        print(extra_type)
+        print(extra_type.unit)
+        edo.types.add(extra_type)
+        print(edo.types.all())
+        test = Unit.objects.filter(types__type="Testing")
+        print(list(test))
+    test = Unit.objects.filter(types__type="Testing")
+    print(edo.types.all())
+    print(list(test))

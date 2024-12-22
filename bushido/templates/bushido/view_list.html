@@ -15,10 +15,15 @@
     <p class="fw-light">by {{list.owner.username}}</p>
 <strong>{{ list.faction.name }} - {{ list.theme.name }}</strong>
     <p>{% if list.is_list_valid %}List Valid{% else %}List Invalid{% endif %}</p>
-    <ul>
+    <button id="DiscordShare" type="button" class="btn btn-secondary"
+        data-bs-toggle="tooltip" data-bs-placement="top" data-bs-trigger="manual" data-bs-title="Copied to clipboard!">Copy text</button>
+    <ul class="list-group pt-2">
 {% for listunit in list.listunit_set.all %}
-<li>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{listunit.unit.name}}</h5>
     <a href="{% url 'bushido:modelDetails' unitid=listunit.unit.id%}">{{ listunit.unit.name }}</a> - {{ listunit.unit.cost }}
+    <a class="btn btn-danger" href="./remove/?item={{listunit.unit.id}}&type=unit" role="button">Remove</a>
     <ul>
         {% if listunit.equipment %}
         <li><a href="{% url 'bushido:enhancementDetails' enhancementid=listunit.equipment.id%}">{{ listunit.equipment.name }}</a> - {{ listunit.equipment.cost }}</li>
@@ -27,7 +32,13 @@
         <li><a href="{% url 'bushido:enhancementDetails' enhancementid=enhancement.id%}">{{ enhancement.name }}</a> - {{ enhancement.cost }}</li>
         {% endfor %}
     </ul>
-</li>
+  </div>
+</div>
+    {% endfor %}
+    </ul>
+  <ul class="list-group pt-2">
+{% for event in list.events.all %}
+    <a href="{% url 'bushido:eventDetails' eventid=event.id%}">{{ event.name }}</a> - {{ event.cost }}
     {% endfor %}
     </ul>
     <strong>Total: {{ cost }} Rice</strong>
@@ -35,8 +46,19 @@
 <h3>Permitted</h3>
     <ul class="list-group">
 {% for unit in list.theme.permitted_units %}
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{unit.name}}</h5>
+            <h6 class="card-subtitle mb-2">{{unit.cost}}</h6>
+            <a class="btn btn-primary" href="./add/?item={{unit.id}}&type=unit" role="button">Add</a>
+          </div>
+        </div>
 <a class="list-group-item list-group-item-action" href="{% url 'bushido:modelDetails' unitid=unit.id%}">{{ unit.name }}</a>
     {% endfor %}
     </ul>
+    <div id="DiscordShareText" class="d-none">### {{ list.faction.name }} - {{ list.theme.name }}
+{% for listunit in list.listunit_set.all %}{{ listunit.unit.name }}{% if listunit.equipment or listunit.enhancements.all|length != 0 %}: {% endif %}{% if listunit.equipment %}{{listunit.equipment}}{% if listunit.enhancements.all|length != 0 %}, {% endif %}{% endif %}{{listunit.enhancements.all|join:", "}}
+{% endfor %}
+[View on BushidoDB](&lt;https://bushidodb.ddns.net/bushido/list/{{list.id}}/&gt;)</div>
 </div>
 {% endblock %}s

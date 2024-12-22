@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import permission_required
 from django.contrib.auth import login
 from rest_framework import viewsets
 from bushido.serializers import *
-from bushido.utils import queryset_from_string, get_card
+from bushido.utils import queryset_from_string, get_card, text_to_list
 import jellyfish
 
 
@@ -406,6 +406,7 @@ def createList(request):
         if form.is_valid():
             newList = form.save(commit=False)
             newList.owner = request.user
+            newList.faction = newList.theme.faction
             newList.save()
             return HttpResponseRedirect("./"+str(newList.pk))
     else:
@@ -413,20 +414,64 @@ def createList(request):
     return render(request, 'bushido/create_list.html', {'form': form})
 
 
-def viewList(request, listid):
-    unitList = get_object_or_404(List, pk=listid)
+def viewList(request, listid):  # TODO: check permissions
+    unitList = get_object_or_404(List.objects.prefetch_related("listunit_set__unit", "listunit_set__enhancements"), pk=listid)  # TODO: return list not found instead of 404
     cost = 0
-    for unit in unitList.listunit_set.all():
+    for listUnit in unitList.listunit_set.all():#prefetch_related("unit", "enhancements"):
         try:
-            cost += int(unit.unit.cost)
+            cost += int(listUnit.unit.cost)
         except ValueError:
-            print(f"error in {unit.name}")
-        if unit.equipment:
-            cost += int(unit.equipment.cost)
-        for enhancement in unit.enhancements.all():
+            print(f"error in {listUnit.name}")
+        if listUnit.equipment:
+            cost += int(listUnit.equipment.cost)
+        for enhancement in listUnit.enhancements.all():
             cost += int(enhancement.cost)
+    for event in unitList.events.all():
+        cost += int(event.cost)
+    #unitList.is_list_valid()
 
-    return render(request, 'bushido/view_list.html', {'list': unitList, "cost": cost})
+    return render(request, 'bushido/view_list.html', {'list': unitList, "cost": cost, })
+
+
+def add_to_list(request, listid):  # TODO: check permissions
+    unitList = get_object_or_404(List, pk=listid)
+    itemid = request.GET["item"]
+    item_type = request.GET["type"]
+
+    try:
+        unit = Unit.objects.get(pk=itemid)
+        listUnit = ListUnit(unit=unit, list=unitList)
+        listUnit.save()
+    except Unit.DoesNotExist:
+        pass
+
+    return redirect(reverse('bushido:view_list', kwargs={'listid': listid}))
+
+
+def remove_from_list(request, listid):  # TODO: check permissions
+    unitList = get_object_or_404(List, pk=listid)
+    itemid = request.GET["item"]
+    item_type = request.GET["type"]
+
+    try:
+        listUnit = ListUnit.objects.get(unit__id=itemid, list=unitList)
+        listUnit.delete()
+    except Unit.DoesNotExist:
+        pass
+
+    return redirect(reverse('bushido:view_list', kwargs={'listid': listid}))
+
+
+def import_warband(request):
+    form = TextForm()
+    if request.method == 'POST':
+        form = TextForm(request.POST)
+        if form.is_valid():
+            warband = text_to_list(form.cleaned_data["text"])
+            return redirect(reverse('bushido:view_list', kwargs={'listid': warband.id}))
+        else:
+            return render(request, 'bushido/import_warband.html', {"form": form})
+    return render(request, 'bushido/import_warband.html', {"form": form})
 
 
 class BushidoUnitListView(ListView):

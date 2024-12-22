@@ -21,8 +21,11 @@ router.register(r'specials', views.SpecialViewSet)
 urlpatterns = [
     path('', views.index, name='index'),
     path('api/', include(router.urls)),
-    path('list/<str:listid>/', views.viewList),
+    path('list/import/', views.import_warband, name="import_warband"),
+    path('list/<str:listid>/', views.viewList, name='view_list'),
     path('list/', views.createList),
+    path('list/<str:listid>/add/', views.add_to_list),
+    path('list/<str:listid>/remove/', views.remove_from_list),
     path('search/', views.search, name='search'),
     path('wave/<int:wave_number>/', views.wave_list, name='wave_list'),
     path('wave/latest/', views.wave_list, name='latest_wave'),

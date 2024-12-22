@@ -4,6 +4,7 @@ from django.conf import settings
 from simple_history.models import HistoricalRecords
 from ordered_model.models import OrderedModel
 from bushido.utils import queryset_from_string, q_object_from_string, get_properties
+from django_mock_queries.query import MockSet, MockModel
 import shortuuid
 import re
 import datetime
@@ -326,7 +327,13 @@ class Enhancement(models.Model):
 
 class List(models.Model):
     def __str__(self):
-        return self.owner.username + " - " + self.name
+        try:
+            if self.owner:
+                return self.owner.username + " - " + self.name
+            else:
+                return self.name
+        except:
+            return self.name
 
     PrivacyChoices = [
         ("Public", "Public"),
@@ -334,30 +341,52 @@ class List(models.Model):
         ("Private", "Private"),
     ]
 
-    name = models.CharField(max_length=30, default="")
+    name = models.CharField(max_length=30, default="Unnamed List")
     id = models.CharField(max_length=25, primary_key=True, unique=True, default=shortuuid.uuid, editable=False)
-    units = models.ManyToManyField('Unit', through='ListUnit')
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=0)
+    units = models.ManyToManyField('Unit', blank=True, through='ListUnit')
+    events = models.ManyToManyField('Event', blank=True, through='ListEvent')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
     privacy = models.CharField(max_length=8, choices=PrivacyChoices, default="Public")
-    theme = models.ForeignKey(Theme, on_delete=models.CASCADE, default=0)
-    faction = models.ForeignKey(Faction, on_delete=models.CASCADE)
+    theme = models.ForeignKey(Theme, on_delete=models.CASCADE, blank=True, null=True)
+    faction = models.ForeignKey(Faction, on_delete=models.CASCADE, blank=True, null=True)
 
     def is_list_valid(self):
-        permitted = self.theme.permitted_units  # TODO ronin themes
-        for listunit in self.listunit_set.all():
+        if self.theme:
+            permitted = self.theme.permitted_units  # TODO ronin themes
+        elif self.faction:
+            permitted = self.faction.all_units
+        else:
+            return False
+        for listunit in self.listunit_set.prefetch_related("enhancements", "equipment").select_related("unit"):
             properties = get_properties(listunit.unit)
             if listunit.unit not in permitted:
                 return False
-            if "Insignificant" in listunit.unit.traits.values_list("name", flat=True) or "Animal" in listunit.unit.types.values_list("type", flat=True):
+            if listunit.unit.traits.filter(name="Insignificant").exists() or listunit.unit.types.filter(type="Animal").exists():
                 if "ALLOWENHANCEMENTS" not in properties:
-                    if listunit.equipment or len(listunit.enhancements.all()) != 0:
+                    if listunit.equipment or listunit.enhancements.exists():
                         return False
         return True
+
+    def generate_actual(self):
+        for listunit in self.listunit_set.prefetch_related("enhancements", "equipment").select_related("unit"):
+            test_unit = MockModel(listunit)
+            for enhancement in listunit.enhancements:
+                properties = get_properties(listunit.unit)
+                if "ADDTYPE" in properties:
+                    pass
+
+
 
 
 class ListUnit(models.Model):
     def __str__(self):
-        return self.list.owner.username + " - " + self.list.name + " - " + self.unit.name
+        try:
+            if self.list.owner:
+                return self.list.owner.username + " - " + self.list.name + " - " + self.unit.name
+            else:
+                return self.list.name + " - " + self.unit.name
+        except:
+            return self.list.name + " - " + self.unit.name
 
     list = models.ForeignKey(List, on_delete=models.CASCADE)
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
@@ -366,6 +395,13 @@ class ListUnit(models.Model):
 
     class Meta:
         ordering = ["unit__name"]
+
+
+class ListEvent(models.Model):
+    def __str__(self):
+        return self.list.name + " - " + self.event.name
+    list = models.ForeignKey(List, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
 
 
 class Weapon(models.Model):
